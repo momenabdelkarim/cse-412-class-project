@@ -47,3 +47,5 @@ class Application(QObject):
         self.__main_win.show()
 
         sys.exit(self.__app.exec())
+
+        """testing"""
