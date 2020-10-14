@@ -29,9 +29,6 @@ class Application(QObject):
         self.__app = QApplication(sys.argv)
         self.__main_win = QMainWindow(parent=None)
 
-        btn = QPushButton("Push me!", self.__main_win)
-        self.__main_win.setCentralWidget(btn)
-
         self.__generate_window()
 
     def __generate_window(self):
