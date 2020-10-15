@@ -20,6 +20,10 @@ setup_postgres:
 	psql -d $(USER) -q -f setup_postgres/create_tables.sql
 
 
+insert_postgres:
+	@echo "inserting into tables"
+	psql -d $(USER) -q -f setup_postgres/insert_tables.sql
+
 clean_postgres:
 	@echo "dropping tables"
 	psql -d $(USER) -q -f setup_postgres/drop_tables.sql

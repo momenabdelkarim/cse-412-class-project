@@ -36,7 +36,7 @@ FOREIGN KEY (id) REFERENCES  album(id)
 
 CREATE TABLE podcast(
 id integer,
-end_year date,
+end_year integer,
 PRIMARY KEY (id),
 FOREIGN KEY (id) REFERENCES  auditory_media(id)
 );
@@ -76,7 +76,7 @@ organization_id integer not null,
 name text not null,
 year integer not null,
 PRIMARY KEY (organization_id,name,year),
-FOREIGN KEY (organization_id) REFERENCES  organization(id)
+FOREIGN KEY (organization_id) REFERENCES  organization(id) ON DELETE CASCADE
 );
 
 CREATE TABLE person(
@@ -95,34 +95,33 @@ award_year integer,
 organization_id integer,
 auditory_media_id integer not null,
 PRIMARY KEY(award_name, award_year, organization_id, auditory_media_id),
-FOREIGN KEY(organization_id,award_name,award_year) REFERENCES award(organization_id,name,year),
-FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id)
+FOREIGN KEY(organization_id,award_name,award_year) REFERENCES award(organization_id,name,year) ON DELETE CASCADE,
+FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id) ON DELETE CASCADE
 );
 
 CREATE TABLE produces(
 auditory_media_id integer not null,
 person_id integer not null,
 PRIMARY KEY(person_id, auditory_media_id),
-FOREIGN KEY(person_id) REFERENCES person(id),
-FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id)
+FOREIGN KEY(person_id) REFERENCES person(id) ON DELETE CASCADE,
+FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id) ON DELETE CASCADE
 );
 
 CREATE TABLE publishes(
 auditory_media_id integer not null,
 publisher_id integer not null,
 PRIMARY KEY(auditory_media_id),
-FOREIGN KEY(publisher_id) REFERENCES publisher(id),
-FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id)
+FOREIGN KEY(publisher_id) REFERENCES publisher(id) ON DELETE CASCADE,
+FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id) ON DELETE CASCADE
 );
 
 
 CREATE TABLE member_of(
-person_id integer,
 auditory_media_id integer not null,
 playlist_id integer not null,
-PRIMARY KEY(person_id, auditory_media_id),
-FOREIGN KEY(playlist_id) REFERENCES playlist(id),
-FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id)
+PRIMARY KEY(auditory_media_id, playlist_id),
+FOREIGN KEY(playlist_id) REFERENCES playlist(id) ON DELETE CASCADE,
+FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id) ON DELETE CASCADE
 );
 
 CREATE TABLE guest_appearance(
@@ -131,6 +130,6 @@ episode_number integer,
 title text,
 podcast_id integer,
 PRIMARY KEY(person_id, episode_number, title, podcast_id),
-FOREIGN KEY(person_id) REFERENCES person(id),
-FOREIGN KEY(episode_number,title,podcast_id) REFERENCES episode(episode_number,title,id)
+FOREIGN KEY(person_id) REFERENCES person(id) ON DELETE CASCADE,
+FOREIGN KEY(episode_number,title,podcast_id) REFERENCES episode(episode_number,title,id) ON DELETE CASCADE
 );
