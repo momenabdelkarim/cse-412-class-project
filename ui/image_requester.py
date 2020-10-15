@@ -26,8 +26,6 @@ class ImageRequester(QObject):
         Slot attached to finished signal of network access manager
         Retrieves HTTP data and sets image appropriately
         """
-        print("HERE")
-        print(reply.attribute(QNetworkRequest.HttpStatusCodeAttribute))
 
         if reply.error() != QNetworkReply.NoError:
             qDebug(f"Unable to fetch image at {self.__image_url}")
@@ -36,8 +34,8 @@ class ImageRequester(QObject):
             self.__pix.loadFromData(img_data)
             reply.deleteLater()
 
-        # if self.__pix.isNull():
-        #     self.__pix.load(R"img/default_photo.png")
+        if self.__pix.isNull():
+            self.__pix.load(R"img/default_photo.png")
 
         # Make pixmap scale reasonably
         pix = self.__pix.scaled(self.__image_radius, self.__image_radius, Qt.KeepAspectRatio, Qt.SmoothTransformation)

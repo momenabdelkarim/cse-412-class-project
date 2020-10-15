@@ -3,6 +3,8 @@ import sys
 from PyQt5.QtCore import QSize, QPoint, QObject
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
 
+from ui.widgets.media_view import MediaView
+
 WINDOW_TITLE = "CSE 412 Team Project"
 
 
@@ -44,8 +46,7 @@ class Application(QObject):
         # Move main window to center of center monitor's display area
         self.__main_win.setGeometry(0, 0, self.app_dimensions.height(), self.app_dimensions.width())
         self.__main_win.move(get_center_pos(self.__main_win))
+        self.__main_win.setCentralWidget(MediaView(self.__main_win, "Colter Wall", "Imaginary Appalachia", "https://m.media-amazon.com/images/I/81XLqAtJZKL._SS500_.jpg", True))
         self.__main_win.show()
 
         sys.exit(self.__app.exec())
-
-        """testing"""
