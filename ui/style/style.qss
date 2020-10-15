@@ -1,0 +1,27 @@
+
+/* MEDIA VIEW */
+
+QMainWindow {
+    background-color: #121212;
+}
+
+QFrame#media-view {
+    background-color: #1f1f1f;
+    border-radius: 5px;
+}
+
+QLabel#media-title {
+    color: white;
+    font-size: 25px;
+}
+
+QLabel#media-subtitle {
+    color: #c5c5c5;
+    font-size: 20px;
+}
+
+QPushButton#add-btn {
+    font-size: 25px;
+    color: #1DB954;
+    margin-right: 15px;
+}
