@@ -1,9 +1,9 @@
 import sys
 
 from PyQt5.QtCore import QSize, QPoint, QObject
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
 
-WINDOW_TITLE = "Placeholder Title"
+WINDOW_TITLE = "CSE 412 Team Project"
 
 
 def get_center_pos(widget: QWidget) -> QPoint:
