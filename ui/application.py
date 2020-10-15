@@ -1,11 +1,9 @@
 import sys
 
 from PyQt5.QtCore import QSize, QPoint, QObject
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
 
-from ui.widgets.media_view import MediaView
-
-WINDOW_TITLE = "Placeholder Title"
+WINDOW_TITLE = "CSE 412 Team Project"
 
 
 def get_center_pos(widget: QWidget) -> QPoint:
@@ -30,8 +28,7 @@ class Application(QObject):
         self.app_dimensions = QSize(700, 700)
         self.__app = QApplication(sys.argv)
         self.__main_win = QMainWindow(parent=None)
-        self.__main_win.setCentralWidget(MediaView(self.__main_win, "Tyler Childers", "Whitehouse Road",
-                                                   "https://images.genius.com/d160feafd2a1e173cfbee36aab2906a1.406x406x1.jpg", True))
+
         self.__generate_window()
 
     def __generate_window(self):
@@ -50,3 +47,5 @@ class Application(QObject):
         self.__main_win.show()
 
         sys.exit(self.__app.exec())
+
+        """testing"""
