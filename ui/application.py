@@ -1,7 +1,7 @@
 import sys
 
 from PyQt5.QtCore import QSize, QPoint, QObject
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLineEdit, QTabWidget, QVBoxLayout
 
 from ui.widgets.media_view import MediaView
 
@@ -30,7 +30,36 @@ class Application(QObject):
         self.app_dimensions = QSize(700, 700)
         self.__app = QApplication(sys.argv)
         self.__main_win = QMainWindow(parent=None)
+        self.__main_win.setWindowTitle("CSE412 Team Project")
 
+        qwidget = QWidget()
+        layout = QVBoxLayout(qwidget)
+
+        # Creating tabs
+        tabs = QTabWidget()
+
+        # Tab Items
+        tab1 = QWidget()
+        tab2 = QWidget()
+
+        # Name Tab Items
+        tabs.addTab(tab1, "All Media")
+        tabs.addTab(tab2, "Playlist")
+
+        tablelayout = QVBoxLayout(qwidget)
+        button1 = QPushButton("Query All Media")
+        tablelayout.addWidget(button1)
+        tab1.setLayout(tablelayout)
+
+        tablelayout2 = QVBoxLayout(qwidget)
+        button2 = QPushButton("Query Playlist")
+        tablelayout2.addWidget(button2)
+        tab2.setLayout(tablelayout2)
+
+        layout.addWidget(tabs)
+        qwidget.setLayout(layout)
+
+        self.__main_win.setCentralWidget(qwidget)
         self.__generate_window()
 
     def __generate_window(self):
@@ -46,7 +75,6 @@ class Application(QObject):
         # Move main window to center of center monitor's display area
         self.__main_win.setGeometry(0, 0, self.app_dimensions.height(), self.app_dimensions.width())
         self.__main_win.move(get_center_pos(self.__main_win))
-        self.__main_win.setCentralWidget(MediaView(self.__main_win, "Colter Wall", "Imaginary Appalachia", "https://m.media-amazon.com/images/I/81XLqAtJZKL._SS500_.jpg", True))
         self.__main_win.show()
 
         sys.exit(self.__app.exec())
