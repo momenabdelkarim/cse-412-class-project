@@ -43,6 +43,9 @@ VALUES(114, 'media14.com', '8/28/1988', 'Descanso Dominical', 'pop', 8.5);
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
 VALUES(115, 'media15.com', '5/4/2019', 'The TryPod', 'podcast', 7.5);
 
+INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
+VALUES(116, 'media15.com', '9/8/2020', 'CTF Radiooo', 'podcast', 7.3);
+
 /* Comedy Special Table: */
 
 INSERT INTO comedy_special (id, runtime, venue)
@@ -85,77 +88,77 @@ VALUES(114, 'Vinyl');
 
 /* Song Table: */
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(101, 'Natural', 189,  621539875);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 101, 'Natural', 189,  621539875);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(101, 'Boomerang', 188,  53977701);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 101, 'Boomerang', 188,  53977701);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(101, 'Machine', 182,  78769871);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 101, 'Machine', 182,  78769871);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(106, 'Thats What I like', 226,  1115782736);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 106, 'Thats What I like', 226,  1115782736);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(106, 'Chunky', 187,  198284225);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 106, 'Chunky', 187,  198284225);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(104, 'Dynamite', 199,  259027195);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 104, 'Dynamite', 199,  259027195);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(108, 'Beat it', 378,  459385390);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 108, 'Beat it', 378,  459385390);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(108, 'Billie Jean', 294,  742519652);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 108, 'Billie Jean', 294,  742519652);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(108, 'Thriller', 357, 456276389);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 108, 'Thriller', 357, 456276389);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(108, 'P.Y.T. (Pretty Young Thing)', 238, 1284596);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 108, 'P.Y.T. (Pretty Young Thing)', 238, 1284596);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'Ocean Eyes', 200, 639047103);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'Ocean Eyes', 200, 639047103);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'Bellyache', 179, 489127257);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'Bellyache', 179, 489127257);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'Watch', 176, 265400429);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'Watch', 176, 265400429);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'Copycat', 193, 294773489);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'Copycat', 193, 294773489);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'Idontwannabeyouanymore', 204, 575068180);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'Idontwannabeyouanymore', 204, 575068180);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'My Boy', 170, 315143707);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'My Boy', 170, 315143707);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(105, 'Party Favor', 204, 156051931);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 105, 'Party Favor', 204, 156051931);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(110, 'Bohemian Rhapsody', 355, 1235434565);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 110, 'Bohemian Rhapsody', 355, 1235434565);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(110, 'Youre My Best Friend', 172, 12457849);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 110, 'Youre My Best Friend', 172, 12457849);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(112, 'Get It Back', 194, 43112687);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 112, 'Get It Back', 194, 43112687);
 
-INSERT INTO song(id, name, duration, view_count)
+INSERT INTO song(auditory_media_id, name, duration, view_count)
 VALUES(112, 'Let It Be', 230, 6743829);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES (112, 'The Long and Winding Road', 220, 76328379);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES ( 112, 'The Long and Winding Road', 220, 76328379);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(114, 'La Fuerza del Destino', 317, 703900);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 114, 'La Fuerza del Destino', 317, 703900);
 
-INSERT INTO song(id, name, duration, view_count)
-VALUES(114, 'El Cine', 255, 342876);
+INSERT INTO song(auditory_media_id, name, duration, view_count)
+VALUES( 114, 'El Cine', 255, 342876);
 
 /* Podcast Table: */
 
@@ -168,8 +171,8 @@ VALUES(111, 2020);
 INSERT INTO podcast(id, end_year)
 VALUES(115, 2020);
 
-
-
+INSERT INTO podcast(id, end_year)
+VALUES(116, NULL);
 
 /* Episode Table: */
 INSERT INTO episode(id, title, episode_number, duration, view_count)
@@ -193,6 +196,21 @@ VALUES(111, 'Guest: Adam Sandler', 9, 3033, 98547);
 INSERT INTO episode(id, title, episode_number, duration, view_count)
 VALUES(115, 'Sex Tapes & First Dates', 1, 3400, 87665);
 
+INSERT INTO episode(id, title, episode_number, duration, view_count)
+VALUES(116, 'What is Capture the Flag (CTF)?', 1, 2320, 1337);
+
+INSERT INTO episode(id, title, episode_number, duration, view_count)
+VALUES(116, 'How to get into Capture the Flag (CTF)?', 2, 3230, 13337);
+
+INSERT INTO episode(id, title, episode_number, duration, view_count)
+VALUES(116, 'nooode DEF CON 28 CTF Challenge w/ Guest kaptain', 3, 2752, 133337);
+
+INSERT INTO episode(id, title, episode_number, duration, view_count)
+VALUES(116, 'Founding of OOO and gameboooy DEF CON 28 CTF Challenge w/ Guest Jeff', 4, 3467, 1333337);
+
+INSERT INTO episode(id, title, episode_number, duration, view_count)
+VALUES(116, 'ropshipai with anton00b and Jay, Corwin, and Matt from PPP', 5, 5153, 13333337); 
+
 /* Publisher Table: */
 INSERT INTO publisher(id, name)
 VALUES(301, 'Interscope Records');
@@ -211,7 +229,7 @@ VALUES (305, 'Big Hit Entertainment');
 
 /* Playlist Table: */
 INSERT INTO playlist(id, name, owner)
-VALUES(701,'POP PLAYLIST', 'Danial');
+VALUES(701,'Pop PLAYLIST', 'Danial');
 
 INSERT INTO playlist(id, name, owner)
 VALUES(702,'KPOP PLAYLIST', 'Luis');
@@ -228,6 +246,11 @@ VALUES(705, 'OLDIES PLAYLIST', 'Sophia');
 INSERT INTO playlist (id, name, owner)
 VALUES(706, 'MODERN PLAYLIST', 'Jacob');
 
+INSERT INTO playlist (id, name, owner)
+VALUES( 707, 'FAMOUS PEOPLE TALKING', 'Timestamps');
+
+INSERT INTO playlist (id, name, owner)
+VALUES (708, 'CYBER NERD TALK', 'DJ Huang');
 
 /* Organization Table: */
 
@@ -351,6 +374,15 @@ VALUES(232, 'Spain', 'Ana Torroja', '12/28/1959', NULL);
 INSERT INTO person(id, country, name, date_of_birth, date_of_death)
 VALUES(233, 'United States', 'Eugene Lee Yang', '1/18/1986', NULL);
 
+INSERT INTO person(id, country, name, date_of_birth, date_of_death)
+VALUES(234, 'United States', 'Adam Doupe', '11/11/1111', NULL);
+
+INSERT INTO person(id, country, name, date_of_birth, date_of_death)
+VALUES(235, 'United States', 'Yan Shoshitaishvili', '01/31/1337', NULL);
+
+INSERT INTO person(id, country, name, date_of_birth, date_of_death)
+VALUES(236, 'United States', 'kaptain', '01/13/1373', NULL);
+
 /* Won Table: */
 INSERT INTO won(award_name, award_year, organization_id, auditory_media_id)
 VALUES('International Band of the Year', 2018, 501, 101);
@@ -444,6 +476,12 @@ VALUES(114, 232);
 INSERT INTO produces (auditory_media_id, person_id)
 VALUES(115, 233);
 
+INSERT INTO produces (auditory_media_id, person_id)
+VALUES(116, 234);
+
+INSERT INTO produces (auditory_media_id, person_id)
+VALUES(116, 235);
+
 /*Publishes Table:*/
 
 INSERT INTO publishes (auditory_media_id, publisher_id)
@@ -462,47 +500,76 @@ INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(104, 305);
 
 /* Member Of Table: */
-INSERT INTO member_of (auditory_media_id, playlist_id)
-VALUES(101, 701);
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Natural',101, 701);
 
-INSERT INTO member_of (auditory_media_id, playlist_id)
-VALUES(104, 702);
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Boomerang', 101, 701);
 
-INSERT INTO member_of (auditory_media_id, playlist_id)
-VALUES(105, 702);
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Machine', 101, 701);
 
-INSERT INTO member_of(auditory_media_id, playlist_id)
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Thats What I like', 106, 701);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Dynamite', 104, 702);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Bohemian Rhapsody', 110, 704);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Youre My Best Friend', 110, 704);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Bohemian Rhapsody', 110, 705);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Youre My Best Friend', 110, 705);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Get It Back', 112, 705);
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Let It Be', 112, 705);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Thats What I like', 106, 706);
+
+INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+VALUES('Chunky', 106, 706);
+
+
+/*Member of Episode Playlist */
+
+INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
+VALUES(2, 'Guest: Kristen Bell', 111, 706);
+
+INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
+VALUES(1, 'Guest: Will Ferrell', 111, 706);
+
+INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
+VALUES(4,'Founding of OOO and gameboooy DEF CON 28 CTF Challenge w/ Guest Jeff', 116, 707);
+
+INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
+VALUES(3,'nooode DEF CON 28 CTF Challenge w/ Guest kaptain', 116, 707);
+
+INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
+VALUES(1,'What is Capture the Flag (CTF)?', 116, 707);
+
+
+/*Member of Comedy Playlist*/
+INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
 VALUES(102, 703);
 
-INSERT INTO member_of(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
 VALUES(103, 703);
 
-INSERT INTO member_of(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
 VALUES(109, 703);
 
-INSERT INTO member_of(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
 VALUES(113, 703);
 
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(110, 704);
-
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(112, 704);
-
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(110, 705);
-
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(112, 705);
-
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(108, 705);
-
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(105, 706);
-
-INSERT INTO member_of(auditory_media_id, playlist_id)
-VALUES(106,706);
 
 /* Guest Appearance Table: */
 INSERT INTO guest_appearance (person_id, episode_number, title, podcast_id)
@@ -516,3 +583,9 @@ VALUES(228, 2, 'Guest: Kristen Bell',111) ;
 
 INSERT INTO guest_appearance (person_id, episode_number, title, podcast_id)
 VALUES(230, 9, 'Guest: Adam Sandler',111) ;
+
+INSERT INTO guest_appearance (person_id, episode_number, title, podcast_id)
+VALUES(236, 3, 'nooode DEF CON 28 CTF Challenge w/ Guest kaptain',116) ;
+
+
+
