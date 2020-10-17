@@ -53,3 +53,26 @@ QScrollBar::add-line, QScrollBar::sub-line {
       border: none;
       background: none;
 }
+
+/* DIALOGS */
+QDialog, QDialog QAbstractItemView {
+    color: white;
+    background-color: #1f1f1f;
+}
+
+QLabel#dialog-header {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}
+
+QComboBox, QComboBox > QListView {
+    color: white;
+    background-color: #121212;
+}
+
+QDialog > QPushButton {
+    background-color: #1DB945;
+    border: 0px;
+    height: 35px;
+}

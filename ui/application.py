@@ -3,7 +3,7 @@ import sys
 from PyQt5.QtCore import QSize, QPoint, QObject
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QTabWidget, QVBoxLayout
 
-from ui.widgets.media_list import MediaListView
+from ui.widgets.media_list import MediaListView, AddMediaListView
 from ui.widgets.model.media import Media
 
 WINDOW_TITLE = "CSE 412 Team Project"
@@ -33,7 +33,7 @@ class Application(QObject):
         joe_podcast = Media("The Joe Rogan Experience #1169", "Joe Rogan Ft. Elon Musk",
                             "https://i.ytimg.com/vi/ycPr5-27vSI/sddefault.jpg")
 
-        DEBUG_MEDIA_LIST = MediaListView(self.__main_win)
+        DEBUG_MEDIA_LIST = AddMediaListView(self.__main_win)
         DEBUG_MEDIA_LIST.model().add_media(colter_album)
         DEBUG_MEDIA_LIST.model().add_media(tom_special)
         DEBUG_MEDIA_LIST.model().add_media(joe_podcast)
