@@ -2,10 +2,9 @@ CREATE TABLE auditory_media(
 id integer not null,
 image_url text,
 release_date date,
-time_added timestamp,
 name text,
 genre text,
-rating integer,
+rating float,
 PRIMARY KEY (id)
 );
 
@@ -116,7 +115,7 @@ FOREIGN KEY(auditory_media_id) REFERENCES auditory_media(id) ON DELETE CASCADE
 );
 
 
-CREATE TABLE member_of_song_playlist(
+CREATE TABLE member_of_song(
 name text not null,
 auditory_media_id integer not null,
 playlist_id integer not null,
@@ -125,7 +124,7 @@ FOREIGN KEY(playlist_id) REFERENCES playlist(id) ON DELETE CASCADE,
 FOREIGN KEY(auditory_media_id, name) REFERENCES song(auditory_media_id,name) ON DELETE CASCADE
 );
 
-CREATE TABLE member_of_episode_playlist(
+CREATE TABLE member_of_episode(
 episode_number integer not null,
 name text not null,
 auditory_media_id integer not null,
@@ -135,7 +134,7 @@ FOREIGN KEY(playlist_id) REFERENCES playlist(id) ON DELETE CASCADE,
 FOREIGN KEY(name,episode_number, auditory_media_id) REFERENCES episode(title,episode_number,id) ON DELETE CASCADE
 );
 
-CREATE TABLE member_of_comedy_playlist(
+CREATE TABLE member_of_comedy(
 auditory_media_id integer not null,
 playlist_id integer not null,
 PRIMARY KEY(auditory_media_id, playlist_id),

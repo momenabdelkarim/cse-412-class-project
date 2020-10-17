@@ -375,13 +375,13 @@ INSERT INTO person(id, country, name, date_of_birth, date_of_death)
 VALUES(233, 'United States', 'Eugene Lee Yang', '1/18/1986', NULL);
 
 INSERT INTO person(id, country, name, date_of_birth, date_of_death)
-VALUES(234, 'United States', 'Adam Doupe', '11/11/1111', NULL);
+VALUES(234, 'United States', 'Adam Doupe', '11/11/1980', NULL);
 
 INSERT INTO person(id, country, name, date_of_birth, date_of_death)
-VALUES(235, 'United States', 'Yan Shoshitaishvili', '01/31/1337', NULL);
+VALUES(235, 'United States', 'Yan Shoshitaishvili', '01/31/1981', NULL);
 
 INSERT INTO person(id, country, name, date_of_birth, date_of_death)
-VALUES(236, 'United States', 'kaptain', '01/13/1373', NULL);
+VALUES(236, 'United States', 'kaptain', '01/13/1982', NULL);
 
 /* Won Table: */
 INSERT INTO won(award_name, award_year, organization_id, auditory_media_id)
@@ -500,74 +500,75 @@ INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(104, 305);
 
 /* Member Of Table: */
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Natural',101, 701);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Boomerang', 101, 701);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Machine', 101, 701);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Thats What I like', 106, 701);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Dynamite', 104, 702);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Bohemian Rhapsody', 110, 704);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Youre My Best Friend', 110, 704);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Bohemian Rhapsody', 110, 705);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Youre My Best Friend', 110, 705);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Get It Back', 112, 705);
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Let It Be', 112, 705);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Thats What I like', 106, 706);
 
-INSERT INTO member_of_song_playlist (name, auditory_media_id, playlist_id)
+INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
 VALUES('Chunky', 106, 706);
 
 
 /*Member of Episode Playlist */
 
-INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
-VALUES(2, 'Guest: Kristen Bell', 111, 706);
+INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id)
+VALUES(2, 'Guest: Kristen Bell', 111, 707);
 
-INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
-VALUES(1, 'Guest: Will Ferrell', 111, 706);
+INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id)
+VALUES(1, 'Guest: Will Ferrell', 111, 707);
 
-INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
-VALUES(4,'Founding of OOO and gameboooy DEF CON 28 CTF Challenge w/ Guest Jeff', 116, 707);
+INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id)
+VALUES(4,'Founding of OOO and gameboooy DEF CON 28 CTF Challenge w/ Guest Jeff', 116, 708);
 
-INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
-VALUES(3,'nooode DEF CON 28 CTF Challenge w/ Guest kaptain', 116, 707);
+INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id)
+VALUES(3,'nooode DEF CON 28 CTF Challenge w/ Guest kaptain', 116, 708);
 
-INSERT INTO member_of_episode_playlist(episode_number, name, auditory_media_id, playlist_id)
-VALUES(1,'What is Capture the Flag (CTF)?', 116, 707);
+INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id)
+VALUES(1,'What is Capture the Flag (CTF)?', 116, 708);
 
 
 /*Member of Comedy Playlist*/
-INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy(auditory_media_id, playlist_id)
 VALUES(102, 703);
 
-INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy(auditory_media_id, playlist_id)
 VALUES(103, 703);
 
-INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy(auditory_media_id, playlist_id)
 VALUES(109, 703);
 
-INSERT INTO member_of_comedy_playlist(auditory_media_id, playlist_id)
+INSERT INTO member_of_comedy(auditory_media_id, playlist_id)
 VALUES(113, 703);
 
 
@@ -586,6 +587,3 @@ VALUES(230, 9, 'Guest: Adam Sandler',111) ;
 
 INSERT INTO guest_appearance (person_id, episode_number, title, podcast_id)
 VALUES(236, 3, 'nooode DEF CON 28 CTF Challenge w/ Guest kaptain',116) ;
-
-
-
