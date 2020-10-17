@@ -5,8 +5,8 @@ This includes podcasts, albums, episodes, songs, and specials
 from typing import Optional
 
 from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtGui import QIcon, QColor
-from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame, QPushButton, QStyle
+from PyQt5.QtGui import QColor
+from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QHBoxLayout, QFrame, QPushButton
 
 from ui.helper_functions import icon_with_color
 from ui.image_requester import ImageRequester
@@ -25,8 +25,6 @@ class MediaView(QWidget):
         self.setMaximumHeight(200)
 
         self.__photo = QLabel("", self)
-        img_req = ImageRequester(self, self.__photo, image_url)
-        img_req.request()
 
         self.__layout_ui()
 

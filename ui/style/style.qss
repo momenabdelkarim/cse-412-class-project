@@ -1,7 +1,7 @@
 QPushButton {
     color:white;
     background-color: #1db954;
-    border-radius:5px;
+}
 
 /* MEDIA VIEW */
 
@@ -25,7 +25,31 @@ QLabel#media-subtitle {
 }
 
 QPushButton#add-btn {
-    font-size: 25px;
     color: #1DB954;
     margin-right: 15px;
+}
+
+/* MEDIA LIST */
+
+QListView {
+    background-color: transparent;
+    margin-right: 5px;
+}
+
+
+/* SCROLL BARS */
+
+QScrollBar, QScrollArea {
+    background-color: transparent;
+}
+
+QScrollBar::handle, QPlainTextEdit::handle {
+    background: #46484b;
+    opacity: 0.1;
+    border-radius: 5px;
+}
+
+QScrollBar::add-line, QScrollBar::sub-line {
+      border: none;
+      background: none;
 }
