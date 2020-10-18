@@ -51,7 +51,7 @@ class MediaListModel(QAbstractListModel):
 
     # Slots
     @QtCore.pyqtSlot(str, QPixmap)
-    def __handle_icon_response(self, url: str, pix: QPixmap):
+    def __handle_icon_response(self):
         """
         Handles an image request response from ImageRequester
         """

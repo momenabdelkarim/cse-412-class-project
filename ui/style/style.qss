@@ -55,7 +55,7 @@ QScrollBar, QScrollArea {
 }
 
 QScrollBar::handle, QPlainTextEdit::handle {
-    background: #46484b;
+    background-color: #46484b;
     opacity: 0.1;
     border-radius: 5px;
 }

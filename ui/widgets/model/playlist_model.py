@@ -1,8 +1,7 @@
 """
 Defines the model of a PlaylistView
 """
-from random import randrange, sample
-from typing import List, Tuple, Any
+from typing import List, Any
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
@@ -11,7 +10,6 @@ from PyQt5.QtGui import QPixmap
 from ui.helper_functions import tile_pixmaps
 from ui.image_cache import ImageCache
 from ui.widgets.model.media import DebugPlaylist
-from ui.widgets.model.media_list_model import MediaListModel
 
 
 class PlaylistModel(QAbstractListModel):
@@ -80,9 +78,7 @@ class PlaylistModel(QAbstractListModel):
         else:
             return QVariant()
 
-
     # SLOTS
-
     @QtCore.pyqtSlot(str, QPixmap)
-    def __handle_icon_resolved(self, url: str, pix: QPixmap):
+    def __handle_icon_resolved(self):
         self.dataChanged.emit(QModelIndex(), QModelIndex())

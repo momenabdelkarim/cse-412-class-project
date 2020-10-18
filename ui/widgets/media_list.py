@@ -2,7 +2,7 @@
 Collates a collection of MediaViews into one MediaList
 """
 from PyQt5 import QtCore
-from PyQt5.QtCore import QSize, QObject, QModelIndex
+from PyQt5.QtCore import QObject, QModelIndex
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QListView, QDialog
 
 from ui.image_cache import ImageCache
@@ -15,6 +15,7 @@ class AbstractMediaListView(QFrame):
     """
     THIS IS AN ABSTRACT CLASS, DO NOT INSTANTIATE
     """
+
     def __init__(self, parent: QObject, image_cache: ImageCache):
         super().__init__(parent)
 

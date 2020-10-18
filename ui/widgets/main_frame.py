@@ -9,12 +9,16 @@ from PyQt5.QtWidgets import QFrame, QTabWidget, QVBoxLayout
 from ui.image_cache import ImageCache
 from ui.widgets.media_list import AddMediaListView
 from ui.widgets.model.media import DebugMedia, DebugPlaylist
-from ui.widgets.model.media_list_model import MediaListModel
 from ui.widgets.playlist_view import PlaylistView
 
 image_cache: Optional[ImageCache] = None
 
+
 def build_debug_media_list(parent: QObject) -> AddMediaListView:
+    """
+    DEBUG METHOD: Used to create an AddMediaListView containing the three bogus media items below
+    """
+
     colter_album = DebugMedia("Imaginary Appalachia", "Colter Wall",
                               "https://www.outhousetickets.com/Artist/3807/photo/colter-wall-event.png")
     tom_special = DebugMedia("Mostly Stories", "Tom Segura",
@@ -31,6 +35,10 @@ def build_debug_media_list(parent: QObject) -> AddMediaListView:
 
 
 def build_debug_playlist_list(parent: QObject) -> PlaylistView:
+    """
+    DEBUG METHOD: Used to build a PlaylistView to scroll along the top using bogus playlists
+    """
+
     p1 = DebugPlaylist("Little Bit of Everything", "Lily")
     p2 = DebugPlaylist("My Music", "Joe")
     p3 = DebugPlaylist("Standup Comedy", "Steve")
@@ -136,6 +144,7 @@ class PlaylistTab(QFrame):
 
         self.__layout_manager.addWidget(self.__add_media_view, 1)
         self.__layout_manager.addStretch()
+
 
 class AddMediaTab(QFrame):
     def __init__(self, parent: QObject):

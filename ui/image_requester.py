@@ -1,15 +1,16 @@
 """
-This class is responsible for making HTTP requests asynchronously to set a QLabel's image
+Defines the ImageRequester
 """
 
-from PyQt5.QtCore import QUrl, qDebug, Qt, pyqtSignal, QObject
-from PyQt5.QtGui import QPixmap, QPainter, QImage, QBrush, QWindow
+from PyQt5.QtCore import QUrl, qDebug, pyqtSignal, QObject
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply, QSslConfiguration, QSsl
-
-from ui.helper_functions import convert_pixmap_to_square_img, scale_pixmap
 
 
 class ImageRequester(QObject):
+    """
+    This class is responsible for making HTTP requests asynchronously to set a QLabel's image
+    """
     image_request_finished = pyqtSignal(str, QPixmap)
 
     def __init__(self, parent: QObject):
