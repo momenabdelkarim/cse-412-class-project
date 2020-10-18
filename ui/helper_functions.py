@@ -1,9 +1,63 @@
 """
 This file contains extraneous functions that are helpful throughout the UI widgets and modules
 """
+from typing import List
 
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QIcon, QPixmap, QColor
+from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtGui import QIcon, QPixmap, QColor, QImage, QWindow, QPainter, QBrush
+
+
+def scale_pixmap(pixmap: QPixmap, width: int, height: int) -> QPixmap:
+    """
+    Scales the given pixmap to the given width and height
+    """
+    pixel_ratio = QWindow().devicePixelRatio()
+    pixmap.setDevicePixelRatio(pixel_ratio)
+    return pixmap.scaled(width, height, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+
+
+def convert_pixmap_to_circular(pixmap: QPixmap, diameter: int) -> QPixmap:
+    img: QImage = convert_pixmap_to_square_img(pixmap)
+    img_size = img.width()
+
+    # Draw image in circular frame
+    circular_img = QImage(img_size, img_size, QImage.Format_ARGB32)
+    circular_img.fill(Qt.transparent)
+
+    painter = QPainter(circular_img)
+    painter.setBrush(QBrush(img))
+    painter.setRenderHints(QPainter.Antialiasing, True)
+    painter.setRenderHints(QPainter.HighQualityAntialiasing, True)
+    painter.setRenderHints(QPainter.SmoothPixmapTransform, True)
+
+    painter.drawEllipse(0, 0, img_size, img_size)
+    painter.end()
+
+    # Convert QImage back to QPixmap and scale to desired size
+    pix = QPixmap.fromImage(circular_img)
+    pix = scale_pixmap(pix, diameter, diameter)
+
+    return pix
+
+
+def convert_pixmap_to_square_img(pixmap: QPixmap) -> QImage:
+    """
+    Crops and scales the given pixmap to be a square
+    :param pixmap: Pixmap to be scaled
+    """
+
+    img: QImage = pixmap.toImage()
+
+    # Crop to square image
+    img_size = min(img.width(), img.height())
+    square_rect = QRect(
+        (img.width() - img_size) / 2,
+        (img.height() - img_size) / 2,
+        img_size,
+        img_size
+    )
+
+    return img.copy(square_rect)
 
 
 def icon_with_color(img_fp: str, color: QColor):
@@ -20,3 +74,37 @@ def icon_with_color(img_fp: str, color: QColor):
     pix.setMask(mask)
 
     return QIcon(pix)
+
+
+def tile_pixmaps(pixmaps: List[QPixmap], tile_height: int) -> QPixmap:
+    tiled_pix = QPixmap(tile_height, tile_height)
+    tiled_pix.fill(Qt.transparent)
+
+    painter = QPainter(tiled_pix)
+    painter.setRenderHints(QPainter.Antialiasing, True)
+    painter.setRenderHints(QPainter.HighQualityAntialiasing, True)
+    painter.setRenderHints(QPainter.SmoothPixmapTransform, True)
+
+    # Convert each pixmap to square and scale down
+    for (i, pix) in enumerate(pixmaps[:4]):
+        pix = QPixmap.fromImage(convert_pixmap_to_square_img(pix))
+
+        # Scale each to half of tile_height
+        pix_diameter = int(tile_height / 2)
+        pix = scale_pixmap(pix, pix_diameter, pix_diameter)
+
+        if i == 0:
+            # Draw top left
+            painter.drawPixmap(0, 0, pix)
+        elif i == 1:
+            # Draw top right
+            painter.drawPixmap(pix_diameter, 0, pix)
+        elif i == 2:
+            # Draw bottom left
+            painter.drawPixmap(0, pix_diameter, pix)
+        else:
+            # Draw bottom right
+            painter.drawPixmap(pix_diameter, pix_diameter, pix)
+
+    painter.end()
+    return tiled_pix

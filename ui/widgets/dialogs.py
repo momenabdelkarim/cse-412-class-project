@@ -6,7 +6,7 @@ from typing import Optional
 from PyQt5.QtCore import QObject, Qt
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QComboBox, QPushButton
 
-from ui.widgets.model.media import Media
+from ui.widgets.model.media import DebugMedia
 
 
 class AddToPlaylistDialog(QDialog):
@@ -14,7 +14,7 @@ class AddToPlaylistDialog(QDialog):
     Allows a user to select a playlist to save a given media object to
     """
 
-    def __init__(self, parent: QObject, media: Media):
+    def __init__(self, parent: QObject, media: DebugMedia):
         super().__init__(parent)
         self.setWindowTitle(" ")
 

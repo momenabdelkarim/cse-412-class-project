@@ -3,8 +3,7 @@ import sys
 from PyQt5.QtCore import QSize, QPoint, QObject
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QTabWidget, QVBoxLayout
 
-from ui.widgets.media_list import MediaListView, AddMediaListView
-from ui.widgets.model.media import Media
+from ui.widgets.main_frame import MainFrame
 
 WINDOW_TITLE = "CSE 412 Team Project"
 
@@ -24,21 +23,6 @@ class Application(QObject):
     """
     Represents entire application, instantiated to create actual User Interface
     """
-
-    def build_debug_media_list(self) -> MediaListView:
-        colter_album = Media("Imaginary Appalachia", "Colter Wall",
-                             "https://www.outhousetickets.com/Artist/3807/photo/colter-wall-event.png")
-        tom_special = Media("Mostly Stories", "Tom Segura",
-                            "https://images-na.ssl-images-amazon.com/images/I/71XbjhskX0L._SL1500_.jpg")
-        joe_podcast = Media("The Joe Rogan Experience #1169", "Joe Rogan Ft. Elon Musk",
-                            "https://i.ytimg.com/vi/ycPr5-27vSI/sddefault.jpg")
-
-        DEBUG_MEDIA_LIST = AddMediaListView(self.__main_win)
-        DEBUG_MEDIA_LIST.model().add_media(colter_album)
-        DEBUG_MEDIA_LIST.model().add_media(tom_special)
-        DEBUG_MEDIA_LIST.model().add_media(joe_podcast)
-
-        return DEBUG_MEDIA_LIST
 
     def __init__(self):
         super().__init__(None)
@@ -75,7 +59,7 @@ class Application(QObject):
         layout.addWidget(tabs)
         qwidget.setLayout(layout)
 
-        self.__main_win.setCentralWidget(self.build_debug_media_list())
+        self.__main_win.setCentralWidget(MainFrame(self.__main_win))
         self.__generate_window()
 
     def __generate_window(self):

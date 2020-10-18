@@ -3,9 +3,20 @@ QPushButton {
     background-color: #1db954;
 }
 
+QFrame#line {
+    background-color: #282828;
+}
+
+/* TABS */
+
+QTabBar {
+    color: white;
+    background-color: #282828;
+}
+
 /* MEDIA VIEW */
 
-QMainWindow {
+QMainWindow, QTabWidget {
     background-color: #121212;
 }
 
