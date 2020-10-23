@@ -26,7 +26,7 @@ def main():
         print("Error while connecting to PostgreSQL", error)
     finally:
         # closing database connection.
-        if (connection):
+        if connection:
             cursor.close()
             connection.close()
             print("PostgreSQL connection is closed")

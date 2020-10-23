@@ -24,7 +24,7 @@ class MediaListModel(QAbstractListModel):
         self.__image_diameter = 100
 
         # Connect signals to slots
-        self.__image_cache.new_image_resolved.connect(self.__handle_icon_response)
+        self.__image_cache.new_image_resolved.connect(lambda: self.dataChanged.emit(QModelIndex(), QModelIndex()))
 
     # Overrides
     def rowCount(self, parent: QModelIndex = ...) -> int:
@@ -48,14 +48,6 @@ class MediaListModel(QAbstractListModel):
                 return QPixmap(R"img/default_photo.png")
         else:
             return QVariant()
-
-    # Slots
-    @QtCore.pyqtSlot(str, QPixmap)
-    def __handle_icon_response(self):
-        """
-        Handles an image request response from ImageRequester
-        """
-        self.dataChanged.emit(QModelIndex(), QModelIndex())
 
     # Exposed functionality
 

@@ -20,7 +20,7 @@ class PlaylistModel(QAbstractListModel):
         self.__image_cache = image_cache
 
         # Connect signals to slots
-        self.__image_cache.new_image_resolved.connect(self.__handle_icon_resolved)
+        self.__image_cache.new_image_resolved.connect(lambda: self.dataChanged.emit(QModelIndex(), QModelIndex()))
 
     def rowCount(self, parent: QModelIndex = ...) -> int:
         return len(self.__playlists)
@@ -77,8 +77,3 @@ class PlaylistModel(QAbstractListModel):
             return self.__playlists[row]
         else:
             return QVariant()
-
-    # SLOTS
-    @QtCore.pyqtSlot(str, QPixmap)
-    def __handle_icon_resolved(self):
-        self.dataChanged.emit(QModelIndex(), QModelIndex())
