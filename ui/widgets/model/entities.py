@@ -15,7 +15,7 @@ class Media(ABC):
 
 
 class Podcast(Media):
-    def __init__(self, end_year: int, media_id: int, name: str, release_date: str, cover_url: str, genre: str, rating: int)
+    def __init__(self, end_year: int, media_id: int, name: str, release_date: str, cover_url: str, genre: str, rating: int):
         super().__init__(media_id, name, release_date, cover_url, genre, rating)
 
         self.end_year = end_year
