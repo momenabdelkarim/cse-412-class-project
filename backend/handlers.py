@@ -13,6 +13,12 @@ def main():
                                       port="8888",
                                       database="andersonjwan")
 
+        # user="$USER"
+        # password=""
+        # host="127.0.0.1"
+        # port="8888"
+        # database="$USER"
+
         # Code taken from https://pynative.com/python-postgresql-tutorial/
         cursor = connection.cursor()
         # Print PostgreSQL Connection properties
@@ -35,7 +41,6 @@ def main():
             print("PostgreSQL connection is closed")
 
 ## ALL MEDIA
-
 def get_all_media(cursor, genre=None, rating=None) -> List[Media]:
     if genre is None and rating is None:
         cursor.execute('SELECT auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
