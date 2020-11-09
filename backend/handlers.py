@@ -23,7 +23,7 @@ def main():
         record = cursor.fetchone()
         print("You are connected to - ", record, "\n")
 
-        delete_song_from_playlist(cursor, connection, 705, 112, "Get It Back")
+        create_new_playlist(cursor, connection, "Devins Playlist Title", "Devin")
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
@@ -181,8 +181,13 @@ def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
 
     return media_list
 
-def rename_playlist(cursor, playlist_id, new_name):
-    pass
+def rename_playlist(cursor, connection, playlist_id: int, new_name: str):
+
+    cursor.execute('UPDATE playlist '
+                   'SET name = \'%s\' '
+                   'WHERE playlist.id = %d' % (new_name, playlist_id))
+
+    connection.commit()
 
 def delete_playlist(cursor, connection, playlist_id: int):
     cursor.execute('DELETE '
@@ -191,8 +196,18 @@ def delete_playlist(cursor, connection, playlist_id: int):
 
     connection.commit()
 
-def create_new_playlist(cursor, playlist_name, playlist_owner, playlist_id):
-    pass
+def create_new_playlist(cursor, connection, playlist_name: str, playlist_owner: str):
+    cursor.execute('SELECT MAX(playlist.id) '
+                   'FROM playlist')
+
+    record = cursor.fetchone()
+    curr_max_playlist_id = record[0]
+    new_playlist_id = curr_max_playlist_id + 1
+
+    cursor.execute('INSERT INTO playlist(id, name, owner) '
+                   'VALUES(%d, \'%s\', \'%s\')' % (new_playlist_id, playlist_name, playlist_owner))
+
+    connection.commit()
 
 def add_song_to_playlist(cursor, media_id, song_name, playlist_id):
     pass
@@ -204,7 +219,7 @@ def add_comedy_special_to_playlist(cursor, media_id, playlist_id):
     pass
 
 ## PLAYLIST DETAILS
-def delete_comedy_special_from_playlist(cursor, connection, playlist_id, media_id):
+def delete_comedy_special_from_playlist(cursor, connection, playlist_id: int, media_id: int):
     cursor.execute('DELETE '
                   'FROM member_of_comedy '
                   'WHERE member_of_comedy.auditory_media_id = %d AND member_of_comedy.playlist_id = %d' % (media_id, playlist_id))
