@@ -23,7 +23,7 @@ def main():
         record = cursor.fetchone()
         print("You are connected to - ", record, "\n")
 
-        get_all_media_objects_for_playlist(cursor, 707)
+        delete_song_from_playlist(cursor, connection, 705, 112, "Get It Back")
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
@@ -184,8 +184,12 @@ def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
 def rename_playlist(cursor, playlist_id, new_name):
     pass
 
-def delete_playlist(cursor, playlist_id):
-    pass
+def delete_playlist(cursor, connection, playlist_id: int):
+    cursor.execute('DELETE '
+                   'FROM playlist '
+                   'WHERE playlist.id = %d' % (playlist_id))
+
+    connection.commit()
 
 def create_new_playlist(cursor, playlist_name, playlist_owner, playlist_id):
     pass
@@ -200,14 +204,26 @@ def add_comedy_special_to_playlist(cursor, media_id, playlist_id):
     pass
 
 ## PLAYLIST DETAILS
-def delete_comedy_special_from_playlist(cursor, playlist_id, media_id):
-    pass
+def delete_comedy_special_from_playlist(cursor, connection, playlist_id, media_id):
+    cursor.execute('DELETE '
+                  'FROM member_of_comedy '
+                  'WHERE member_of_comedy.auditory_media_id = %d AND member_of_comedy.playlist_id = %d' % (media_id, playlist_id))
 
-def delete_song_from_playlist(cursor, playlist_id, media_id, song_name):
-    pass
+    connection.commit()
 
-def delete_episode_from_playlist(cursor, playlist_id, media_id, episode_num, episode_title):
-    pass
+def delete_song_from_playlist(cursor, connection, playlist_id: int, media_id: int, song_name: str):
+    cursor.execute('DELETE '
+                  'FROM member_of_song '
+                  'WHERE member_of_song.auditory_media_id = %d AND member_of_song.playlist_id = %d AND member_of_song.name = \'%s\'' % (media_id, playlist_id, song_name))
+
+    connection.commit()
+
+def delete_episode_from_playlist(cursor, connection, playlist_id: int, media_id: int, episode_num: int):
+    cursor.execute('DELETE '
+                  'FROM member_of_episode '
+                  'WHERE member_of_episode.auditory_media_id = %d AND member_of_episode.playlist_id = %d AND member_of_episode.episode_number = %d' %(media_id, playlist_id, episode_num))
+
+    connection.commit()
 
 ## FILTERS
 def get_all_available_genres(cursor) -> List[str]:
