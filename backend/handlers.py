@@ -23,7 +23,7 @@ def main():
         record = cursor.fetchone()
         print("You are connected to - ", record, "\n")
 
-        create_new_playlist(cursor, connection, "Devins Playlist Title", "Devin")
+        get_all_media_objects_for_playlist(cursor, 708)
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
@@ -209,14 +209,23 @@ def create_new_playlist(cursor, connection, playlist_name: str, playlist_owner: 
 
     connection.commit()
 
-def add_song_to_playlist(cursor, media_id, song_name, playlist_id):
-    pass
+def add_song_to_playlist(cursor, connection, media_id: int, song_name: str, playlist_id: int):
+    cursor.execute('INSERT INTO member_of_song(name, auditory_media_id, playlist_id) '
+                   'VALUES(\'%s\', %d, %d) ' % (song_name, media_id , playlist_id))
 
-def add_episode_to_playlist(cursor, media_id, episode_num, episode_title, playlist_id):
-    pass
+    connection.commit()
 
-def add_comedy_special_to_playlist(cursor, media_id, playlist_id):
-    pass
+def add_episode_to_playlist(cursor, connection, media_id: int, episode_num: int, episode_title: str, playlist_id: int):
+    cursor.execute('INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id) '
+                   'VALUES(%d, \'%s\', %d, %d) ' % (episode_num, episode_title, media_id , playlist_id))
+
+    connection.commit()
+
+def add_comedy_special_to_playlist(cursor, connection, media_id: int, playlist_id: int):
+    cursor.execute('INSERT INTO member_of_comedy(auditory_media_id, playlist_id) '
+                   'VALUES(%d, %d) ' % (media_id, playlist_id))
+
+    connection.commit()
 
 ## PLAYLIST DETAILS
 def delete_comedy_special_from_playlist(cursor, connection, playlist_id: int, media_id: int):
