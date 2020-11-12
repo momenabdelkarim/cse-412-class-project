@@ -64,15 +64,15 @@ def get_all_album_media_helper(cursor, genre=None, rating=None) -> List[Album]:
     elif genre is not None and rating is not None:
         cursor.execute('SELECT album.release_format, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, album '
-                       'WHERE auditory_media.id = album.id, auditory_media.genre = \'%s\' AND auditory_media.rating >= %f' % (genre, rating))
+                       'WHERE auditory_media.id = album.id AND auditory_media.genre = \'%s\' AND auditory_media.rating >= %f' % (genre, rating))
     elif genre is None and rating is not None:
         cursor.execute('SELECT album.release_format, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, album '
-                       'WHERE auditory_media.id = album.id, auditory_media.rating >= %f' % (rating))
+                       'WHERE auditory_media.id = album.id AND auditory_media.rating >= %f' % (rating))
     elif genre is not None and rating is None:
         cursor.execute('SELECT album.release_format, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, album '
-                       'WHERE auditory_media.id = album.id, auditory_media.genre = \'%s\'' % (genre))
+                       'WHERE auditory_media.id = album.id AND auditory_media.genre = \'%s\'' % (genre))
 
     album_list = []
     record = cursor.fetchone()
@@ -93,15 +93,15 @@ def get_all_comedy_special_media_helper(cursor, genre=None, rating=None) -> List
     elif genre is not None and rating is not None:
         cursor.execute('SELECT comedy_special.runtime, comedy_special.venue, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, comedy_special '
-                       'WHERE auditory_media.id = comedy_special.id, auditory_media.genre = \'%s\' AND auditory_media.rating >= %f' % (genre, rating))
+                       'WHERE auditory_media.id = comedy_special.id AND auditory_media.genre = \'%s\' AND auditory_media.rating >= %f' % (genre, rating))
     elif genre is None and rating is not None:
         cursor.execute('SELECT comedy_special.runtime, comedy_special.venue, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, comedy_special '
-                       'WHERE auditory_media.id = comedy_special.id, auditory_media.rating >= %f' % (rating))
+                       'WHERE auditory_media.id = comedy_special.id AND auditory_media.rating >= %f' % (rating))
     elif genre is not None and rating is None:
         cursor.execute('SELECT comedy_special.runtime, comedy_special.venue, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, comedy_special '
-                       'WHERE auditory_media.id = comedy_special.id, auditory_media.genre = \'%s\'' % (genre))
+                       'WHERE auditory_media.id = comedy_special.id AND auditory_media.genre = \'%s\'' % (genre))
 
     comedy_special_list = []
     record = cursor.fetchone()
@@ -121,15 +121,15 @@ def get_all_podcast_media_helper(cursor, genre=None, rating=None) -> List[Podcas
     elif genre is not None and rating is not None:
         cursor.execute('SELECT podcast.end_year, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, podcast '
-                       'WHERE auditory_media.id = podcast.id, auditory_media.genre = \'%s\' AND auditory_media.rating >= %f' % (genre, rating))
+                       'WHERE auditory_media.id = podcast.id AND auditory_media.genre = \'%s\' AND auditory_media.rating >= %f' % (genre, rating))
     elif genre is None and rating is not None:
         cursor.execute('SELECT podcast.end_year, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, podcast '
-                       'WHERE auditory_media.id = podcast.id, auditory_media.rating >= %f' % (rating))
+                       'WHERE auditory_media.id = podcast.id AND auditory_media.rating >= %f' % (rating))
     elif genre is not None and rating is None:
         cursor.execute('SELECT podcast.end_year, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
                        'FROM auditory_media, podcast '
-                       'WHERE auditory_media.id = podcast.id, auditory_media.genre = \'%s\'' % (genre))
+                       'WHERE auditory_media.id = podcast.id AND auditory_media.genre = \'%s\'' % (genre))
 
     podcast_list = []
     record = cursor.fetchone()
@@ -158,40 +158,42 @@ def get_all_user_playlists(cursor) -> List[Playlist]:
 
 
 def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
-    cursor.execute('SELECT DISTINCT auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
-                   'FROM auditory_media, member_of_comedy '
-                   'WHERE member_of_comedy.auditory_media_id = auditory_media.id AND member_of_comedy.playlist_id = %d' % (playlist_id))
+    cursor.execute('SELECT DISTINCT comedy_special.runtime, comedy_special.venue, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
+                   'FROM auditory_media, member_of_comedy, comedy_special '
+                   'WHERE auditory_media.id = comedy_special.id AND member_of_comedy.auditory_media_id = auditory_media.id AND member_of_comedy.playlist_id = %d' % (playlist_id))
 
-    media_list = []
+    comedy_special_list = []
     record = cursor.fetchone()
     while record:
-        media = Media(record[0], record[1], record[2], record[3], record[4], record[5])
-        media_list.append(media)
+        comedy_special = ComedySpecial(record[0], record[1], record[2], record[3], record[4], record[5], record[6], record[7])
+        comedy_special_list.append(comedy_special)
 
         record = cursor.fetchone()
 
-    cursor.execute('SELECT DISTINCT auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
-                   'FROM auditory_media, member_of_episode '
-                   'WHERE member_of_episode.auditory_media_id = auditory_media.id AND member_of_episode.playlist_id = %d' % (playlist_id))
+    cursor.execute('SELECT DISTINCT podcast.end_year, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
+                   'FROM auditory_media, member_of_episode, podcast '
+                   'WHERE auditory_media.id = podcast.id AND member_of_episode.auditory_media_id = auditory_media.id AND member_of_episode.playlist_id = %d' % (playlist_id))
 
+    podcast_list = []
     record = cursor.fetchone()
     while record:
-        media = Media(record[0], record[1], record[2], record[3], record[4], record[5])
-        media_list.append(media)
+        podcast = Podcast(record[0], record[1], record[2], record[3], record[4], record[5], record[6])
+        podcast_list.append(podcast)
 
         record = cursor.fetchone()
 
-    cursor.execute('SELECT DISTINCT auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
-                   'FROM auditory_media, member_of_song '
-                   'WHERE member_of_song.auditory_media_id = auditory_media.id AND member_of_song.playlist_id = %d' % (playlist_id))
+    cursor.execute('SELECT DISTINCT album.release_format, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
+                   'FROM auditory_media, member_of_song, album '
+                   'WHERE auditory_media.id = album.id AND member_of_song.auditory_media_id = auditory_media.id AND member_of_song.playlist_id = %d' % (playlist_id))
 
+    album_list = []
     record = cursor.fetchone()
     while record:
-        media = Media(record[0], record[1], record[2], record[3], record[4], record[5])
-        media_list.append(media)
+        album = Album(record[0], record[1], record[2], record[3], record[4], record[5], record[6])
+        album_list.append(album)
 
         record = cursor.fetchone()
-
+    media_list = album_list + comedy_special_list + podcast_list
     return media_list
 
 def rename_playlist(cursor, connection, playlist_id: int, new_name: str):
