@@ -120,3 +120,13 @@ def tile_pixmaps(pixmaps: List[QPixmap], tile_height: int) -> QPixmap:
 
     painter.end()
     return tiled_pix
+
+
+def show_child_window(parent_window: QWidget, child_window: QWidget):
+    """
+    Utility window to show a new child window in the same position as its parent
+    :parent_window: Window in the "parent" relationship (that is, to be hidden)
+    :child_window: Window in the "child" relationship (that is, to be shown at the same position)
+    """
+    child_window.move(parent_window.pos())
+    child_window.show()

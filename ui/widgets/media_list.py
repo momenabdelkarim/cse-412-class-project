@@ -7,7 +7,7 @@ from PyQt5 import QtCore
 from PyQt5.QtCore import QObject, QModelIndex
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QListView
 
-from ui.helper_functions import get_center_pos
+from ui.helper_functions import get_center_pos, show_child_window
 from ui.image_cache import ImageCache
 from ui.widgets.delegate.media_delegate import MediaDelegate
 from ui.widgets.media_detail_view import MediaDetailView
@@ -46,7 +46,7 @@ class AddMediaListView(AbstractMediaListView):
 
         # Connect signals to slots
         self._list_view.doubleClicked.connect(self.__item_double_clicked)
-        self._media_detail_view: Optional[MediaDetailView] = None
+        self._media_detail_win: Optional[MediaDetailView] = None
 
     @QtCore.pyqtSlot(QModelIndex)
     def __item_double_clicked(self, index: QModelIndex):
@@ -56,12 +56,12 @@ class AddMediaListView(AbstractMediaListView):
         """
         media = self._model.at(index.row())
 
-        if self._media_detail_view:
+        if self._media_detail_win:
             """
             We are good programmers, DESTROY memory we stole.
             """
-            self._media_detail_view.destroy()
+            self._media_detail_win.destroy()
 
-        self._media_detail_view = MediaDetailView(media)
-        self._media_detail_view.move(get_center_pos(self._media_detail_view))
-        self._media_detail_view.show()
+        # Open MediaDetailView
+        self._media_detail_win = MediaDetailView(self.window(), media)  # We don't want to just hide ourselves, but the whole window
+        show_child_window(self.window(), self._media_detail_win)
