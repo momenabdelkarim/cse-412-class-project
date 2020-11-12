@@ -4,23 +4,13 @@ This module defines the UI and lays out the QApplication's main window
 
 import sys
 
-from PyQt5.QtCore import QSize, QPoint, QObject
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget
+from PyQt5.QtCore import QSize, QObject
+from PyQt5.QtWidgets import QApplication, QMainWindow
 
+from ui.helper_functions import get_center_pos
 from ui.widgets.main_frame import MainFrame
 
 WINDOW_TITLE = "CSE 412 Team Project"
-
-
-def get_center_pos(widget: QWidget) -> QPoint:
-    """
-    Calculates and returns the center position of the primary screen (including widget size)
-    :param widget: Widget to be centered within the primary screen
-    :return: A QPoint, pointing to the origin of the screen's adjusted center
-    """
-
-    center_screen: QPoint = QApplication.desktop().availableGeometry().center()
-    return center_screen - widget.rect().center()
 
 
 class Application(QObject):

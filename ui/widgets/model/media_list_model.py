@@ -64,3 +64,10 @@ class MediaListModel(QAbstractListModel):
             return self.__media_list[row]
         else:
             return QVariant()
+
+    def update_media(self, new_media_list: List[Media]):
+        """
+        Update the media list to reflect state of DB
+        :param new_media_list: List of media objects in the DB
+        """
+        self.__media_list = new_media_list

@@ -1,13 +1,16 @@
 """
 Collates a collection of MediaViews into one MediaList
 """
+from typing import Optional
+
 from PyQt5 import QtCore
 from PyQt5.QtCore import QObject, QModelIndex
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QListView, QDialog
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QListView
 
+from ui.helper_functions import get_center_pos
 from ui.image_cache import ImageCache
 from ui.widgets.delegate.media_delegate import MediaDelegate
-from ui.widgets.dialogs import AddToPlaylistDialog
+from ui.widgets.media_detail_view import MediaDetailView
 from ui.widgets.model.media_list_model import MediaListModel
 
 
@@ -43,6 +46,7 @@ class AddMediaListView(AbstractMediaListView):
 
         # Connect signals to slots
         self._list_view.doubleClicked.connect(self.__item_double_clicked)
+        self._media_detail_view: Optional[MediaDetailView] = None
 
     @QtCore.pyqtSlot(QModelIndex)
     def __item_double_clicked(self, index: QModelIndex):
@@ -52,7 +56,12 @@ class AddMediaListView(AbstractMediaListView):
         """
         media = self._model.at(index.row())
 
-        if add_dialog := AddToPlaylistDialog(self, media):
-            if add_dialog.exec() == QDialog.Accepted:  # Has successfully selected a playlist to add the song to
-                # TODO:  Get selected playlist from dialog and save media to DB
-                print(f"ACCEPTED {add_dialog.get_selection()}")
+        if self._media_detail_view:
+            """
+            We are good programmers, DESTROY memory we stole.
+            """
+            self._media_detail_view.destroy()
+
+        self._media_detail_view = MediaDetailView(media)
+        self._media_detail_view.move(get_center_pos(self._media_detail_view))
+        self._media_detail_view.show()

@@ -16,7 +16,7 @@ QTabBar {
 
 /* MEDIA VIEW */
 
-QMainWindow, QTabWidget {
+QMainWindow, QTabWidget, QFrame#details-view {
     background-color: #121212;
 }
 
@@ -86,4 +86,10 @@ QDialog > QPushButton {
     background-color: #1DB945;
     border: 0px;
     height: 35px;
+}
+
+/* MEDIA DETAILS VIEW */
+
+QFrame#details-view QLabel {
+    color: white;
 }

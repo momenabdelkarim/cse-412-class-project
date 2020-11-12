@@ -3,8 +3,20 @@ This file contains extraneous functions that are helpful throughout the UI widge
 """
 from typing import List
 
-from PyQt5.QtCore import Qt, QRect
+from PyQt5.QtCore import Qt, QRect, QPoint
 from PyQt5.QtGui import QIcon, QPixmap, QColor, QImage, QWindow, QPainter, QBrush
+from PyQt5.QtWidgets import QWidget, QApplication
+
+
+def get_center_pos(widget: QWidget) -> QPoint:
+    """
+    Calculates and returns the center position of the primary screen (including widget size)
+    :param widget: Widget to be centered within the primary screen
+    :return: A QPoint, pointing to the origin of the screen's adjusted center
+    """
+
+    center_screen: QPoint = QApplication.desktop().availableGeometry().center()
+    return center_screen - widget.rect().center()
 
 
 def scale_pixmap(pixmap: QPixmap, width: int, height: int) -> QPixmap:

@@ -25,7 +25,7 @@ class MediaDelegate(QStyledItemDelegate):
 
         media_rect = msg_fm.boundingRect(0, 0, option.rect.width() - MediaDelegate.icon_diameter,
                                          0,
-                                         Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.title())
+                                         Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.name)
         media_size = QSize(option.rect.width(), media_rect.height() + (2 * MediaDelegate.icon_padding))
 
         if media_size.height() < MediaDelegate.icon_diameter:
@@ -71,13 +71,13 @@ class MediaDelegate(QStyledItemDelegate):
                                            icon_rect.top() + MediaDelegate.pad_vertical + 10,
                                            option.rect.width() - MediaDelegate.total_icon_width,
                                            0,
-                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.title())
+                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.name)
 
         subtitle_rect = subtitle_fm.boundingRect(icon_rect.right() + MediaDelegate.icon_padding,
                                                  title_rect.bottom() + MediaDelegate.pad_vertical,
                                                  option.rect.width() - MediaDelegate.total_icon_width,
                                                  0,
-                                                 Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.subtitle())
+                                                 Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.genre)
         # Draw surrounding rect
         bound_rect = QRect(MediaDelegate.pad_horizontal,
                            icon_rect.top() - MediaDelegate.pad_vertical,
@@ -96,10 +96,10 @@ class MediaDelegate(QStyledItemDelegate):
         # Paint title
         painter.setFont(title_font)
         painter.setPen(Qt.white)
-        painter.drawText(title_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.title())
+        painter.drawText(title_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.name)
 
         # Paint subtitle
         painter.setFont(subtitle_font)
         painter.setPen(QColor(195, 195, 195))
-        painter.drawText(subtitle_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.subtitle())
+        painter.drawText(subtitle_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.genre)
         painter.restore()

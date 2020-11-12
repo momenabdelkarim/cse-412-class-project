@@ -6,6 +6,7 @@ from typing import List, Any
 from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
 from PyQt5.QtGui import QPixmap
 
+from backend.handlers import get_all_media_objects_for_playlist, cursor
 from ui.helper_functions import tile_pixmaps
 from ui.image_cache import ImageCache
 from ui.widgets.model.entities import Playlist
@@ -15,7 +16,7 @@ class PlaylistModel(QAbstractListModel):
     def __init__(self, parent: QObject, image_cache: ImageCache):
         super().__init__(parent)
 
-        self.__playlists: List[DebugPlaylist] = list()
+        self.__playlists: List[Playlist] = list()
         self.__image_cache = image_cache
 
         # Connect signals to slots
@@ -32,20 +33,21 @@ class PlaylistModel(QAbstractListModel):
 
         playlist = self.__playlists[index.row()]
         if role == Qt.DisplayRole:
-            return playlist.title()
+            return playlist.name
         elif role == Qt.DecorationRole:
             # Create icon containing either a random media's icon or 4 tiled
-            media_count = len(playlist.media())
+            playlist_media = get_all_media_objects_for_playlist(cursor, playlist.playlist_id)
+            media_count = len(playlist_media)
             if media_count == 0:
                 # Return a default
                 return QPixmap(R"img/default_photo.png")
             elif media_count < 4:
                 # Return a random icon
-                rand_media = playlist.media()[0]
-                if pix := self.__image_cache.get_pixmap(rand_media.photo_url()):
+                rand_media = playlist_media[0]
+                if pix := self.__image_cache.get_pixmap(rand_media.cover_url):
                     return pix
                 else:
-                    self.__image_cache.request_url(rand_media.photo_url())
+                    self.__image_cache.request_url(rand_media.cover_url)
                     return QPixmap(R"img/default_photo.png")
             elif media_count >= 4:
                 # Return a tile of any four icons
@@ -53,12 +55,12 @@ class PlaylistModel(QAbstractListModel):
                 pixmaps: List[QPixmap] = list()
 
                 for idx in indices:
-                    media_item = playlist.media()[idx]
+                    media_item = playlist_media[idx]
 
-                    if resolved_pix := self.__image_cache.get_pixmap(media_item.photo_url()):
+                    if resolved_pix := self.__image_cache.get_pixmap(media_item.cover_url):
                         pixmaps.append(resolved_pix)
                     else:
-                        self.__image_cache.request_url(media_item.photo_url())
+                        self.__image_cache.request_url(media_item.cover_url)
                         pixmaps.append(QPixmap(R"img/default_photo.png"))
 
                 return tile_pixmaps(pixmaps, 150)
@@ -76,3 +78,9 @@ class PlaylistModel(QAbstractListModel):
             return self.__playlists[row]
         else:
             return QVariant()
+
+    def update_playlist(self, new_playlists: List[Playlist]):
+        """
+        Updates the model to reflect a newly requested list of playlists from the DB
+        """
+        self.__playlists = new_playlists

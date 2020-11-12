@@ -1,6 +1,6 @@
 OUTPUTS = $(sort $(wildcard outputs/*.txt))
 QUESTIONS = $(patsubst outputs/%.txt,%,$(OUTPUTS))
-MAKEFILE_PATH = /Users/DanialYunus/Dev/cse412project/cse-412-class-project/phase2
+MAKEFILE_PATH = $(shell pwd)
 ROOT = $(MAKEFILE_PATH)
 
 all: path $(QUESTIONS)

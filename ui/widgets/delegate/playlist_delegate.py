@@ -25,13 +25,13 @@ class PlaylistDelegate(QStyledItemDelegate):
 
         playlist_rec = title_fm.boundingRect(0, 0, option.rect.width() - PlaylistDelegate.icon_diameter,
                                            0,
-                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, playlist.title())
+                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, playlist.name)
         title_rect = title_fm.boundingRect(option.rect.left() + PlaylistDelegate.pad_horizontal,
                                            playlist_rec.bottom() + PlaylistDelegate.pad_vertical,
                                            playlist_rec.width(),
                                            0,
                                            Qt.AlignHCenter | Qt.AlignTop | Qt.TextWordWrap,
-                                           playlist.title())
+                                           playlist.name)
 
         playlist_size = QSize(PlaylistDelegate.icon_diameter, playlist_rec.height() + PlaylistDelegate.pad_vertical + title_rect.height())
 
@@ -76,7 +76,7 @@ class PlaylistDelegate(QStyledItemDelegate):
                                            icon_rect.width(),
                                            0,
                                            Qt.AlignHCenter | Qt.AlignTop | Qt.TextWordWrap,
-                                           playlist.title())
+                                           playlist.name)
 
         # Draw icon
         painter.drawPixmap(icon_rect, playlist_pix)
@@ -84,6 +84,6 @@ class PlaylistDelegate(QStyledItemDelegate):
         # Draw title
         painter.setFont(title_font)
         painter.setPen(Qt.white)
-        painter.drawText(title_rect, Qt.AlignHCenter | Qt.AlignTop | Qt.TextWordWrap, playlist.title())
+        painter.drawText(title_rect, Qt.AlignHCenter | Qt.AlignTop | Qt.TextWordWrap, playlist.name)
 
         painter.restore()
