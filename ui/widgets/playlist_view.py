@@ -30,7 +30,7 @@ class PlaylistView(QFrame):
     def __layout_ui(self):
         # Set up horizontal list
         self.__horizontal_list.setFlow(QListView.LeftToRight)
-        self.__horizontal_list.setMinimumHeight(225)
+        self.__horizontal_list.setMinimumHeight(235)
         self.__horizontal_list.setSpacing(20)
         self.__layout_manager.addWidget(self.__horizontal_list)
 

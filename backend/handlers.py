@@ -1,14 +1,14 @@
 from typing import List
 
 import psycopg2
+
 from ui.widgets.model.entities import *
 
-
 _connection = psycopg2.connect(user="bailey",
-                              password="",
-                              host="127.0.0.1",
-                              port="8888",
-                              database="bailey")
+                               password="",
+                               host="127.0.0.1",
+                               port="8888",
+                               database="bailey")
 cursor = _connection.cursor()
 
 
@@ -197,7 +197,7 @@ def delete_comedy_special_from_playlist(cursor, connection, playlist_id: int, me
     cursor.execute('DELETE '
                    'FROM member_of_comedy '
                    'WHERE member_of_comedy.auditory_media_id = %d AND member_of_comedy.playlist_id = %d' % (
-                   media_id, playlist_id))
+                       media_id, playlist_id))
 
     connection.commit()
 
@@ -206,7 +206,7 @@ def delete_song_from_playlist(cursor, connection, playlist_id: int, media_id: in
     cursor.execute('DELETE '
                    'FROM member_of_song '
                    'WHERE member_of_song.auditory_media_id = %d AND member_of_song.playlist_id = %d AND member_of_song.name = \'%s\'' % (
-                   media_id, playlist_id, song_name))
+                       media_id, playlist_id, song_name))
 
     connection.commit()
 
@@ -215,7 +215,7 @@ def delete_episode_from_playlist(cursor, connection, playlist_id: int, media_id:
     cursor.execute('DELETE '
                    'FROM member_of_episode '
                    'WHERE member_of_episode.auditory_media_id = %d AND member_of_episode.playlist_id = %d AND member_of_episode.episode_number = %d' % (
-                   media_id, playlist_id, episode_num))
+                       media_id, playlist_id, episode_num))
 
     connection.commit()
 
