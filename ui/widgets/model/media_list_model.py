@@ -3,13 +3,12 @@ Defines the model of a MediaList, to be used with a QListView
 """
 from typing import List, Any
 
-from PyQt5 import QtCore
 from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
 from PyQt5.QtGui import QPixmap
 
 from ui.helper_functions import convert_pixmap_to_circular
 from ui.image_cache import ImageCache
-from ui.widgets.model.media import DebugMedia
+from ui.widgets.model.entities import Media
 
 
 class MediaListModel(QAbstractListModel):
@@ -19,7 +18,7 @@ class MediaListModel(QAbstractListModel):
 
     def __init__(self, parent: QObject, image_cache: ImageCache):
         super().__init__(parent)
-        self.__media_list: List[DebugMedia] = list()  # Tracks all multimedia items being displayed in this list
+        self.__media_list: List[Media] = list()  # Tracks all multimedia items being displayed in this list
         self.__image_cache = image_cache
         self.__image_diameter = 100
 
@@ -38,20 +37,20 @@ class MediaListModel(QAbstractListModel):
 
         media = self.__media_list[index.row()]
         if role == Qt.DisplayRole:
-            return media.title()
+            return media.name
         elif role == Qt.DecorationRole:
-            if cached_pix := self.__image_cache.get_pixmap(media.photo_url()):
+            if cached_pix := self.__image_cache.get_pixmap(media.cover_url):
                 return convert_pixmap_to_circular(cached_pix, self.__image_diameter)
             else:
                 # Set default pixmap and asynchronously request actual image via HTTP
-                self.__image_cache.request_url(media.photo_url())
+                self.__image_cache.request_url(media.cover_url)
                 return QPixmap(R"img/default_photo.png")
         else:
             return QVariant()
 
     # Exposed functionality
 
-    def add_media(self, media: DebugMedia):
+    def add_media(self, media: Media):
         """
         Adds the given media item to the list of media
         """

@@ -3,13 +3,12 @@ Defines the model of a PlaylistView
 """
 from typing import List, Any
 
-from PyQt5 import QtCore
 from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
 from PyQt5.QtGui import QPixmap
 
 from ui.helper_functions import tile_pixmaps
 from ui.image_cache import ImageCache
-from ui.widgets.model.media import DebugPlaylist
+from ui.widgets.model.entities import Playlist
 
 
 class PlaylistModel(QAbstractListModel):
@@ -66,7 +65,7 @@ class PlaylistModel(QAbstractListModel):
         else:
             return QVariant()
 
-    def add_playlist(self, playlist: DebugPlaylist):
+    def add_playlist(self, playlist: Playlist):
         insertion_idx = self.rowCount()
         self.beginInsertRows(QModelIndex(), insertion_idx, insertion_idx)
         self.__playlists.append(playlist)
