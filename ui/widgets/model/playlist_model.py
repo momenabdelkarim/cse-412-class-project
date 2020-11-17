@@ -8,10 +8,10 @@ from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
 from PyQt5.QtGui import QPixmap, QColor
 
 from backend.handlers import get_all_media_objects_for_playlist, cursor, delete_playlist, connection, \
-    create_new_playlist, get_all_user_playlists
+    create_new_playlist, get_all_user_playlists, get_album_for_selected_song
 from ui.helper_functions import tile_pixmaps, load_themed_icon
 from ui.image_cache import ImageCache
-from ui.widgets.model.entities import Playlist
+from ui.widgets.model.entities import Playlist, Song
 
 
 class PlaylistModel(QAbstractListModel):
@@ -45,6 +45,7 @@ class PlaylistModel(QAbstractListModel):
 
             # Create icon containing either a random media's icon or 4 tiled
             playlist_media = get_all_media_objects_for_playlist(cursor, playlist.playlist_id)
+            album_art
             media_count = len(playlist_media)
             if media_count == 0:
                 # Return a default
@@ -136,3 +137,14 @@ class PlaylistModel(QAbstractListModel):
             if match := selection_regex.search(playlist.name):
                 highest_numbered_playlist = int(match.group(1))
         return highest_numbered_playlist + 1
+
+    def __get_album_art_for_playlist(self, playlist_contents: List) -> List[str]:
+        """
+        Returns a deterministic list of all unique album art associated with each playlist item
+        """
+
+        album_cover_url_set = set()
+
+        for item in playlist_contents:
+            if type(item) is Song:
+                media = get_album_for_selected_song(cursor, item.)
