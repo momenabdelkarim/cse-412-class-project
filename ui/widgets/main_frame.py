@@ -5,7 +5,7 @@ from PyQt5 import QtCore
 from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import QFrame, QTabWidget, QVBoxLayout
 
-from backend.handlers import get_all_user_playlists, cursor, get_all_media, get_all_media_objects_for_playlist
+from backend.handlers import cursor, get_all_media, get_all_media_objects_for_playlist
 from ui.image_cache import image_cache
 from ui.widgets.media_list import AddMediaListView
 from ui.widgets.playlist_view import PlaylistView
@@ -65,7 +65,7 @@ class PlaylistTab(AbstractMediaTab):
         super().__init__(parent)
         self.__layout_manager = QVBoxLayout(self)
         self.__playlist_view = PlaylistView(self, image_cache)
-        self._add_media_view = AddMediaListView(self, image_cache)
+        self._add_media_view = AddMediaListView(self, image_cache, True)
 
         self.__layout_ui()
         self.__update_playlist_view()
@@ -91,10 +91,8 @@ class PlaylistTab(AbstractMediaTab):
         Pulls playlist data from database and updates UI to reflect the state of the DB
         """
 
-        # Request list of playlists from the database
-        current_playlists = get_all_user_playlists(cursor)
-
-        self.__playlist_view.model().update_playlist(current_playlists)
+        # Update UI
+        self.__playlist_view.relayout()
 
     # Slots
     @QtCore.pyqtSlot(int)
@@ -113,7 +111,7 @@ class AddMediaTab(AbstractMediaTab):
     def __init__(self, parent: QObject):
         super().__init__(parent)
         self.__layout_manager = QVBoxLayout(self)
-        self._add_media_view = AddMediaListView(self, image_cache)
+        self._add_media_view = AddMediaListView(self, image_cache, False)
 
         self.__layout_ui()
 

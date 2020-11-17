@@ -83,7 +83,7 @@ QComboBox, QComboBox > QListView {
 }
 
 QDialog > QPushButton {
-    background-color: #1DB945;
+    background-color: #1DB954;
     border: 0px;
     height: 35px;
 }
@@ -119,4 +119,16 @@ QFrame#details-view QLabel#rating {
 
 QFrame#details-view QLabel#publisher {
     font-size: 24px;
+}
+
+
+/* MENU */
+
+QMenu {
+    background-color: #1f1f1f;
+    color: white;
+}
+
+QMenu::item:selected {
+    background-color: #1db954;
 }

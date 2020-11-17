@@ -19,10 +19,12 @@ class AbstractItemListView(QFrame):
     THIS IS AN ABSTRACT CLASS, DO NOT INSTANTIATE
     """
 
-    def __init__(self, parent: QObject, image_cache: ImageCache):
+    def __init__(self, parent: QObject, image_cache: ImageCache, is_playlist_view: bool):
         super().__init__(parent)
 
         self._image_cache = image_cache
+        self._is_playlist_view = is_playlist_view
+
         self._model = AbstractItemListModel(self, image_cache, True)
 
         self._item_delegate = ItemDelegate(self)
@@ -42,8 +44,8 @@ class AbstractItemListView(QFrame):
 
 
 class AddMediaListView(AbstractItemListView):
-    def __init__(self, parent: QObject, image_cache: ImageCache):
-        super().__init__(parent, image_cache)
+    def __init__(self, parent: QObject, image_cache: ImageCache, is_playlist_view: bool):
+        super().__init__(parent, image_cache, is_playlist_view)
 
         self._model = MediaListModel(self, image_cache)
         self._list_view.setModel(self._model)
@@ -67,6 +69,7 @@ class AddMediaListView(AbstractItemListView):
             self._media_detail_win.destroy()
 
         # Open MediaDetailView
-        self._media_detail_win = MediaDetailView(self.window(), media)  # We don't want to just hide ourselves, but
+        self._media_detail_win = MediaDetailView(self.window(), media,
+                                                 self._is_playlist_view)  # We don't want to just hide ourselves, but
         # the whole window
         show_child_window(self.window(), self._media_detail_win)
