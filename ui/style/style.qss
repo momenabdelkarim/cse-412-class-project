@@ -92,4 +92,14 @@ QDialog > QPushButton {
 
 QFrame#details-view QLabel {
     color: white;
+    font-size: 16px;
+}
+
+QFrame#details-view QLabel#media-name {
+    font-size: 48px;
+    padding-top: 10px;
+}
+
+QFrame#details-view QLabel#award {
+    padding-right: 10px;
 }

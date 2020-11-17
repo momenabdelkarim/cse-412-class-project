@@ -36,3 +36,7 @@ class ImageCache(QObject):
         """
         self.__image_cache[url] = pix
         self.new_image_resolved.emit(url, pix)
+
+
+_parent = QObject()
+image_cache = ImageCache(_parent)

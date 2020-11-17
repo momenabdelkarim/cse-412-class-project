@@ -12,7 +12,6 @@ class PlaylistView(QFrame):
     """
 
     def __init__(self, parent: QObject, image_cache: ImageCache):
-        # TODO: Get actual playlists from database
 
         super().__init__(parent)
 

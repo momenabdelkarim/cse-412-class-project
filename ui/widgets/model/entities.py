@@ -96,5 +96,3 @@ class Playlist:
     def __init__(self, playlist_id: int, name: str):
         self.playlist_id = playlist_id
         self.name = name
-
-        # TODO: Add ability to hold media (by key or by obj?) and add other relationships

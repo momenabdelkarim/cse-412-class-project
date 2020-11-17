@@ -1,14 +1,16 @@
 """
 This file will define a MediaDetailView.
 """
-from PyQt5.QtCore import Qt, QModelIndex
-from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QWidget
+from typing import List
 
-from ui import image_cache
-from ui.widgets.model import media
-from ui.widgets.model.entities import Media, Podcast
-from ui.image_cache import ImageCache
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QLabel, QWidget, QHBoxLayout
+
+from backend.handlers import cursor, get_award, get_person, get_all_songs_in_album, get_episodes_in_podcast
+from ui.helper_functions import convert_pixmap_to_circular
+from ui.image_cache import image_cache
+from ui.widgets.model.entities import Media, Award, Person, ComedySpecial, Album, Podcast
 
 
 class MediaDetailView(QFrame):
@@ -34,12 +36,81 @@ class MediaDetailView(QFrame):
 
         self.setGeometry(0, 0, self.parentWidget().width(), self.parentWidget().height())
         self.setObjectName("details-view")
-        self.setWindowTitle("Details")  # FIXME: Make this say type please
+        self.setWindowTitle(f"{self.__media.__class__.__name__} Details")  # Display string-name of media object's class
 
+        self.__layout_header()
+
+        if type(self.__media) is not ComedySpecial:
+            self.__layout_list()
+
+        # Layout Award Information
+        if media_awards := get_award(cursor, self.__media.media_id):
+            # At this point, we know the media has some amount of awards
+            display_award: Award = media_awards[0]
+            award_label = QLabel(display_award.award_name, self)
+            award_label.setObjectName("award")
+            self.__layout_manager.addWidget(award_label, 0, Qt.AlignRight)
+
+        self.__layout_manager.addStretch(1)
+
+    def __layout_header(self):
+        """
+        Responsible for laying out the album image, album name, and artist
+        """
+        layout_header_manager = QHBoxLayout()
+        layout_name_manager = QVBoxLayout()
+
+        # Display Album Photo
+        if cached_pix := image_cache.get_pixmap(self.__media.cover_url):
+            pix = convert_pixmap_to_circular(cached_pix, 300)
+        else:
+            # Set default pixmap and asynchronously request actual image via HTTP
+            self.__image_cache.request_url(self.__media.cover_url)
+            pix = QPixmap(R"img/default_photo.png")
+
+        image_label = QLabel(self)
+        image_label.setPixmap(pix)
+        layout_header_manager.addWidget(image_label)
+
+        # Display album name
         media_name_label = QLabel(self.__media.name)
-        media_name_label.setFont(QFont('Arial', 35))
-        self.__layout_manager.addWidget(media_name_label, 0, Qt.AlignHCenter)
-        self.__layout_manager.addStretch()
+        media_name_label.setObjectName("media-name")
+
+        # Display artist name
+        artists: List[Person] = get_person(cursor, self.__media.media_id)
+
+        # Create a comma-separated list of artist's names
+        artist_names = ""
+        for artist in artists:
+            artist_names += artist.name + (", " if artist != artists[-1] else "")
+
+        artist_label = QLabel(artist_names)
+        layout_name_manager.addWidget(media_name_label)
+        layout_name_manager.addWidget(artist_label)
+        layout_name_manager.addStretch()
+
+        layout_header_manager.addLayout(layout_name_manager)
+        layout_header_manager.addStretch(1)
+        layout_header_manager.setObjectName("detail-header")
+        self.__layout_manager.addLayout(layout_header_manager)
+
+    def __layout_list(self):
+        """
+        This function is responsible for laying out the list of items and their attributes in the media
+        """
+
+        # Get all items in the media object
+        if type(self.__media) is Album:
+            media_items = get_all_songs_in_album(cursor, self.__media.media_id)
+        elif type(self.__media) is Podcast:
+            media_items = get_episodes_in_podcast(cursor, self.__media.media_id)
+        else:
+            print("Something has gone horribly wrong")
+            exit(1)
+
+        # Create a list out of them
+
+        # Display the list
 
     def closeEvent(self, close_event):
         self.parentWidget().show()
