@@ -7,7 +7,7 @@ from PyQt5 import QtCore
 from PyQt5.QtCore import QObject, QModelIndex
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QListView
 
-from ui.helper_functions import get_center_pos, show_child_window
+from ui.helper_functions import show_child_window
 from ui.image_cache import ImageCache
 from ui.widgets.delegate.media_delegate import MediaDelegate
 from ui.widgets.media_detail_view import MediaDetailView

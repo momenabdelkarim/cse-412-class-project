@@ -6,6 +6,7 @@ from typing import Optional
 from PyQt5.QtCore import QObject, Qt
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QComboBox, QPushButton
 
+from backend.handlers import cursor, get_all_user_playlists
 from ui.widgets.model.entities import Media
 
 
@@ -36,7 +37,7 @@ class AddToPlaylistDialog(QDialog):
         self.__layout_manager.addWidget(header_label)
 
         # TODO: Request playlists from DB
-        playlists = ["Playlist 1", "Playlist 2", "Playlist 3"]
+        playlists = [plist.name for plist in get_all_user_playlists(cursor)]
         self.__combo_box.addItems(playlists)
         self.__combo_box.setAutoFillBackground(True)
         self.__layout_manager.addWidget(self.__combo_box)
