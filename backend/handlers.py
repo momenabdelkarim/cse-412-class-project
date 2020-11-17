@@ -36,7 +36,8 @@ def main():
         record = cursor.fetchone()
         print("You are connected to - ", record, "\n")
 
-        get_all_media_objects_for_playlist(cursor, 708)
+        #get_all_media_objects_for_playlist(cursor, 708)
+        get_all_songs_in_album(cursor, 108)
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
@@ -317,14 +318,14 @@ def get_all_available_genres(cursor) -> List[str]:
 
 ## PODCAST OR ALBUM DETAILS
 def get_all_songs_in_album(cursor, media_id: int) -> List[Song]:
-    cursor.execute('SELECT song.name, song.duration, song.view_count '
+    cursor.execute('SELECT song.auditory_media_id, song.view_count, song.name, song.duration '
                    'FROM song '
                    'WHERE song.auditory_media_id = %d' % (media_id))
 
     song_list = []
     record = cursor.fetchone()
     while record:
-        song = Song(record[2], record[0], record[1])
+        song = Song(record[0], record[1], record[2], record[3])
         song_list.append(song)
 
         record = cursor.fetchone()
@@ -345,14 +346,14 @@ def get_album_for_selected_song(cursor, media_id: int) -> Album:
 
 
 def get_episodes_in_podcast(cursor, media_id: int) -> List[Episode]:
-    cursor.execute('SELECT episode.episode_number, episode.view_count, episode.title, episode.duration '
+    cursor.execute('SELECT episode.id, episode.episode_number, episode.view_count, episode.title, episode.duration '
                    'FROM episode '
                    'WHERE episode.id = %d' % (media_id))
 
     episode_list = []
     record = cursor.fetchone()
     while record:
-        episode = Episode(record[0], record[1], record[2], record[3])
+        episode = Episode(record[0], record[1], record[2], record[3], record[4])
         episode_list.append(episode)
 
         record = cursor.fetchone()
