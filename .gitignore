@@ -1,3 +1,5 @@
 .idea
 /venv/
 *.pyc
+/backend/handlers.py
+/phase2/makefile
