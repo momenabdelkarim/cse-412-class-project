@@ -4,21 +4,21 @@ import psycopg2
 
 from ui.widgets.model.entities import *
 
-_connection = psycopg2.connect(user="bailey",
-                               password="",
-                               host="127.0.0.1",
-                               port="8888",
-                               database="bailey")
-cursor = _connection.cursor()
+#_connection = psycopg2.connect(user="bailey",
+#                               password="",
+#                               host="127.0.0.1",
+#                               port="8888",
+#                               database="bailey")
+#cursor = _connection.cursor()
 
 
 def main():
     try:
-        connection = psycopg2.connect(user="$USER",
+        connection = psycopg2.connect(user="andersonjwan",
                                       password="",
                                       host="127.0.0.1",
                                       port="8888",
-                                      database="$USER")
+                                      database="andersonjwan")
 
         # user="$USER"
         # password=""
@@ -194,33 +194,31 @@ def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
         record = cursor.fetchone()
 
     cursor.execute(
-        'SELECT DISTINCT podcast.end_year, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
-        'FROM auditory_media, member_of_episode, podcast '
-        'WHERE auditory_media.id = podcast.id AND member_of_episode.auditory_media_id = auditory_media.id AND member_of_episode.playlist_id = %d' % (
-            playlist_id))
+        'SELECT DISTINCT episode.episode_number, episode.view_count, episode.title, episode.duration '
+        'FROM auditory_media, member_of_episode, episode '
+        'WHERE auditory_media.id = episode.id AND member_of_episode.auditory_media_id = auditory_media.id AND member_of_episode.playlist_id = %d' % (playlist_id))
 
-    podcast_list = []
+    episode_list = []
     record = cursor.fetchone()
     while record:
-        podcast = Podcast(record[0], record[1], record[2], record[3], record[4], record[5], record[6])
-        podcast_list.append(podcast)
+        episode = Episode(record[0], record[1], record[2], record[3])
+        episode_list.append(episode)
 
         record = cursor.fetchone()
 
     cursor.execute(
-        'SELECT DISTINCT album.release_format, auditory_media.id, auditory_media.name, auditory_media.release_date, auditory_media.image_url, auditory_media.genre, auditory_media.rating '
-        'FROM auditory_media, member_of_song, album '
-        'WHERE auditory_media.id = album.id AND member_of_song.auditory_media_id = auditory_media.id AND member_of_song.playlist_id = %d' % (
-            playlist_id))
+        'SELECT DISTINCT song.view_count, song.name, song.duration '
+        'FROM auditory_media, member_of_song, song '
+        'WHERE auditory_media.id = song.auditory_media_id AND member_of_song.auditory_media_id = auditory_media.id AND member_of_song.playlist_id = %d' % ( playlist_id))
 
-    album_list = []
+    song_list = []
     record = cursor.fetchone()
     while record:
-        album = Album(record[0], record[1], record[2], record[3], record[4], record[5], record[6])
-        album_list.append(album)
+        song = Song(record[0], record[1], record[2])
+        song_list.append(song)
 
         record = cursor.fetchone()
-    media_list = album_list + comedy_special_list + podcast_list
+    media_list = song_list + comedy_special_list + episode_list
     return media_list
 
 
