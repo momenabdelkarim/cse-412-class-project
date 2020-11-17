@@ -4,12 +4,12 @@ import psycopg2
 
 from ui.widgets.model.entities import *
 
-#_connection = psycopg2.connect(user="bailey",
-#                               password="",
-#                               host="127.0.0.1",
-#                               port="8888",
-#                               database="bailey")
-#cursor = _connection.cursor()
+_connection = psycopg2.connect(user="bailey",
+                               password="",
+                               host="127.0.0.1",
+                               port="8888",
+                               database="bailey")
+cursor = _connection.cursor()
 
 
 def main():
