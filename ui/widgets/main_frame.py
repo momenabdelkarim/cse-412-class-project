@@ -1,11 +1,11 @@
 """
 Defines the application's main view
 """
-
+from PyQt5 import QtCore
 from PyQt5.QtCore import QObject
 from PyQt5.QtWidgets import QFrame, QTabWidget, QVBoxLayout
 
-from backend.handlers import get_all_user_playlists, cursor, get_all_media
+from backend.handlers import get_all_user_playlists, cursor, get_all_media, get_all_media_objects_for_playlist
 from ui.image_cache import image_cache
 from ui.widgets.media_list import AddMediaListView
 from ui.widgets.playlist_view import PlaylistView
@@ -69,7 +69,9 @@ class PlaylistTab(AbstractMediaTab):
 
         self.__layout_ui()
         self.__update_playlist_view()
-        self._update_media_list_view()
+
+        # Connect signals to slots
+        self.__playlist_view.should_display_playlist.connect(self._update_media_list_view)
 
     def __layout_ui(self):
         self.__layout_manager.addWidget(self.__playlist_view)
@@ -84,14 +86,6 @@ class PlaylistTab(AbstractMediaTab):
         self.__layout_manager.addWidget(self._add_media_view, 1)
         self.__layout_manager.addStretch()
 
-    def _update_media_list_view(self):
-        """
-        Override the update media list view to show the media objects that belong to a playlist
-        """
-        # TODO: Actually do this
-
-        super()._update_media_list_view()
-
     def __update_playlist_view(self):
         """
         Pulls playlist data from database and updates UI to reflect the state of the DB
@@ -102,6 +96,18 @@ class PlaylistTab(AbstractMediaTab):
 
         self.__playlist_view.model().update_playlist(current_playlists)
 
+    # Slots
+    @QtCore.pyqtSlot(int)
+    def _update_media_list_view(self, playlist_id: int):
+        """
+        Slot connected to a PlaylistView's should_display_playlist signal
+
+        Retrieves media objects in a playlist and displays them in addMediaView
+        """
+        super()._update_media_list_view()
+
+        media_list = get_all_media_objects_for_playlist(cursor, playlist_id)
+        self._add_media_view.model().update_item(media_list)
 
 class AddMediaTab(AbstractMediaTab):
     def __init__(self, parent: QObject):

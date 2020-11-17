@@ -67,6 +67,7 @@ class EpisodeListView(AbstractSubItemListView):
 
         self._model = EpisodeListModel(self, image_cache)
         self._list_view.setModel(self._model)
+        # self._list_view.setSpacing(35)
 
         # Connect signals to slots
         self._list_view.doubleClicked.connect(self.__item_double_clicked)

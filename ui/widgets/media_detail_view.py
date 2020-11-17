@@ -42,9 +42,6 @@ class MediaDetailView(QFrame):
 
         self.__layout_header()
 
-        if type(self.__media) is not ComedySpecial:
-            self.__layout_list()
-
         # Layout Award Information
         if media_awards := get_award(cursor, self.__media.media_id):
             # At this point, we know the media has some amount of awards
@@ -53,7 +50,10 @@ class MediaDetailView(QFrame):
             award_label.setObjectName("award")
             self.__layout_manager.addWidget(award_label, 0, Qt.AlignRight)
 
-        self.__layout_manager.addStretch(1)
+        if type(self.__media) is not ComedySpecial:
+            self.__layout_list()
+
+        self.__layout_manager.addStretch()
 
     def __layout_header(self):
         """
@@ -67,7 +67,7 @@ class MediaDetailView(QFrame):
             pix = convert_pixmap_to_circular(cached_pix, 300)
         else:
             # Set default pixmap and asynchronously request actual image via HTTP
-            self.__image_cache.request_url(self.__media.cover_url)
+            image_cache.request_url(self.__media.cover_url)
             pix = QPixmap(R"img/default_photo.png")
 
         image_label = QLabel(self)
@@ -113,7 +113,8 @@ class MediaDetailView(QFrame):
             exit(1)
 
         # Display the list
-        self.__layout_manager.addWidget(self.__item_list)
+        self.__item_list.model().update_item(media_items)
+        self.__layout_manager.addWidget(self.__item_list, 1)
 
     def closeEvent(self, close_event):
         self.parentWidget().show()

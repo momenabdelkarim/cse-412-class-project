@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QObject
+from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtWidgets import QListView, QVBoxLayout, QFrame
 
 from ui.image_cache import ImageCache
@@ -11,8 +11,10 @@ class PlaylistView(QFrame):
     Horizontal Scroll Area containing playlists that can be selected
     """
 
-    def __init__(self, parent: QObject, image_cache: ImageCache):
+    # Signals
+    should_display_playlist = pyqtSignal(int)  # Display playlist given playlist_id
 
+    def __init__(self, parent: QObject, image_cache: ImageCache):
         super().__init__(parent)
 
         self.__item_delegate = PlaylistDelegate(self)
@@ -25,6 +27,12 @@ class PlaylistView(QFrame):
 
         self.__layout_manager = QVBoxLayout(self)
         self.__layout_ui()
+
+        # Connect signals to slots
+        self.__horizontal_list.doubleClicked.connect(lambda index:
+                                                     self.should_display_playlist.emit(
+                                                         self.__model.at(index.row()).playlist_id)
+                                                     )
 
     def __layout_ui(self):
         # Set up horizontal list

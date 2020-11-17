@@ -48,7 +48,9 @@ class AbstractItemListModel(QAbstractListModel):
         Update the media list to reflect state of DB
         :param new_item_list: List of media objects in the DB
         """
-        self._item_list = new_item_list
+        self._item_list.clear()
+        for item in new_item_list:
+            self.add_item(item)
 
 
 class MediaListModel(AbstractItemListModel):
@@ -76,6 +78,8 @@ class MediaListModel(AbstractItemListModel):
                 # Set default pixmap and asynchronously request actual image via HTTP
                 self._image_cache.request_url(media.cover_url)
                 return QPixmap(R"img/default_photo.png")
+        elif role == Qt.UserRole:
+            return media.genre
         else:
             return QVariant()
 
@@ -97,8 +101,10 @@ class SongListModel(AbstractItemListModel):
         song = self._item_list[index.row()]
         if role == Qt.DisplayRole:
             return song.song_name
+        elif role == Qt.DecorationRole:
+            return None
         elif role == Qt.UserRole:
-            return f"{song.duration} minutes, {song.view_count} views"
+            return f"{song.duration}s, {song.view_count} views"
         else:
             return QVariant()
 
