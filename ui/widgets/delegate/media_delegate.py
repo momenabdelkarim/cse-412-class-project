@@ -3,7 +3,7 @@ from PyQt5.QtGui import QFontMetrics, QPainter, QPixmap, QColor
 from PyQt5.QtWidgets import QStyledItemDelegate, QStyleOptionViewItem, QApplication
 
 
-class MediaDelegate(QStyledItemDelegate):
+class ItemDelegate(QStyledItemDelegate):
     """
     Item delegate used for displaying any piece of media with a custom style
     """
@@ -18,20 +18,20 @@ class MediaDelegate(QStyledItemDelegate):
         if not index.isValid():
             return QSize()
 
-        media = index.model().at(index.row())
+        item = index.model().at(index.row())
 
         font = QApplication.font()
         msg_fm = QFontMetrics(font)
 
-        media_rect = msg_fm.boundingRect(0, 0, option.rect.width() - MediaDelegate.icon_diameter,
-                                         0,
-                                         Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.name)
-        media_size = QSize(option.rect.width(), media_rect.height() + (2 * MediaDelegate.icon_padding))
+        item_rect = msg_fm.boundingRect(0, 0, option.rect.width() - ItemDelegate.icon_diameter,
+                                        0,
+                                        Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, item.name)
+        item_size = QSize(option.rect.width(), item_rect.height() + (2 * ItemDelegate.icon_padding))
 
-        if media_size.height() < MediaDelegate.icon_diameter:
-            media_size.setHeight(MediaDelegate.icon_diameter)
+        if item_size.height() < ItemDelegate.icon_diameter:
+            item_size.setHeight(ItemDelegate.icon_diameter)
 
-        return media_size
+        return item_size
 
     def paint(self, painter: QPainter, option: 'QStyleOptionViewItem', index: QModelIndex) -> None:
         """
@@ -42,7 +42,7 @@ class MediaDelegate(QStyledItemDelegate):
         :param index: Index of item
         """
 
-        media = index.model().at(index.row())
+        item = index.model().at(index.row())
 
         if not index.isValid():
             return
@@ -53,7 +53,8 @@ class MediaDelegate(QStyledItemDelegate):
         painter.setRenderHints(QPainter.HighQualityAntialiasing, True)
         painter.setRenderHints(QPainter.SmoothPixmapTransform, True)
 
-        media_pix: QPixmap = index.data(Qt.DecorationRole)
+        if index.model().displays_image:
+            media_pix: QPixmap = index.data(Qt.DecorationRole)
 
         title_font = QApplication.font()
         title_font.setPixelSize(22)
@@ -62,27 +63,27 @@ class MediaDelegate(QStyledItemDelegate):
         subtitle_font = QApplication.font()
         subtitle_fm = QFontMetrics(subtitle_font)
 
-        icon_rect = QRect(option.rect.left() + MediaDelegate.pad_horizontal,
-                          option.rect.top() + MediaDelegate.pad_vertical,
-                          MediaDelegate.icon_diameter,
-                          MediaDelegate.icon_diameter)
+        icon_rect = QRect(option.rect.left() + ItemDelegate.pad_horizontal,
+                          option.rect.top() + ItemDelegate.pad_vertical,
+                          ItemDelegate.icon_diameter,
+                          ItemDelegate.icon_diameter)
 
-        title_rect = title_fm.boundingRect(icon_rect.right() + MediaDelegate.icon_padding,
-                                           icon_rect.top() + MediaDelegate.pad_vertical + 10,
-                                           option.rect.width() - MediaDelegate.total_icon_width,
+        title_rect = title_fm.boundingRect(icon_rect.right() + ItemDelegate.icon_padding,
+                                           icon_rect.top() + ItemDelegate.pad_vertical + 10,
+                                           option.rect.width() - ItemDelegate.total_icon_width,
                                            0,
-                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.name)
+                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, item.name)
 
-        subtitle_rect = subtitle_fm.boundingRect(icon_rect.right() + MediaDelegate.icon_padding,
-                                                 title_rect.bottom() + MediaDelegate.pad_vertical,
-                                                 option.rect.width() - MediaDelegate.total_icon_width,
+        subtitle_rect = subtitle_fm.boundingRect(icon_rect.right() + ItemDelegate.icon_padding,
+                                                 title_rect.bottom() + ItemDelegate.pad_vertical,
+                                                 option.rect.width() - ItemDelegate.total_icon_width,
                                                  0,
-                                                 Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.genre)
+                                                 Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, item.genre)
         # Draw surrounding rect
-        bound_rect = QRect(MediaDelegate.pad_horizontal,
-                           icon_rect.top() - MediaDelegate.pad_vertical,
+        bound_rect = QRect(ItemDelegate.pad_horizontal,
+                           icon_rect.top() - ItemDelegate.pad_vertical,
                            option.rect.width(),
-                           icon_rect.height() + (2 * MediaDelegate.pad_horizontal))
+                           icon_rect.height() + (2 * ItemDelegate.pad_horizontal))
         bound_color = QColor(31, 31, 31)
 
         # Paint background
@@ -96,10 +97,10 @@ class MediaDelegate(QStyledItemDelegate):
         # Paint title
         painter.setFont(title_font)
         painter.setPen(Qt.white)
-        painter.drawText(title_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.name)
+        painter.drawText(title_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, item.name)
 
         # Paint subtitle
         painter.setFont(subtitle_font)
         painter.setPen(QColor(195, 195, 195))
-        painter.drawText(subtitle_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, media.genre)
+        painter.drawText(subtitle_rect, Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, item.genre)
         painter.restore()
