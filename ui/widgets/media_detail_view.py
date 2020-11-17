@@ -57,8 +57,8 @@ class MediaDetailView(QFrame):
         """
         Responsible for laying out the album image, album name, and artist
         """
-        layout_header_manager = QHBoxLayout(self)
-        layout_name_manager = QVBoxLayout(self)
+        layout_header_manager = QHBoxLayout()
+        layout_name_manager = QVBoxLayout()
 
         # Display Album Photo
         if cached_pix := image_cache.get_pixmap(self.__media.cover_url):
