@@ -11,7 +11,7 @@ from backend.handlers import cursor, get_award, get_person, get_all_songs_in_alb
     get_organization, get_publisher
 from ui.helper_functions import convert_pixmap_to_circular
 from ui.image_cache import image_cache
-from ui.widgets.model.entities import Media, Award, Person, ComedySpecial, Album, Podcast, Organization
+from ui.widgets.model.entities import Media, Award, Person, ComedySpecial, Album, Podcast
 from ui.widgets.sub_list import EpisodeListView, SongListView
 
 
@@ -21,12 +21,13 @@ class MediaDetailView(QFrame):
     It will also display the attributes of an Auditory Media object.
     """
 
-    def __init__(self, parent_window: QWidget, media: Media):
+    def __init__(self, parent_window: QWidget, media: Media, is_playlist_view: bool):
         super().__init__(parent_window)  # Create as a standalone window
         self.setWindowFlag(Qt.Window)
 
         self.__layout_manager = QVBoxLayout(self)
         self.__media = media
+        self.__is_playlist_view = is_playlist_view
         self.__item_list = None
         self.__layout_ui()
 
@@ -111,10 +112,10 @@ class MediaDetailView(QFrame):
         # Get all items in the media object and create list
         if type(self.__media) is Album:
             media_items = get_all_songs_in_album(cursor, self.__media.media_id)
-            self.__item_list = SongListView(self, image_cache)
+            self.__item_list = SongListView(self, image_cache, self.__is_playlist_view)
         elif type(self.__media) is Podcast:
             media_items = get_episodes_in_podcast(cursor, self.__media.media_id)
-            self.__item_list = EpisodeListView(self, image_cache)
+            self.__item_list = EpisodeListView(self, image_cache, self.__is_playlist_view)
         else:
             print("Something has gone horribly wrong")
             exit(1)
