@@ -194,27 +194,27 @@ def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
         record = cursor.fetchone()
 
     cursor.execute(
-        'SELECT DISTINCT episode.episode_number, episode.view_count, episode.title, episode.duration '
+        'SELECT DISTINCT episode.id, episode.episode_number, episode.view_count, episode.title, episode.duration '
         'FROM auditory_media, member_of_episode, episode '
         'WHERE auditory_media.id = episode.id AND member_of_episode.auditory_media_id = auditory_media.id AND member_of_episode.playlist_id = %d' % (playlist_id))
 
     episode_list = []
     record = cursor.fetchone()
     while record:
-        episode = Episode(record[0], record[1], record[2], record[3])
+        episode = Episode(record[0], record[1], record[2], record[3], record[4])
         episode_list.append(episode)
 
         record = cursor.fetchone()
 
     cursor.execute(
-        'SELECT DISTINCT song.view_count, song.name, song.duration '
+        'SELECT DISTINCT song.auditory_media_id, song.view_count, song.name, song.duration '
         'FROM auditory_media, member_of_song, song '
         'WHERE auditory_media.id = song.auditory_media_id AND member_of_song.auditory_media_id = auditory_media.id AND member_of_song.playlist_id = %d' % ( playlist_id))
 
     song_list = []
     record = cursor.fetchone()
     while record:
-        song = Song(record[0], record[1], record[2])
+        song = Song(record[0], record[1], record[2], record[3])
         song_list.append(song)
 
         record = cursor.fetchone()
