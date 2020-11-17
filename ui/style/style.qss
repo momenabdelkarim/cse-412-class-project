@@ -102,4 +102,21 @@ QFrame#details-view QLabel#media-name {
 
 QFrame#details-view QLabel#award {
     padding-right: 10px;
+    color:
+}
+
+QFrame#details-view QLabel#organization {
+    padding-right: 10px;
+}
+
+QFrame#details-view QLabel#genre {
+    font-size: 24px;
+}
+
+QFrame#details-view QLabel#rating {
+    font-size: 24px;
+}
+
+QFrame#details-view QLabel#publisher {
+    font-size: 24px;
 }
