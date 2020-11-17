@@ -5,46 +5,46 @@ INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
 VALUES(102, 'https://upload.wikimedia.org/wikipedia/en/6/68/Jerry_Seinfeld%2C_I%27m_Telling_You_for_the_Last_Time_video_box.jpg', '8/8/1998', 'Im Telling You for the Last Time', 'comedy', 10);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(103, 'media3.com', '5/1/2018', 'John Mulaney: Kid Gorgeous at Radio City', 'comedy', 8);
+VALUES(103, 'https://resizing.flixster.com/4Y1EClZIJXSVyA_8l4BIjAT0h60=/206x305/v1.bTsxMzA1MDYyNjtqOzE4NjAxOzEyMDA7NDI2OzU5Nw', '5/1/2018', 'John Mulaney: Kid Gorgeous at Radio City', 'comedy', 8);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(104, 'media4.com', '8/21/2020' , 'Dynamite', 'pop', 8);
+VALUES(104, 'https://upload.wikimedia.org/wikipedia/en/5/5f/BTS_-_Dynamite_%28official_cover%29.png', '8/21/2020' , 'Dynamite', 'pop', 8);
 
 INSERT INTO auditory_media(id, image_url, release_date, name,genre, rating)
-VALUES(105, 'media5.com', '8/11/2017', 'Dont Smile at Me', 'eloctropop', 9.5);
+VALUES(105, 'https://upload.wikimedia.org/wikipedia/en/2/2f/Billie_Eilish_-_Don%27t_Smile_at_Me.png', '8/11/2017', 'Dont Smile at Me', 'eloctropop', 9.5);
 
 INSERT INTO auditory_media(id, image_url, release_date, name,genre, rating)
-VALUES(106, 'media6.com', '8/11/2017', '24K Magic', 'eloctropop', 9.5);
+VALUES(106, 'https://upload.wikimedia.org/wikipedia/en/2/2b/Bruno_Mars_-_24K_Magic_%28Official_Album_Cover%29.png', '8/11/2017', '24K Magic', 'eloctropop', 9.5);
 
 INSERT INTO auditory_media(id, image_url, release_date, name,genre, rating)
-VALUES(107, 'media7.com', '8/11/2017', 'Office Ladies', 'comedy podcast', 7.5);
+VALUES(107, 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUSEhIVFRUXFRgYGBgVGBcXFxgYGBoXGB4YGBoYHSggGRooHRkaITIiJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGy0lICYwLy0tLy8tLS0tLS0vLS0tLS01LS0vLS0tLS0tLS0tLS0tLi4tLS0tLS8tKy0tLS0tLf/AABEIAOEA4QMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAAAwQFBgcCAf/EAEcQAAEDAgQDBQQHBQYFBAMAAAECAxEABAUSITEGQVETImFxgTKRobEHFEJSwdHwI2JysuEVFjM1dLMIgqLS8SRVkpMlQ1T/xAAbAQEAAgMBAQAAAAAAAAAAAAAAAwQBAgUGB//EAC8RAAICAQQBAQcDBAMAAAAAAAABAhEDBBIhMUETBSJRYYGh8JGxwTIzNHEGQvH/2gAMAwEAAhEDEQA/ANmooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooAooooApljWLNWjK7h9eRtAlR59AAOaiYAHjT2sl+m1w3FzhuGhRCHngVxv3lpaSfQFz30AvZca4ziEu4bh7SLeSEuXKtVwYkd9I84CgDInSlbT6R7u0fRb41Zptw5ol9oktbxr3lAjqQqRIlOtaVbW6G0JbbSEoQkJSkaBKUiAAOgFVj6UcIRdYZcpUJLbankGJKVtAr08wFJ8lGgLWDOo1qhcQcXXi784bhbLS3W0Bb7r+bs2wQCAAkgz3k666mI0JpjwHiV8/gTBsi0bhtRZ/bTl7NtRAGnMIKB6GqhwwrGjieIdgLX6z3RcZ/8PTROSgLzwlxneKxJ3Cr5pkuoRmDlvnyeyhcKC+oV7WmsCDM0izxbiWIPvowpq2Sww4Wy9dFZ7RY+4EbDnsdCCSJipfGxjAZt1Wos/rHZn6yVgxmGUgNn7s5t+cVmf0SKxg2rhw/6r2JuVFfbzPaZG521y5cvxoC24L9KLptL524tQp+yUlKwyVBtedakA96SgApJMzp7qu/CGO/XrNq67JTXaAnIozEKKdDAlJiQY2NQfHL2KMB24sjZi3bYU44lxKy6tSQSvYQe6NNeVPvo3xt29w5m5fy519oDkGVMIcWgQOWiaAs1FZvj/F17dXy8NwgNpU0D29y4MyWyNClIIIkHu7EkyIASTTDiG+xvCEC7eu2b5gKSlxCkJaUMxiUlIB8JBMEg5SJoDV6Khb3idhqx/tBRPY9il0feIWAUpAP2iVBPmapGEO49iaBdIuGsPYXqygNpcWpB2UcySYI5yJ3CQCKA1Gis64c4rvba+ThmLBClOiWLlsZUun7qgABJgjYEEAEHMDWi0AUUUUAUUUUAUUUUAUUUUAUUUUAUUUUAUUUUAVkX0snscXwi5UYR2iUknYBDyCr/AKXK12qz9IXCScTtFMSEuJOdpZmErAIhUfZIJB9DrFAWc1Ace3oZw28cUQIt3Eidsy0lCR6qUB61R8K49vrBAtsTw65WpsBKX2RnDgGgJPskxHeCteYBppiysQ4hWhgWzllYJWFOLdkLcjoCBm30SJE6k6CALJ9B1oW8JaJBHaOOrE9M2QfyTTHgP/PMY82/nVtxe6Vh9q2m1s3LlKC20lpo95KAIzGQSYAHLUnWNTWacP3uJWl9fXqsIuXBdGUoSYUmFSkKIB+yd43FAbQvY+RrL/8Ah3/y57/Vr/2mKtfEvEVzbpaDOGv3BdbUVdmR+yVAhC4B1k6nQaaTVD+ity/w1sWbuFXCu1ugouggIbStLaCVaHbJO4oDS+Mf8vvP9I//ALS6gfoU/wAntfN7/fdo+kHGLoIesrfDn3+2tlpDyI7NKnApBB05DXfp51EfRbeXtqzb4c/hr6Akuy+SOzSFKU4J6mVZd+m9AN/oG7yL91X+Ku67/XZRE/8AMpdWj6QuD7XEG0KunVspt8686VJSAkgZs2YERCQZ5RVVvcMvMGxB+9s7ZV1Z3RzPNNauNrkmQACTBUsggRCiDEA1zxHj99jDRsbLD7i3Q7AefukltKUSCUjlrzgkkSI1mgEvpocaTgtqi0UDb9s0hBScwU2hp3KJ5+yN+YqStMK4kShCU3mH5UpSE907AAD/APT0qfxrgdp7ChhiVQENoDayNnEahagPvGZjksxVWwHjO/w9tNpiGG3TqmkhCHrdJcDiU6CTsTAHeBk8xO4DfEuE8WuLyxdv72w/YvpU2EqUhaoUhakoHZDOqG5jw5VrtZhh2GXuK4hb393bm0tbUlTDLn+KtczmUIBTqEkyB7IABkqrT6AKKKKAKKKKAKKKKAKKKKAKKKKAKKKKAKKKJoCocXXmMNLWuxas3GENZoe7TtVKAJUAEqSOWlVXhbjTG8TbW7aW9iltCgglztZUqASB3+QKSdOe9alfH9k5/Ar+U1mv/Dv/AJc9/q1/7TFAaikmNd+cbUUTURxdjf1KzfusmctIkJ11USEiY+zKgT4A0BL0VknCeFX2L24vXcZuWitSwGrbM0hspURByqTm0jl6mpfgDHrtF/dYTfOi4WwgONvQAVIPZmFdTDiDzIhQk6UBolNsTDpZcFuUB7IezLklAXGmaNYmoD6RuLRhlmXwkLdUoNtJMwVkEyqNcoAJ8dBImarOH8F4tcIFxdYzcMPKAUGmQQ23zCVpStKVHYEAdRJoDmz4lxVjFrXD71dstLyCsllChplc0lUEEKR02rQ8bu1s27zrbZdWhtaktiZWpIJCRGuvhrWP2bl5/eOxZvsqnmWnEB1GiXkFt9aXIgQdSD4pNaVxbhl+8UKsr4WoSlWZJZQ5nVunVWw5evOgOPo9x65vbTtru37BztFJAAUkLSAkhYSvvJEkjUn2as1UL6GOIbm+snHrp3tVi5UgKypTCQ20qIQAN1H3034t4lvLi+/snC1JbcSkLuLhQnskmDCZB1hSdQCZUAIgmgNForML/hDFrRs3FrjD9y6gZlMvgqQ5GpSgKWoJMTAj1FWfhHjJu8w43xGXs0r7ZI1yqaTmUB4FMKHgoUBaKKyLhq3xPHEKvF4i7ZMFxSWmraQYTpqpKkkifvSSZ2EV7h7WI2mN2NpdX7lyypt9SFSUZx2TnddTJzKCkggqKtxB6Aa5RRRQBRRRQBRRRQBRRRQBRRXk0B7NeTXk15NAdV5Xk0UAjff4Tn8Cv5TWbf8ADx/lz3+rX/tMVP8AF+JYqla2bKwQ82tqEul5CClagQZSpQmNPzql8BYbjuFsrYRh7LiFudp332goKKUpOqXIIhI91Aa7iT5bZdcSAVIbWoA7EpSSAfCRWfsfSHlwRGIXrSHFuqW0lpAhDhzOJAIVmhOVBnfbbWKRx3EeInmFsow1hvtEKQpaX21KCVAg5ZdEK131ps99Hlw/gFvZLyt3TK1upSVApJUt05FKTIBKV7jmB40A4wtviFxlIYaw/D2iJQ3khSEnUdwBaQdZgga7gVF8BWTzPEl02++bh0WsrdIy5lKTbK0HICco8Ejbaptji3GwgNKwXM8BHadskNFW2YjaPALqDtOH8Xw6/wD7R7BN+6+0sPBtYQG1qIOUTqUjKmCBESNNDQHf0qYuzcuYS+y4ly2+trStQ9nMlbAIM+AV6VsZNZbhH0bLcwRNjcw2/wBop5BkKDTh0AUU6EFOhj73hXeG8Q45bIFu/hRuloGVLyHkpCwNApWigT4nKeoBoDniMj+9OHdfqq5/+N3H41p6zofI1jFxw7jYxFjFVW7b70KlhLraEMpylAbzKXqYUTpOs6mrjd43jPYtlGFNl1YcDifrDY7MgwgyVQZGsT7qAh/+Hn/LXf8AVr/2mKrPDOD3lzi2Km3vjaOJfXm7gWVoLrkCCRAGUe8VN/RrhuL4YkWqsPQtpy4C1u/WGv2aVBCFd0KJMBM7eFSPF3Ct4xf/ANq4UErdUnK+wsgBwaCRJAIISkkSDKQRJNALf3Oxj/31X/0J/wC6uPo/w20w/DbpRvEXdvncU6ttJygBCUKRAJJMfzDzpK84gxy7Q', '8/11/2017', 'Office Ladies', 'comedy podcast', 7.5);
 
 INSERT INTO auditory_media(id, image_url, release_date, name,genre, rating)
-VALUES(108, 'media8.com', '11/30/1982', 'Thriller', 'pop', 10);
+VALUES(108, 'https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png', '11/30/1982', 'Thriller', 'pop', 10);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
 VALUES(109,'https://upload.wikimedia.org/wikipedia/en/8/88/Jeff_Dunham_Arguing_With_Myself.jpg', '4/11/2006', 'Jeff Dunham: Arguing with Myself', 'comedy', 6);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(110, 'media10.com', '11/21/1975', 'A Night at the Opera', 'rock', 10);
+VALUES(110, 'https://upload.wikimedia.org/wikipedia/en/4/4d/Queen_A_Night_At_The_Opera.png', '11/21/1975', 'A Night at the Opera', 'rock', 10);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(111, 'media11.com', '11/28/2018', 'Conan O Brien Needs a Friend', 'comedy podcast', 6);
+VALUES(111, 'https://upload.wikimedia.org/wikipedia/en/e/ee/Conan_O%27Brien_Needs_a_Friend_podcast.jpg', '11/28/2018', 'Conan O Brien Needs a Friend', 'comedy podcast', 6);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(112, 'media12.com', '5/8/1970', 'Let It Be', 'rock', 9);
+VALUES(112, 'https://upload.wikimedia.org/wikipedia/en/2/25/LetItBe.jpg', '5/8/1970', 'Let It Be', 'rock', 9);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(113, 'media13.com', '4/7/2013', 'Aloha Fluffy', 'comedy', 9.5);
+VALUES(113, 'https://images-na.ssl-images-amazon.com/images/I/91NF5q4m6AL._SL1500_.jpg', '4/7/2013', 'Aloha Fluffy', 'comedy', 9.5);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(114, 'media14.com', '8/28/1988', 'Descanso Dominical', 'pop', 8.5);
+VALUES(114, 'https://upload.wikimedia.org/wikipedia/en/d/d5/Mecanodescanso_dominical.jpg', '8/28/1988', 'Descanso Dominical', 'pop', 8.5);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(115, 'media15.com', '5/4/2019', 'The TryPod', 'podcast', 7.5);
+VALUES(115, 'https://i.shgcdn.com/56d9bdf2-56d2-4099-b98b-764da86148b2/-/format/auto/-/preview/3000x3000/-/quality/lighter/', '5/4/2019', 'The TryPod', 'podcast', 7.5);
 
 INSERT INTO auditory_media (id, image_url, release_date, name,genre, rating)
-VALUES(116, 'media15.com', '9/8/2020', 'CTF Radiooo', 'podcast', 7.3);
+VALUES(116, 'https://pbs.twimg.com/profile_images/1301545766461165569/yaTh5tTZ.jpg', '9/8/2020', 'CTF Radiooo', 'podcast', 7.3);
 
 /* Comedy Special Table: */
 
