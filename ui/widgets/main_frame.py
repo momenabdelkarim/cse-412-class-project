@@ -36,7 +36,7 @@ class MainFrame(QFrame):
         """
         all_media = get_all_media(cursor)
 
-        self.__add_media_view.model().update_media(all_media)
+        self.__add_media_view.model().update_item(all_media)
 
 
 class AbstractMediaTab(QFrame):
@@ -57,7 +57,7 @@ class AbstractMediaTab(QFrame):
         """
         all_media = get_all_media(cursor)
 
-        self._add_media_view.model().update_media(all_media)
+        self._add_media_view.model().update_item(all_media)
 
 
 class PlaylistTab(AbstractMediaTab):

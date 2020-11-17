@@ -11,6 +11,7 @@ from backend.handlers import cursor, get_award, get_person, get_all_songs_in_alb
 from ui.helper_functions import convert_pixmap_to_circular
 from ui.image_cache import image_cache
 from ui.widgets.model.entities import Media, Award, Person, ComedySpecial, Album, Podcast
+from ui.widgets.sub_list import EpisodeListView, SongListView
 
 
 class MediaDetailView(QFrame):
@@ -25,6 +26,7 @@ class MediaDetailView(QFrame):
 
         self.__layout_manager = QVBoxLayout(self)
         self.__media = media
+        self.__item_list = None
         self.__layout_ui()
 
     def __layout_ui(self):
@@ -99,18 +101,19 @@ class MediaDetailView(QFrame):
         This function is responsible for laying out the list of items and their attributes in the media
         """
 
-        # Get all items in the media object
+        # Get all items in the media object and create list
         if type(self.__media) is Album:
             media_items = get_all_songs_in_album(cursor, self.__media.media_id)
+            self.__item_list = SongListView(self, image_cache)
         elif type(self.__media) is Podcast:
             media_items = get_episodes_in_podcast(cursor, self.__media.media_id)
+            self.__item_list = EpisodeListView(self, image_cache)
         else:
             print("Something has gone horribly wrong")
             exit(1)
 
-        # Create a list out of them
-
         # Display the list
+        self.__layout_manager.addWidget(self.__item_list)
 
     def closeEvent(self, close_event):
         self.parentWidget().show()
