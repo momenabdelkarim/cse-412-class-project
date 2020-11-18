@@ -212,53 +212,20 @@ INSERT INTO episode(id, title, episode_number, duration, view_count)
 VALUES(116, 'ropshipai with anton00b and Jay, Corwin, and Matt from PPP', 5, 5153, 13333337); 
 
 /* Publisher Table: */
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(101,301);
+INSERT INTO publisher(id, name)
+VALUES(301, 'Interscope Records');
 
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(108,302);
+INSERT INTO publisher(id, name)
+VALUES(302, 'Epic Records');
 
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(110, 303);
+INSERT INTO publisher(id, name)
+VALUES(303, 'EMI Records');
 
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(112, 304);
+INSERT INTO publisher(id, name)
+VALUES (304, 'Apple Records');
 
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(104, 305);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(102, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(103, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(105, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(106, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(107, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(109, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(111, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(113, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(114, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(115, 306);
-
-INSERT INTO publishes (auditory_media_id, publisher_id)
-VALUES(116, 306);
+INSERT INTO publisher(id, name)
+VALUES (305, 'Big Hit Entertainment');
 
 /* Playlist Table: */
 INSERT INTO playlist(id, name, owner)
@@ -515,8 +482,6 @@ VALUES(116, 234);
 INSERT INTO produces (auditory_media_id, person_id)
 VALUES(116, 235);
 
-/*Publishes Table:*/
-
 INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(101,301);
 
@@ -531,6 +496,39 @@ VALUES(112, 304);
 
 INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(104, 305);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(102, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(103, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(105, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(106, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(107, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(109, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(111, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(113, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(114, 306);
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(115, 306);
+
+INSERT INTO publishes (auditory_media_id, publisher_id)
+VALUES(116, 306);
+
 
 /* Member Of Table: */
 INSERT INTO member_of_song (name, auditory_media_id, playlist_id)
