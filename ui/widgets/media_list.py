@@ -8,7 +8,7 @@ from PyQt5.QtCore import QObject, QModelIndex, Qt, QPoint
 from PyQt5.QtWidgets import QFrame, QVBoxLayout, QListView, QAction, QMenu
 
 from backend.handlers import delete_song_from_playlist, cursor, connection, delete_episode_from_playlist, \
-    delete_comedy_special_from_playlist
+    delete_comedy_special_from_playlist, get_all_media_objects_for_playlist
 from ui.helper_functions import show_child_window
 from ui.image_cache import ImageCache
 from ui.widgets.delegate.media_delegate import ItemDelegate
@@ -110,6 +110,14 @@ class GenericSubItemListView(AbstractItemListView):
             exit(1)
 
         # TODO: Need to layout UI
+        self.relayout()
+
+    def relayout(self):
+        """
+        Refreshes the UI to reflect the state of the DB
+        """
+        items = get_all_media_objects_for_playlist(cursor, self.__playlist_id)
+        self._model.update_item(items)
 
     @QtCore.pyqtSlot(QPoint)
     def _show_context_menu(self, pos: QPoint):

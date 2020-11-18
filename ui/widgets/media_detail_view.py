@@ -12,7 +12,7 @@ from backend.handlers import cursor, get_award, get_person, get_all_songs_in_alb
 from ui.helper_functions import convert_pixmap_to_circular
 from ui.image_cache import image_cache
 from ui.widgets.model.entities import Media, Award, Person, ComedySpecial, Album, Podcast
-from ui.widgets.sub_list import EpisodeListView, SongListView
+from ui.widgets.sub_list import EpisodeListView, SongListView, ComedySpecialView
 
 
 class MediaDetailView(QFrame):
@@ -48,8 +48,7 @@ class MediaDetailView(QFrame):
         # Call on display_award_and_org() to show the award and organization for the media
         self.display_award_and_org()
 
-        if type(self.__media) is not ComedySpecial:
-            self.__layout_list()
+        self.__layout_list()
 
         self.__layout_manager.addStretch()
 
@@ -88,9 +87,9 @@ class MediaDetailView(QFrame):
             artist_names += artist.name + (", " if artist != artists[-1] else "")
 
         artist_label = QLabel(artist_names)
+        artist_label.setObjectName("artists")
 
         # Add media name and artist to layout
-        # FIXME: fix the media name and artist left align
         layout_name_manager.addWidget(media_name_label, 0, Qt.AlignLeft)
         layout_name_manager.addWidget(artist_label, 0, Qt.AlignLeft)
         layout_name_manager.addStretch()
@@ -115,6 +114,9 @@ class MediaDetailView(QFrame):
         elif type(self.__media) is Podcast:
             media_items = get_episodes_in_podcast(cursor, self.__media.media_id)
             self.__item_list = EpisodeListView(self, image_cache)
+        elif type(self.__media) is ComedySpecial:
+            media_items = [self.__media]
+            self.__item_list = ComedySpecialView(self, image_cache)
         else:
             print("Something has gone horribly wrong")
             exit(1)
@@ -143,7 +145,7 @@ class MediaDetailView(QFrame):
             # If there is an award, then there is an organization who gives the award
             organization = get_organization(cursor, display_award.organization_id)
             organization_label = QLabel(organization.name, self)
-            organization_label.setObjectName("organization")
+            organization_label.setObjectName("award")
             self.__layout_manager.addWidget(organization_label, 0, Qt.AlignRight)
 
     def display_footer(self):
