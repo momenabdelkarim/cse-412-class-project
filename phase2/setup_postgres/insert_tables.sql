@@ -227,6 +227,10 @@ VALUES (304, 'Apple Records');
 INSERT INTO publisher(id, name)
 VALUES (305, 'Big Hit Entertainment');
 
+INSERT INTO publisher(id, name)
+VALUES(306, 'SunDevil Records');
+
+
 /* Playlist Table: */
 INSERT INTO playlist(id, name, owner)
 VALUES(701,'Pop PLAYLIST', 'Danial');
@@ -482,6 +486,9 @@ VALUES(116, 234);
 INSERT INTO produces (auditory_media_id, person_id)
 VALUES(116, 235);
 
+
+
+/* Publishes Table */
 INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(101,301);
 
@@ -523,6 +530,7 @@ VALUES(113, 306);
 
 INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(114, 306);
+
 INSERT INTO publishes (auditory_media_id, publisher_id)
 VALUES(115, 306);
 
