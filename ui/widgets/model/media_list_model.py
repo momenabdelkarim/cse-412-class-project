@@ -8,6 +8,7 @@ from PyQt5.QtGui import QPixmap
 
 from ui.helper_functions import convert_pixmap_to_circular
 from ui.image_cache import ImageCache
+from ui.widgets.model.entities import Episode, Song, ComedySpecial
 
 
 class AbstractItemListModel(QAbstractListModel):
@@ -100,7 +101,7 @@ class SongListModel(AbstractItemListModel):
 
         song = self._item_list[index.row()]
         if role == Qt.DisplayRole:
-            return song.song_name
+            return song.name
         elif role == Qt.DecorationRole:
             return None
         elif role == Qt.UserRole:
@@ -125,8 +126,39 @@ class EpisodeListModel(AbstractItemListModel):
 
         episode = self._item_list[index.row()]
         if role == Qt.DisplayRole:
-            return episode.title
+            return episode.name
         elif role == Qt.UserRole:
-            return f"Episode {episode.episode_number}: {episode.duration} minutes, {episode.view_count} views"
+            return f"Episode {episode.episode_number}: {episode.duration}s, {episode.view_count} views"
+        else:
+            return QVariant()
+
+
+class GenericSubItemListModel(AbstractItemListModel):
+    """
+    An episode list model holds a collection of episodes belonging to a podcast object
+    """
+
+    def __init__(self, parent: QObject, image_cache: ImageCache):
+        super().__init__(parent, image_cache, False)
+
+    def data(self, index: QModelIndex, role: int = ...) -> Any:
+
+        # Guard against invalid row subscripting
+        if not index.isValid() or index.row() > self.rowCount():
+            return QVariant()
+
+        sub_item = self._item_list[index.row()]
+        if role == Qt.DisplayRole:
+            return sub_item.name
+        elif role == Qt.UserRole:
+            if type(sub_item) is Episode:
+                return f"Episode {sub_item.episode_number}: {sub_item.duration}s, {sub_item.view_count} views"
+            elif type(sub_item) is Song:
+                return f"{sub_item.duration}s, {sub_item.view_count} views"
+            elif type(sub_item) is ComedySpecial:
+                return f"{sub_item.runtime}m, originally performed at {sub_item.venue}"
+            else:
+                print("Unexpected media list model type encountered")
+                exit(1)
         else:
             return QVariant()

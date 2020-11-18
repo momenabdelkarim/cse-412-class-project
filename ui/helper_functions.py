@@ -132,7 +132,7 @@ def show_child_window(parent_window: QWidget, child_window: QWidget):
     child_window.show()
 
 
-def load_themed_icon(file_path: str, color: QColor) -> QPixmap:
+def colorize_pixmap(file_path: str, color: QColor) -> QPixmap:
     """
     Loads an icon, paints it the given color, and builds an icon
     :param file_path: Path where the icon is stored, to be loaded as a pixmap

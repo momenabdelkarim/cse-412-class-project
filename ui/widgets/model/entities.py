@@ -49,7 +49,7 @@ class Episode:
     def __init__(self, media_id: int, episode_number: int, view_count: int, title: str, duration: int):
         self.media_id = media_id
         self.duration = duration
-        self.title = title
+        self.name = title
         self.view_count = view_count
         self.episode_number = episode_number
 
@@ -62,7 +62,7 @@ class Song:
     def __init__(self, media_id: int, view_count: int, song_name: str, duration: int):
         self.media_id = media_id
         self.duration = duration
-        self.song_name = song_name
+        self.name = song_name
         self.view_count = view_count
 
 

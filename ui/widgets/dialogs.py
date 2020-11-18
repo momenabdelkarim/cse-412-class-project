@@ -1,7 +1,6 @@
 """
 This file defines all of the QDialog widgets used throughout the application
 """
-from typing import Optional
 
 from PyQt5.QtCore import QObject, Qt
 from PyQt5.QtWidgets import QDialog, QVBoxLayout, QLabel, QComboBox, QPushButton, QLineEdit
@@ -19,8 +18,8 @@ class AddToPlaylistDialog(QDialog):
         super().__init__(parent)
         self.setWindowTitle(" ")
 
+        self.__playlists = list()
         self.__media = media
-        self.__selected_playlist: Optional[int] = None
         self.__layout_manager = QVBoxLayout(self)
         self.__combo_box = QComboBox(self)
         self.__add_btn = QPushButton("Add", self)
@@ -36,8 +35,8 @@ class AddToPlaylistDialog(QDialog):
         header_label.setObjectName("dialog-header")
         self.__layout_manager.addWidget(header_label)
 
-        playlists = [plist.name for plist in get_all_user_playlists(cursor)]
-        self.__combo_box.addItems(playlists)
+        self.__playlists = get_all_user_playlists(cursor)
+        self.__combo_box.addItems([plist.name for plist in self.__playlists])
         self.__combo_box.setAutoFillBackground(True)
         self.__layout_manager.addWidget(self.__combo_box)
 
@@ -47,9 +46,9 @@ class AddToPlaylistDialog(QDialog):
 
     def get_selection(self) -> int:
         """
-        Returns the selection index
+        Returns the selected playlist's ID
         """
-        return self.__combo_box.currentIndex()
+        return self.__playlists[self.__combo_box.currentIndex()].playlist_id
 
 
 class RenamePlaylistDialog(QDialog):

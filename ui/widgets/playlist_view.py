@@ -55,7 +55,6 @@ class PlaylistView(QFrame):
         :index: Index that was clicked
         """
         should_create_playlist = (index.row() != self.__model.rowCount() - 1)
-
         if should_create_playlist:
             # Didn't click last index (create playlist), should display contents
             self.should_display_playlist.emit(self.__model.at(index.row()).playlist_id)

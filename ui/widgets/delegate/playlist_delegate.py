@@ -24,8 +24,8 @@ class PlaylistDelegate(QStyledItemDelegate):
         title_fm = QFontMetrics(font)
 
         playlist_rec = title_fm.boundingRect(0, 0, option.rect.width() - PlaylistDelegate.icon_diameter,
-                                           0,
-                                           Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, playlist.name)
+                                             0,
+                                             Qt.AlignLeft | Qt.AlignTop | Qt.TextWordWrap, playlist.name)
         title_rect = title_fm.boundingRect(option.rect.left() + PlaylistDelegate.pad_horizontal,
                                            playlist_rec.bottom() + PlaylistDelegate.pad_vertical,
                                            playlist_rec.width(),

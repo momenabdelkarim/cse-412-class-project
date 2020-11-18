@@ -21,13 +21,12 @@ class MediaDetailView(QFrame):
     It will also display the attributes of an Auditory Media object.
     """
 
-    def __init__(self, parent_window: QWidget, media: Media, is_playlist_view: bool):
+    def __init__(self, parent_window: QWidget, media: Media):
         super().__init__(parent_window)  # Create as a standalone window
         self.setWindowFlag(Qt.Window)
 
         self.__layout_manager = QVBoxLayout(self)
         self.__media = media
-        self.__is_playlist_view = is_playlist_view
         self.__item_list = None
         self.__layout_ui()
 
@@ -112,10 +111,10 @@ class MediaDetailView(QFrame):
         # Get all items in the media object and create list
         if type(self.__media) is Album:
             media_items = get_all_songs_in_album(cursor, self.__media.media_id)
-            self.__item_list = SongListView(self, image_cache, self.__is_playlist_view)
+            self.__item_list = SongListView(self, image_cache)
         elif type(self.__media) is Podcast:
             media_items = get_episodes_in_podcast(cursor, self.__media.media_id)
-            self.__item_list = EpisodeListView(self, image_cache, self.__is_playlist_view)
+            self.__item_list = EpisodeListView(self, image_cache)
         else:
             print("Something has gone horribly wrong")
             exit(1)
@@ -169,11 +168,3 @@ class MediaDetailView(QFrame):
         layout_footer_manager.addWidget(publisher_label, 0, Qt.AlignHCenter)
 
         self.__layout_manager.addLayout(layout_footer_manager)
-
-
-
-
-
-
-
-

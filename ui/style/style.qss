@@ -124,7 +124,7 @@ QFrame#details-view QLabel#publisher {
 
 /* MENU */
 
-QMenu {
+QMenu, QLineEdit {
     background-color: #1f1f1f;
     color: white;
 }

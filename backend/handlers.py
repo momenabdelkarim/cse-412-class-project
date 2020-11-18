@@ -1,3 +1,4 @@
+import sys
 from typing import List
 
 import psycopg2
@@ -196,8 +197,9 @@ def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
 
     cursor.execute(
         'SELECT DISTINCT episode.id, episode.episode_number, episode.view_count, episode.title, episode.duration '
-        'FROM auditory_media, member_of_episode, episode '
-        'WHERE auditory_media.id = episode.id AND member_of_episode.auditory_media_id = auditory_media.id AND member_of_episode.playlist_id = %d' % (playlist_id))
+        'FROM member_of_episode, episode '
+        'WHERE member_of_episode.name = episode.title AND member_of_episode.auditory_media_id = episode.id AND member_of_episode.playlist_id = %d' % (
+            playlist_id))
 
     episode_list = []
     record = cursor.fetchone()
@@ -209,8 +211,9 @@ def get_all_media_objects_for_playlist(cursor, playlist_id: int) -> List[Media]:
 
     cursor.execute(
         'SELECT DISTINCT song.auditory_media_id, song.view_count, song.name, song.duration '
-        'FROM auditory_media, member_of_song, song '
-        'WHERE auditory_media.id = song.auditory_media_id AND member_of_song.auditory_media_id = auditory_media.id AND member_of_song.playlist_id = %d' % ( playlist_id))
+        'FROM member_of_song, song '
+        'WHERE song.name = member_of_song.name AND song.auditory_media_id = member_of_song.auditory_media_id AND member_of_song.playlist_id = %d' % (
+            playlist_id))
 
     song_list = []
     record = cursor.fetchone()
@@ -240,38 +243,54 @@ def delete_playlist(cursor, connection, playlist_id: int):
 
 
 def create_new_playlist(cursor, connection, playlist_name: str, playlist_owner: str):
-    cursor.execute('SELECT MAX(playlist.id) '
-                   'FROM playlist')
+    try:
+        cursor.execute('SELECT MAX(playlist.id) '
+                       'FROM playlist')
 
-    record = cursor.fetchone()
-    curr_max_playlist_id = record[0]
-    new_playlist_id = curr_max_playlist_id + 1
+        record = cursor.fetchone()
+        curr_max_playlist_id = record[0]
+        new_playlist_id = curr_max_playlist_id + 1
 
-    cursor.execute('INSERT INTO playlist(id, name, owner) '
-                   'VALUES(%d, \'%s\', \'%s\')' % (new_playlist_id, playlist_name, playlist_owner))
-
-    connection.commit()
+        cursor.execute('INSERT INTO playlist(id, name, owner) '
+                       'VALUES(%d, \'%s\', \'%s\')' % (new_playlist_id, playlist_name, playlist_owner))
+    except psycopg2.Error as err:
+        print("Double-insertion detected", file=sys.stderr)
+        connection.rollback()
+    else:
+        connection.commit()
 
 
 def add_song_to_playlist(cursor, connection, media_id: int, song_name: str, playlist_id: int):
-    cursor.execute('INSERT INTO member_of_song(name, auditory_media_id, playlist_id) '
-                   'VALUES(\'%s\', %d, %d) ' % (song_name, media_id, playlist_id))
-
-    connection.commit()
+    try:
+        cursor.execute('INSERT INTO member_of_song(name, auditory_media_id, playlist_id) '
+                       'VALUES(\'%s\', %d, %d) ' % (song_name, media_id, playlist_id))
+    except psycopg2.Error:
+        print("Double-insertion detected", file=sys.stderr)
+        connection.rollback()
+    else:
+        connection.commit()
 
 
 def add_episode_to_playlist(cursor, connection, media_id: int, episode_num: int, episode_title: str, playlist_id: int):
-    cursor.execute('INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id) '
-                   'VALUES(%d, \'%s\', %d, %d) ' % (episode_num, episode_title, media_id, playlist_id))
-
-    connection.commit()
+    try:
+        cursor.execute('INSERT INTO member_of_episode(episode_number, name, auditory_media_id, playlist_id) '
+                       'VALUES(%d, \'%s\', %d, %d) ' % (episode_num, episode_title, media_id, playlist_id))
+    except psycopg2.Error:
+        print("Double-insertion detected", file=sys.stderr)
+        connection.rollback()
+    else:
+        connection.commit()
 
 
 def add_comedy_special_to_playlist(cursor, connection, media_id: int, playlist_id: int):
-    cursor.execute('INSERT INTO member_of_comedy(auditory_media_id, playlist_id) '
-                   'VALUES(%d, %d) ' % (media_id, playlist_id))
-
-    connection.commit()
+    try:
+        cursor.execute('INSERT INTO member_of_comedy(auditory_media_id, playlist_id) '
+                       'VALUES(%d, %d) ' % (media_id, playlist_id))
+    except psycopg2.Error:
+        print("Double-insertion detected", file=sys.stderr)
+        connection.rollback()
+    else:
+        connection.commit()
 
 
 ## PLAYLIST DETAILS

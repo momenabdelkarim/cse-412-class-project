@@ -8,10 +8,10 @@ from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
 from PyQt5.QtGui import QPixmap, QColor
 
 from backend.handlers import get_all_media_objects_for_playlist, cursor, delete_playlist, connection, \
-    create_new_playlist, get_all_user_playlists, get_album_for_selected_song
-from ui.helper_functions import tile_pixmaps, load_themed_icon
+    create_new_playlist, get_all_user_playlists, get_album_for_selected_song, get_podcast_for_selected_episode
+from ui.helper_functions import tile_pixmaps, colorize_pixmap
 from ui.image_cache import ImageCache
-from ui.widgets.model.entities import Playlist, Song
+from ui.widgets.model.entities import Playlist, Song, Episode, ComedySpecial
 
 
 class PlaylistModel(QAbstractListModel):
@@ -41,22 +41,23 @@ class PlaylistModel(QAbstractListModel):
         elif role == Qt.DecorationRole:
             if index.row() == len(self.__playlists) - 1:
                 # This is the add button
-                return load_themed_icon(R"img/plus.svg", QColor(29, 185, 84))
+                return colorize_pixmap(R"img/plus.svg", QColor(29, 185, 84))
 
             # Create icon containing either a random media's icon or 4 tiled
             playlist_media = get_all_media_objects_for_playlist(cursor, playlist.playlist_id)
-            album_art
-            media_count = len(playlist_media)
+            album_art = self.__get_album_art_for_playlist(playlist_media)
+
+            media_count = len(album_art)
             if media_count == 0:
                 # Return a default
                 return QPixmap(R"img/default_photo.png")
             elif media_count < 4:
                 # Return a random icon
-                rand_media = playlist_media[0]
-                if pix := self.__image_cache.get_pixmap(rand_media.cover_url):
+                rand_media = album_art[0]
+                if pix := self.__image_cache.get_pixmap(rand_media):
                     return pix
                 else:
-                    self.__image_cache.request_url(rand_media.cover_url)
+                    self.__image_cache.request_url(rand_media)
                     return QPixmap(R"img/default_photo.png")
             elif media_count >= 4:
                 # Return a tile of any four icons
@@ -64,12 +65,12 @@ class PlaylistModel(QAbstractListModel):
                 pixmaps: List[QPixmap] = list()
 
                 for idx in indices:
-                    media_item = playlist_media[idx]
+                    media_item = album_art[idx]
 
-                    if resolved_pix := self.__image_cache.get_pixmap(media_item.cover_url):
+                    if resolved_pix := self.__image_cache.get_pixmap(media_item):
                         pixmaps.append(resolved_pix)
                     else:
-                        self.__image_cache.request_url(media_item.cover_url)
+                        self.__image_cache.request_url(media_item)
                         pixmaps.append(QPixmap(R"img/default_photo.png"))
 
                 return tile_pixmaps(pixmaps, 150)
@@ -147,4 +148,15 @@ class PlaylistModel(QAbstractListModel):
 
         for item in playlist_contents:
             if type(item) is Song:
-                media = get_album_for_selected_song(cursor, item.)
+                media = get_album_for_selected_song(cursor, item.media_id)
+            elif type(item) is Episode:
+                media = get_podcast_for_selected_episode(cursor, item.media_id)
+            elif type(item) is ComedySpecial:
+                media = item
+            else:
+                print("Encountered unexpected item type in playlist_model")
+                exit(1)
+
+            album_cover_url_set.add(media.cover_url)
+
+        return sorted(album_cover_url_set)

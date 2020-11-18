@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QFrame, QTabWidget, QVBoxLayout
 
 from backend.handlers import cursor, get_all_media, get_all_media_objects_for_playlist
 from ui.image_cache import image_cache
-from ui.widgets.media_list import AddMediaListView
+from ui.widgets.media_list import AddMediaListView, GenericSubItemListView
 from ui.widgets.playlist_view import PlaylistView
 
 
@@ -65,7 +65,7 @@ class PlaylistTab(AbstractMediaTab):
         super().__init__(parent)
         self.__layout_manager = QVBoxLayout(self)
         self.__playlist_view = PlaylistView(self, image_cache)
-        self._add_media_view = AddMediaListView(self, image_cache, True)
+        self._add_media_view = GenericSubItemListView(self, image_cache)
 
         self.__layout_ui()
         self.__update_playlist_view()
@@ -106,12 +106,14 @@ class PlaylistTab(AbstractMediaTab):
 
         media_list = get_all_media_objects_for_playlist(cursor, playlist_id)
         self._add_media_view.model().update_item(media_list)
+        self._add_media_view.update_playlist_id(playlist_id)
+
 
 class AddMediaTab(AbstractMediaTab):
     def __init__(self, parent: QObject):
         super().__init__(parent)
         self.__layout_manager = QVBoxLayout(self)
-        self._add_media_view = AddMediaListView(self, image_cache, False)
+        self._add_media_view = AddMediaListView(self, image_cache)
 
         self.__layout_ui()
 
