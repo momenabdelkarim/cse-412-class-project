@@ -102,7 +102,6 @@ QFrame#details-view QLabel#media-name {
 
 QFrame#details-view QLabel#award {
     padding-right: 10px;
-    color:
 }
 
 QFrame#details-view QLabel#organization {
@@ -131,4 +130,25 @@ QMenu, QLineEdit {
 
 QMenu::item:selected {
     background-color: #1db954;
+}
+
+/* FILTER VIEW */
+
+QFrame#filter-view {
+    background-color: #121212;
+}
+
+QFrame#filter-view QLabel {
+    color: white;
+    font-size: 16px;
+}
+
+QFrame#filter-view QComboBox {
+    background-color: gray;
+    color: white;
+    font-size: 16px;
+}
+
+QFrame#filter-view QPushButton#cancel {
+    background-color: gray;
 }

@@ -1,13 +1,17 @@
 """
 Defines the application's main view
 """
+from typing import Optional
+
 from PyQt5 import QtCore
-from PyQt5.QtCore import QObject
-from PyQt5.QtWidgets import QFrame, QTabWidget, QVBoxLayout
+from PyQt5.QtCore import QObject, Qt
+from PyQt5.QtWidgets import QFrame, QTabWidget, QVBoxLayout, QPushButton, QHBoxLayout
 
 from backend.handlers import cursor, get_all_media, get_all_media_objects_for_playlist
+from ui.helper_functions import show_child_window
 from ui.image_cache import image_cache
-from ui.widgets.media_list import AddMediaListView, GenericSubItemListView
+from ui.widgets.filter_view import FilterView
+from ui.widgets.media_list import AllMediaListView, GenericSubItemListView
 from ui.widgets.playlist_view import PlaylistView
 
 
@@ -18,7 +22,7 @@ class MainFrame(QFrame):
 
         self.__tabs = QTabWidget(self)
         self.__playlist_tab = PlaylistTab(self)
-        self.__add_media_tab = AddMediaTab(self)
+        self.__add_media_tab = AllMediaTab(self)
         self.__layout_manager = QVBoxLayout(self)
 
         self.__layout_ui()
@@ -49,7 +53,7 @@ class AbstractMediaTab(QFrame):
 
     def __init__(self, parent: QObject):
         super().__init__(parent)
-        self._add_media_view = None
+        self._all_media_view = None
 
     def _update_media_list_view(self):
         """
@@ -57,7 +61,7 @@ class AbstractMediaTab(QFrame):
         """
         all_media = get_all_media(cursor)
 
-        self._add_media_view.model().update_item(all_media)
+        self._all_media_view.model().update_item(all_media)
 
 
 class PlaylistTab(AbstractMediaTab):
@@ -109,15 +113,65 @@ class PlaylistTab(AbstractMediaTab):
         self._add_media_view.update_playlist_id(playlist_id)
 
 
-class AddMediaTab(AbstractMediaTab):
+class AllMediaTab(AbstractMediaTab):
     def __init__(self, parent: QObject):
         super().__init__(parent)
         self.__layout_manager = QVBoxLayout(self)
-        self._add_media_view = AddMediaListView(self, image_cache)
+        self._all_media_view = AllMediaListView(self, image_cache)
+        self.__filter_view_win = None
 
         self.__layout_ui()
 
+        self.display_search_button()
+
     def __layout_ui(self):
-        self.__layout_manager.addWidget(self._add_media_view)
+        self.__layout_manager.addWidget(self._all_media_view)
 
         self._update_media_list_view()
+
+    def display_search_button(self):
+        layout_button_manager = QHBoxLayout()
+
+        search_button = QPushButton("SEARCH", self)
+        search_button.clicked.connect(self.__show_filter_view)
+        layout_button_manager.addStretch(0)
+        layout_button_manager.addWidget(search_button, 0, Qt.AlignHCenter)
+        self.__layout_manager.addLayout(layout_button_manager)
+
+    # Slots
+    @QtCore.pyqtSlot()
+    def __show_filter_view(self):
+        """Slot to show filter view"""
+
+        if self.__filter_view_win:
+            """
+            We are good programmers, DESTROY memory we stole.
+            """
+            self.__filter_view_win.destroy()
+
+        # Open FilterView
+        self.__filter_view_win = FilterView(self.window())
+
+        # Connect signals to slots
+        self.__filter_view_win.should_update_media_list.connect(self.__update_media_list_view)
+
+        show_child_window(self.window(), self.__filter_view_win)
+
+    # Slots
+    @QtCore.pyqtSlot(str, float)
+    def __update_media_list_view(self, genre_input: str, rating: float):
+        """
+        Slot connected to a FilterView's display_search_button signal
+
+        Retrieves media objects in a playlist and displays them in addMediaView
+        """
+        super()._update_media_list_view()
+
+        if genre_input == "---":
+            genre = None
+        else:
+            genre = genre_input
+
+        media_list = get_all_media(cursor, genre, rating)
+
+        self._all_media_view.model().update_item(media_list)
