@@ -45,7 +45,7 @@ class AbstractItemListView(QFrame):
         return self._model
 
 
-class AddMediaListView(AbstractItemListView):
+class AllMediaListView(AbstractItemListView):
     def __init__(self, parent: QObject, image_cache: ImageCache):
         super().__init__(parent, image_cache)
 
