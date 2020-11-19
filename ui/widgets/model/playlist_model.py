@@ -119,7 +119,10 @@ class PlaylistModel(QAbstractListModel):
         Updates the model to reflect a newly requested list of playlists from the DB
         """
         add_button = self.__playlists[-1]
+
+        self.beginRemoveRows(QModelIndex(), 0, self.rowCount())
         self.__playlists.clear()
+        self.endRemoveRows()
 
         self.__playlists.append(add_button)
         for playlist in new_playlists:

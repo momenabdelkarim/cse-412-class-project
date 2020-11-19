@@ -37,7 +37,7 @@ def main():
         record = cursor.fetchone()
         print("You are connected to - ", record, "\n")
 
-        #get_all_media_objects_for_playlist(cursor, 708)
+        # get_all_media_objects_for_playlist(cursor, 708)
         get_all_songs_in_album(cursor, 108)
 
     except (Exception, psycopg2.Error) as error:
@@ -175,7 +175,6 @@ def get_all_user_playlists(cursor) -> List[Playlist]:
 
         record = cursor.fetchone()
 
-    print(playlist_list)
     return playlist_list
 
 

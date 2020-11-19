@@ -109,7 +109,6 @@ class GenericSubItemListView(AbstractItemListView):
             print("Attempt to remove unexpected type from playlist")
             exit(1)
 
-        # TODO: Need to layout UI
         self.relayout()
 
     def relayout(self):
