@@ -1,7 +1,6 @@
 """
 Defines the application's main view
 """
-from typing import Optional
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import QObject, Qt
@@ -22,7 +21,7 @@ class MainFrame(QFrame):
 
         self.__tabs = QTabWidget(self)
         self.__playlist_tab = PlaylistTab(self)
-        self.__add_media_tab = AllMediaTab(self)
+        self.__all_media_tab = AllMediaTab(self)
         self.__layout_manager = QVBoxLayout(self)
 
         self.__layout_ui()
@@ -30,7 +29,7 @@ class MainFrame(QFrame):
     def __layout_ui(self):
         # Set up tabs
         self.__tabs.addTab(self.__playlist_tab, "My Playlists")
-        self.__tabs.addTab(self.__add_media_tab, "All Media")
+        self.__tabs.addTab(self.__all_media_tab, "All Media")
 
         self.__layout_manager.addWidget(self.__tabs)
 
@@ -40,7 +39,7 @@ class MainFrame(QFrame):
         """
         all_media = get_all_media(cursor)
 
-        self.__add_media_view.model().update_item(all_media)
+        self.__all_media_view.model().update_item(all_media)
 
 
 class AbstractMediaTab(QFrame):
@@ -69,7 +68,7 @@ class PlaylistTab(AbstractMediaTab):
         super().__init__(parent)
         self.__layout_manager = QVBoxLayout(self)
         self.__playlist_view = PlaylistView(self, image_cache)
-        self._add_media_view = GenericSubItemListView(self, image_cache)
+        self._all_media_view = GenericSubItemListView(self, image_cache)
 
         self.__layout_ui()
         self.__update_playlist_view()
@@ -87,7 +86,7 @@ class PlaylistTab(AbstractMediaTab):
         line.setFrameShadow(QFrame.Sunken)
         self.__layout_manager.addWidget(line)
 
-        self.__layout_manager.addWidget(self._add_media_view, 1)
+        self.__layout_manager.addWidget(self._all_media_view, 1)
         self.__layout_manager.addStretch()
 
     def __update_playlist_view(self):
@@ -109,8 +108,8 @@ class PlaylistTab(AbstractMediaTab):
         super()._update_media_list_view()
 
         media_list = get_all_media_objects_for_playlist(cursor, playlist_id)
-        self._add_media_view.model().update_item(media_list)
-        self._add_media_view.update_playlist_id(playlist_id)
+        self._all_media_view.model().update_item(media_list)
+        self._all_media_view.update_playlist_id(playlist_id)
 
 
 class AllMediaTab(AbstractMediaTab):
