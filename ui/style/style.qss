@@ -100,12 +100,14 @@ QFrame#details-view QLabel#media-name {
     padding-top: 10px;
 }
 
-QFrame#details-view QLabel#award {
-    padding-right: 10px;
+QFrame#details-view QLabel#artists {
+    padding-left: 10px;
+    color: #c5c5c5;
 }
 
-QFrame#details-view QLabel#organization {
+QFrame#details-view QLabel#award {
     padding-right: 10px;
+    color: #c5c5c5;
 }
 
 QFrame#details-view QLabel#genre {

@@ -133,6 +133,29 @@ class EpisodeListModel(AbstractItemListModel):
             return QVariant()
 
 
+class ComedySpecialListModel(AbstractItemListModel):
+    """
+    A comedy special list model holds a collection of ComedySpecials in a ComedySpecial
+    """
+
+    def __init__(self, parent: QObject, image_cache: ImageCache):
+        super().__init__(parent, image_cache, False)
+
+    def data(self, index: QModelIndex, role: int = ...) -> Any:
+
+        # Guard against invalid row subscripting
+        if not index.isValid() or index.row() > self.rowCount():
+            return QVariant()
+
+        special = self._item_list[index.row()]
+        if role == Qt.DisplayRole:
+            return special.name
+        elif role == Qt.UserRole:
+            return f"{special.runtime}m, originally performed at {special.venue}"
+        else:
+            return QVariant()
+
+
 class GenericSubItemListModel(AbstractItemListModel):
     """
     An episode list model holds a collection of episodes belonging to a podcast object

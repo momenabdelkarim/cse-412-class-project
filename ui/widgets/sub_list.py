@@ -8,7 +8,8 @@ from ui.image_cache import ImageCache
 from ui.widgets.delegate.media_delegate import ItemDelegate
 from ui.widgets.dialogs import AddToPlaylistDialog
 from ui.widgets.model.entities import ComedySpecial, Song, Episode
-from ui.widgets.model.media_list_model import SongListModel, EpisodeListModel, AbstractItemListModel
+from ui.widgets.model.media_list_model import SongListModel, EpisodeListModel, AbstractItemListModel, \
+    ComedySpecialListModel
 
 
 class AbstractSubItemListView(QFrame):
@@ -110,4 +111,16 @@ class EpisodeListView(AbstractSubItemListView):
         super().__init__(parent, image_cache)
 
         self._model = EpisodeListModel(self, image_cache)
+        self._list_view.setModel(self._model)
+
+
+class ComedySpecialView(AbstractSubItemListView):
+    """
+    This class lays out the view of a comedySpecial for adding to a playlist
+    """
+
+    def __init__(self, parent: QObject, image_cache: ImageCache):
+        super().__init__(parent, image_cache)
+
+        self._model = ComedySpecialListModel(self, image_cache)
         self._list_view.setModel(self._model)
