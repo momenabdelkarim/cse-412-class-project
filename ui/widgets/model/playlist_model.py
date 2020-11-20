@@ -32,7 +32,7 @@ class PlaylistModel(QAbstractListModel):
     def data(self, index: QModelIndex, role: int = ...) -> Any:
 
         # Guard against invalid row subscripting
-        if not index.isValid() or index.row() > self.rowCount():
+        if not index.isValid() or index.row() >= self.rowCount():
             return QVariant()
 
         playlist = self.__playlists[index.row()]

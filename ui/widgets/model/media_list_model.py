@@ -66,7 +66,7 @@ class MediaListModel(AbstractItemListModel):
     def data(self, index: QModelIndex, role: int = ...) -> Any:
 
         # Guard against invalid row subscripting
-        if not index.isValid() or index.row() > self.rowCount():
+        if not index.isValid() or index.row() >= self.rowCount():
             return QVariant()
 
         media = self._item_list[index.row()]
@@ -96,7 +96,7 @@ class SongListModel(AbstractItemListModel):
     def data(self, index: QModelIndex, role: int = ...) -> Any:
 
         # Guard against invalid row subscripting
-        if not index.isValid() or index.row() > self.rowCount():
+        if not index.isValid() or index.row() >= self.rowCount():
             return QVariant()
 
         song = self._item_list[index.row()]
@@ -121,7 +121,7 @@ class EpisodeListModel(AbstractItemListModel):
     def data(self, index: QModelIndex, role: int = ...) -> Any:
 
         # Guard against invalid row subscripting
-        if not index.isValid() or index.row() > self.rowCount():
+        if not index.isValid() or index.row() >= self.rowCount():
             return QVariant()
 
         episode = self._item_list[index.row()]
@@ -144,7 +144,7 @@ class ComedySpecialListModel(AbstractItemListModel):
     def data(self, index: QModelIndex, role: int = ...) -> Any:
 
         # Guard against invalid row subscripting
-        if not index.isValid() or index.row() > self.rowCount():
+        if not index.isValid() or index.row() >= self.rowCount():
             return QVariant()
 
         special = self._item_list[index.row()]
@@ -167,7 +167,7 @@ class GenericSubItemListModel(AbstractItemListModel):
     def data(self, index: QModelIndex, role: int = ...) -> Any:
 
         # Guard against invalid row subscripting
-        if not index.isValid() or index.row() > self.rowCount():
+        if not index.isValid() or index.row() >= self.rowCount():
             return QVariant()
 
         sub_item = self._item_list[index.row()]

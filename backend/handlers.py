@@ -248,6 +248,10 @@ def create_new_playlist(cursor, connection, playlist_name: str, playlist_owner: 
 
         record = cursor.fetchone()
         curr_max_playlist_id = record[0]
+
+        if not curr_max_playlist_id:
+            curr_max_playlist_id = 0
+
         new_playlist_id = curr_max_playlist_id + 1
 
         cursor.execute('INSERT INTO playlist(id, name, owner) '
