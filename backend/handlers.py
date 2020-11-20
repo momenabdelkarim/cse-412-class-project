@@ -38,7 +38,7 @@ def main():
         print("You are connected to - ", record, "\n")
 
         # get_all_media_objects_for_playlist(cursor, 708)
-        get_guest(cursor, 107, 3)
+        get_guest(cursor, 107, 2)
 
     except (Exception, psycopg2.Error) as error:
         print("Error while connecting to PostgreSQL", error)
@@ -470,7 +470,7 @@ def get_person(cursor, media_id: int) -> List[Person]:
 def get_guest(cursor, media_id: int, episode_number: int) -> List[str]:
     cursor.execute('SELECT person.name '
                    'FROM episode, guest_appearance, person '
-                   'WHERE person.id = guest_appearance.person_id AND guest_appearance.podcast_id = episode.id AND episode.id = %d AND episode.episode_number = %d' % (media_id, episode_number))
+                   'WHERE person.id = guest_appearance.person_id AND guest_appearance.podcast_id = episode.id AND episode.id = %d AND guest_appearance.episode_number = %d' % (media_id, episode_number))
 
     names_list = []
     record = cursor.fetchone()
