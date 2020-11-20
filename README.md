@@ -1,2 +1,5 @@
-# cse-412-class-project
-CSE 412 Class Project repo
+# CSE 412 Class Project User Manual
+
+## Set Up
+
+## Walkthrough
