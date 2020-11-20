@@ -1,13 +1,12 @@
 """
 This file will define a MediaDetailView.
 """
-from typing import Optional
 
 from PyQt5 import QtCore
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtWidgets import QFrame, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QComboBox
+from PyQt5.QtWidgets import QFrame, QVBoxLayout, QWidget, QHBoxLayout, QPushButton, QComboBox, QFormLayout
+
 from backend.handlers import cursor, get_all_available_genres
-from ui.helper_functions import get_center_pos
 
 
 class FilterView(QFrame):
@@ -53,7 +52,7 @@ class FilterView(QFrame):
         super().closeEvent(close_event)
 
     def display_filters(self):
-        layout_combo_manager = QVBoxLayout()
+        layout_combo_manager = QFormLayout()
 
         # Get list of available genres
         available_genres = get_all_available_genres(cursor)
@@ -66,8 +65,8 @@ class FilterView(QFrame):
         # Add items to rating combo box
         self.__rating_selection.addItems(available_ratings)
 
-        layout_combo_manager.addWidget(self.__genre_selection)
-        layout_combo_manager.addWidget(self.__rating_selection)
+        layout_combo_manager.addRow("Genre:", self.__genre_selection)
+        layout_combo_manager.addRow("Rating:", self.__rating_selection)
         self.__layout_manager.addLayout(layout_combo_manager)
 
         # Display cancel button

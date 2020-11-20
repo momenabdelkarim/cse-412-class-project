@@ -6,6 +6,7 @@ from typing import Any
 from PyQt5.QtCore import QAbstractListModel, QObject, QModelIndex, QVariant, Qt
 from PyQt5.QtGui import QPixmap
 
+from backend.handlers import cursor, get_guest
 from ui.helper_functions import convert_pixmap_to_circular
 from ui.image_cache import ImageCache
 from ui.widgets.model.entities import Episode, Song, ComedySpecial
@@ -126,7 +127,10 @@ class EpisodeListModel(AbstractItemListModel):
 
         episode = self._item_list[index.row()]
         if role == Qt.DisplayRole:
-            return episode.name
+            if guests := get_guest(cursor, episode.media_id, episode.episode_number):
+                return f"{episode.name} (Ft. {', '.join(guests)})"
+            else:
+                return episode.name
         elif role == Qt.UserRole:
             return f"Episode {episode.episode_number}: {episode.duration}s, {episode.view_count} views"
         else:
@@ -172,7 +176,13 @@ class GenericSubItemListModel(AbstractItemListModel):
 
         sub_item = self._item_list[index.row()]
         if role == Qt.DisplayRole:
-            return sub_item.name
+            if type(sub_item) is Episode:
+                if guests := get_guest(cursor, sub_item.media_id, sub_item.episode_number):
+                    return f"{sub_item.name} (Ft. {', '.join(guests)})"
+                else:
+                    return sub_item.name
+            else:
+                return sub_item.name
         elif role == Qt.UserRole:
             if type(sub_item) is Episode:
                 return f"Episode {sub_item.episode_number}: {sub_item.duration}s, {sub_item.view_count} views"
