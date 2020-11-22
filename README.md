@@ -121,6 +121,13 @@ SELECT * FROM song WHERE song.auditory_media = 101;
 ```
 If you obtain the following three songs and their associated attributes, then you are ready to start the application setup following.
 
+## Application Database Sync
+  In order for the application to appropriately recognize the database, we need to make one change in regards to the files inside the `handlers.py` folder located under `/path/to/cse-412-class-project/backend/handlers.py`.
+
+With the file open, **line 8** and **line 12** should be changed to appropriately match the name of your database and username. In this case, the common subsitute for both values will be the output of `echo $USER`.
+
+This results in the `user` and `database` variables to be set to `$USER`. With this step complete, simple run the application via the `driver.py` file located under `/path/to/cse-412-class-project/bin/driver.py` using the **Pycharm** IDE.
+
 ## Walkthrough & Navigation
 
 ## Set Up
