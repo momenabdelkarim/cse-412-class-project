@@ -40,6 +40,7 @@ $ pip3 install --user -r requirements.txt
 3. Start the Database
 4. Create a User for the Database
 5. Populate Database
+6. Verify Data
 
 #### Set Environment Variables
   The following environment variables must be set before initializing the database:
@@ -96,6 +97,29 @@ With the path set, only two make targets need to be ran below:
 make setup_postgre
 make insert_postgre
 ```
+
+#### Verify Data
+  With the above steps complete, you can verify that you are able to connnect to the database via the following command:
+
+```
+$ psql -d $USER
+```
+
+Once you are connected, you can pose the following query below with the expected results as shown:
+
+```
+SELECT * FROM song WHERE song.auditory_media = 101;
+```
+
+```
+ auditory_media_id |   name    | duration | view_count 
+-------------------+-----------+----------+------------
+               101 | Natural   |      189 |  621539875
+               101 | Boomerang |      188 |   53977701
+               101 | Machine   |      182 |   78769871
+(3 rows)
+```
+If you obtain the following three songs and their associated attributes, then you are ready to start the application setup following.
 
 ## Walkthrough & Navigation
 
