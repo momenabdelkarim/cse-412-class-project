@@ -129,11 +129,23 @@ With the file open, **line 8** and **line 12** should be changed to appropriatel
 This results in the `user` and `database` variables to be set to `$USER`. With this step complete, simple run the application via the `driver.py` file located under `/path/to/cse-412-class-project/bin/driver.py` using the **Pycharm** IDE.
 
 ## Walkthrough & Navigation
+  Once setup is complete, the user can run the application and be presented with the following landing screen.
+  <pic>
+  
+### Viewing All Media
 
-## Set Up
-I don't know how this part works and setting up the database with the frontend in a way that will work for the TA? how to install the dependencies and whatnot
+### Filtering
 
-they set up their own database and we just give instructions on how to get it all up
+### Creating a New Playlist
 
-## Walkthrough
-I'll do the walkthrough with the UI and screenshots explaining the steps
+### Viewing Album and Podcast Details
+
+### Adding to a Playlist
+
+### Removing from a Playlist
+
+### Deleting a Playlist
+
+### Stopping the Application
+  
+  
