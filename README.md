@@ -7,10 +7,10 @@ There are two components within this documentation:
 2. Walkthrough & Navigation
 
 ## Setup & Installation
-  The setup and installation involves setting up the database, editing the correct files, and starting up the application with the correct data loaded. This procedure should simple as long as all the pre-requisites are covered.
+  The setup and installation involves setting up the database, editing the correct files, and starting up the application with the correct data loaded. This procedure should be simple as long as all the pre-requisites are covered.
 
 ### Clone Repository
-  The repository must first be cloned to ease the package dependencies and installation. Additionally, it should be noted that the development of the application was under **Pycharm Professional**; therefore, to properly run the application without any issues, use the recommended IDE - Pycharm Community edition is also permissible.
+  The repository must first be cloned to ease the package dependencies and installation. Additionally, it should be noted that the development of the application was under **Pycharm Professional**; therefore, to properly run the application without any issues, use the recommended IDE. Pycharm Community edition is also permissible.
 
 To clone the repository, run the following command:
 
