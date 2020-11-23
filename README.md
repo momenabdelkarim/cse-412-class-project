@@ -157,12 +157,21 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
 ### Auditory Media Details
   To view auditory media details, songs that are members of a particular album, episodes that belong a podcast, or general comedy special information, double click on an auditory media to bring up the details view. 
   
-  In the details view, users have the option to add the item to a playlist.
+  In the details view, users have the option to add the item to a playlist. See Adding to a Playlist for more information
 
 ### Adding to a Playlist
+  To add a song, episode, or comedy special to a playlist, navigate to the "All Media" tab and select the auditory media that contains that item. Double click on the media to display the detail window and right click on an item and select the a playlist of choice.
+  
+  <pic>
 
 ### Removing from a Playlist
+  To remove a song, episode, or comedy special from a playlist, navigate to the "Playlist" tab and select the playlist. Right click on the item you wish to remove and select "Delete" from the dropdown.
+  
+  <pic>
 
 ### Stopping the Application
+  To end the application, select the red exit mark in the upper left-hand corner. 
+  
+  <pic>
   
   
