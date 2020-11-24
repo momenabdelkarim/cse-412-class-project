@@ -131,7 +131,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
 # Walkthrough & Navigation
   Once setup is complete, the user can run the application and be presented with the following landing screen.
   
-  <pic>
+  ![pic]()
   
 ### Viewing All Media
   To view all media that is available on the application, select the all media tab in the upper left-hand corner. This will bring up all auditory media objects - albums, podcasts, and comedy specials - that are available to users. 
