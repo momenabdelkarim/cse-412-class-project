@@ -136,7 +136,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
 ### Viewing All Media
   To view all media that is available on the application, select the all media tab in the upper left-hand corner. This will bring up all auditory media objects - albums, podcasts, and comedy specials - that are available to users. 
   
-  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/All%20Media%20Tab.png width="500>
+  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/All%20Media%20Tab.png width="500">
 
 ### Filtering
   To view a narrower list of auditory media based on genre or rating specifications, select the "Search" button in the lower right-hand corner. This will bring up a new window where a user can specify genre and/or rating parameters to apply to the "All Media" tab. 
@@ -151,7 +151,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Playlist%20view.png width="500"> 
 
 ### Creating a New Playlist
-  To create a new playlist, visit the "Playlist" tab on the main window and scroll horizontally to the right. Click "Add New Playlist" to instantly create a new playlist and give it a descriptive name. 
+  To create a new playlist, visit the "Playlist" tab on the main window and scroll horizontally to the right. Click "Create Playlist" to instantly create a new playlist and give it a descriptive name. 
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20a%20new%20playlist.png width="500"> 
   
