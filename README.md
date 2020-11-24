@@ -144,6 +144,11 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
   <pic>
   
   To clear a search, a user should select the "Search" button on the "All Media" tab to bring up the filter window and apply the default parameters of genre "---" and rating "0+" to view all auditory media objects available in the database. 
+  
+### Viewing a Playlist
+  To view a playlist, navigate to the "Playlist" tab and double click on a playlist cover to reveal what items belong to that playlist. 
+  
+  <pic> 
 
 ### Creating a New Playlist
   To create a new playlist, visit the "Playlist" tab on the main window and scroll horizontally to the right. Click "Add New Playlist" to instantly create a new playlist and give it a descriptive name. 
