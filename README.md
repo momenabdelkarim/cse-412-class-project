@@ -141,7 +141,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
 ### Filtering
   To view a narrower list of auditory media based on genre or rating specifications, select the "Search" button in the lower right-hand corner. This will bring up a new window where a user can specify genre and/or rating parameters to apply to the auditory media in the "All Media" tab. 
   
-  <img src=https://github.com/momenabdelkarim/cse-412-class-project width="500">
+  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Filtering.jpeg width="500">
   
   To clear a search, a user should select the "Search" button on the "All Media" tab to bring up the filter window and apply the default parameters of genre "---" and rating "0+" to view all auditory media objects available in the database. 
   
