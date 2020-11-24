@@ -173,7 +173,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20item%20to%20playlist2.png width="300">
 
 ### Removing from a Playlist
-  To remove a song, episode, or comedy special from a playlist, navigate to the "Playlist" tab and select the playlist. Right click on the item you wish to remove and select "Delete" from the dropdown.
+  To remove a song, episode, or comedy special from a playlist, [navigate to the playlist](https://github.com/momenabdelkarim/cse-412-class-project/blob/main/README.md#viewing-a-playlist) and right click on the item you wish to remove. Select "Remove from this playlist" from the dropdown.
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Removing%20item%20from%20playlist.png width="500">
 
