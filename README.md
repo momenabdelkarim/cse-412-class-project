@@ -3,7 +3,7 @@
 
 There are two components within this documentation:
 
-1. Setup & Installation
+1. [Setup & Installation](https://github.com/momenabdelkarim/cse-412-class-project/blob/main/README.md#setup--installation)
 2. [Walkthrough & Navigation](https://github.com/momenabdelkarim/cse-412-class-project/blob/main/README.md#walkthrough--navigation)
 
 # Setup & Installation
