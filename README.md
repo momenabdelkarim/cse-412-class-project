@@ -71,7 +71,7 @@ $ initdb /path/to/cse-412-class-project/database/
 pg_ctl -D /path/to/database/root/folder -o '-k /tmp' start
 ```
 
-The `/path/to/database/root/folder/` is the path set when running the command in ![Initialize Database Structure Folder](#Initalize-Database-Structure-Folder) above.
+The `/path/to/database/root/folder/` is the path set when running the command in [Initialize Database Structure Folder](https://github.com/momenabdelkarim/cse-412-class-project#initialize-database-structure-folder) above.
 
 #### Create a User for the Database
   The next step is to create a user for the database in order to access it. This can be done by running the following command:
