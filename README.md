@@ -119,7 +119,7 @@ SELECT * FROM song WHERE song.auditory_media = 101;
                101 | Machine   |      182 |   78769871
 (3 rows)
 ```
-If you obtain the following three songs and their associated attributes, then you are ready to start the application.
+If you obtain the following three songs and their associated attributes, then you are ready to do the [Application Database Sync](https://github.com/momenabdelkarim/cse-412-class-project#application-database-sync).
 
 ## Application Database Sync
   In order for the application to appropriately recognize the database, we need to make one change in regards to the files inside the `handlers.py` folder located under `/path/to/cse-412-class-project/backend/handlers.py`.
