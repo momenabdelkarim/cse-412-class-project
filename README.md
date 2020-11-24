@@ -169,7 +169,8 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
 ### Adding to a Playlist
   To add a song, episode, or comedy special to a playlist, navigate to the detail window of the auditory media that contains the item you wish to add to the a playlist - see [Auditory Media Details](https://github.com/momenabdelkarim/cse-412-class-project#auditory-media-details) for more information - and right click on an item and select the a playlist of choice.
   
-  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20item%20to%20playlist.png width="300"> <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20item%20to%20playlist2.png width="300">
+  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20item%20to%20playlist.png width="300"> 
+  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20item%20to%20playlist2.png width="300">
 
 ### Removing from a Playlist
   To remove a song, episode, or comedy special from a playlist, navigate to the "Playlist" tab and select the playlist. Right click on the item you wish to remove and select "Delete" from the dropdown.
