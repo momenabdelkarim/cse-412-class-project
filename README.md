@@ -4,7 +4,7 @@
 There are two components within this documentation:
 
 1. Setup & Installation
-2. Walkthrough & Navigation
+2. [Walkthrough & Navigation](https://github.com/momenabdelkarim/cse-412-class-project/blob/main/README.md#walkthrough--navigation)
 
 # Setup & Installation
   The setup and installation involves setting up the database, editing the correct files, and starting up the application with the correct data loaded. This procedure should be simple as long as all the pre-requisites are covered.
