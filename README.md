@@ -131,7 +131,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
 # Walkthrough & Navigation
   Once setup is complete, the user can run the application and be presented with the following landing screen.
   
-  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/Screen%20Shot%202020-11-23%20at%207.15.31%20PM.png width="300">
+  <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/Screen%20Shot%202020-11-23%20at%207.15.31%20PM.png width="500">
   
 ### Viewing All Media
   To view all media that is available on the application, select the all media tab in the upper left-hand corner. This will bring up all auditory media objects - albums, podcasts, and comedy specials - that are available to users. 
