@@ -35,12 +35,12 @@ $ pip3 install --user -r requirements.txt
 ### Database Setup
   To setup the database used within the project and ensure that the correct data is populated the steps below should be followed sequentially:
 
-1. Set Environment Variables
-2. Initialize Database Structure Folder
-3. Start the Database
-4. Create a User for the Database
-5. Populate Database
-6. Verify Data
+1. [Set Environment Variables](https://github.com/momenabdelkarim/cse-412-class-project#set-environment-variables)
+2. [Initialize Database Structure Folder](https://github.com/momenabdelkarim/cse-412-class-project#initialize-database-structure-folder)
+3. [Start the Database](https://github.com/momenabdelkarim/cse-412-class-project#start-the-database)
+4. [Create a User for the Database](https://github.com/momenabdelkarim/cse-412-class-project#create-a-user-for-the-database)
+5. [Populate Database](https://github.com/momenabdelkarim/cse-412-class-project#populate-database)
+6. [Verify Data](https://github.com/momenabdelkarim/cse-412-class-project#verify-data)
 
 #### Set Environment Variables
   The following environment variables must be set before initializing the database:
