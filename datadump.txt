@@ -1,0 +1,911 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.4
+-- Dumped by pg_dump version 12.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: album; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.album (
+    id integer NOT NULL,
+    release_format text
+);
+
+
+ALTER TABLE public.album OWNER TO "DanialYunus";
+
+--
+-- Name: auditory_media; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.auditory_media (
+    id integer NOT NULL,
+    image_url text,
+    release_date date,
+    name text,
+    genre text,
+    rating double precision
+);
+
+
+ALTER TABLE public.auditory_media OWNER TO "DanialYunus";
+
+--
+-- Name: award; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.award (
+    organization_id integer NOT NULL,
+    name text NOT NULL,
+    year integer NOT NULL
+);
+
+
+ALTER TABLE public.award OWNER TO "DanialYunus";
+
+--
+-- Name: comedy_special; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.comedy_special (
+    id integer NOT NULL,
+    runtime integer,
+    venue text
+);
+
+
+ALTER TABLE public.comedy_special OWNER TO "DanialYunus";
+
+--
+-- Name: episode; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.episode (
+    id integer NOT NULL,
+    title text NOT NULL,
+    episode_number integer NOT NULL,
+    duration integer,
+    view_count integer
+);
+
+
+ALTER TABLE public.episode OWNER TO "DanialYunus";
+
+--
+-- Name: guest_appearance; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.guest_appearance (
+    person_id integer NOT NULL,
+    episode_number integer NOT NULL,
+    title text NOT NULL,
+    podcast_id integer NOT NULL
+);
+
+
+ALTER TABLE public.guest_appearance OWNER TO "DanialYunus";
+
+--
+-- Name: member_of_comedy; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.member_of_comedy (
+    auditory_media_id integer NOT NULL,
+    playlist_id integer NOT NULL
+);
+
+
+ALTER TABLE public.member_of_comedy OWNER TO "DanialYunus";
+
+--
+-- Name: member_of_episode; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.member_of_episode (
+    episode_number integer NOT NULL,
+    name text NOT NULL,
+    auditory_media_id integer NOT NULL,
+    playlist_id integer NOT NULL
+);
+
+
+ALTER TABLE public.member_of_episode OWNER TO "DanialYunus";
+
+--
+-- Name: member_of_song; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.member_of_song (
+    name text NOT NULL,
+    auditory_media_id integer NOT NULL,
+    playlist_id integer NOT NULL
+);
+
+
+ALTER TABLE public.member_of_song OWNER TO "DanialYunus";
+
+--
+-- Name: organization; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.organization (
+    id integer NOT NULL,
+    name text
+);
+
+
+ALTER TABLE public.organization OWNER TO "DanialYunus";
+
+--
+-- Name: person; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.person (
+    id integer NOT NULL,
+    country text,
+    name text,
+    date_of_birth date,
+    date_of_death text
+);
+
+
+ALTER TABLE public.person OWNER TO "DanialYunus";
+
+--
+-- Name: playlist; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.playlist (
+    id integer NOT NULL,
+    name text,
+    owner text
+);
+
+
+ALTER TABLE public.playlist OWNER TO "DanialYunus";
+
+--
+-- Name: podcast; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.podcast (
+    id integer NOT NULL,
+    end_year integer
+);
+
+
+ALTER TABLE public.podcast OWNER TO "DanialYunus";
+
+--
+-- Name: produces; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.produces (
+    auditory_media_id integer NOT NULL,
+    person_id integer NOT NULL
+);
+
+
+ALTER TABLE public.produces OWNER TO "DanialYunus";
+
+--
+-- Name: publisher; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.publisher (
+    id integer NOT NULL,
+    name text
+);
+
+
+ALTER TABLE public.publisher OWNER TO "DanialYunus";
+
+--
+-- Name: publishes; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.publishes (
+    auditory_media_id integer NOT NULL,
+    publisher_id integer NOT NULL
+);
+
+
+ALTER TABLE public.publishes OWNER TO "DanialYunus";
+
+--
+-- Name: song; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.song (
+    auditory_media_id integer NOT NULL,
+    name text NOT NULL,
+    duration integer,
+    view_count integer
+);
+
+
+ALTER TABLE public.song OWNER TO "DanialYunus";
+
+--
+-- Name: won; Type: TABLE; Schema: public; Owner: DanialYunus
+--
+
+CREATE TABLE public.won (
+    award_name text NOT NULL,
+    award_year integer NOT NULL,
+    organization_id integer NOT NULL,
+    auditory_media_id integer NOT NULL
+);
+
+
+ALTER TABLE public.won OWNER TO "DanialYunus";
+
+--
+-- Data for Name: album; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.album (id, release_format) FROM stdin;
+101	CD
+104	digital
+105	digital
+106	digital
+108	CD
+110	Vinyl
+112	Vinyl
+114	Vinyl
+\.
+
+
+--
+-- Data for Name: auditory_media; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.auditory_media (id, image_url, release_date, name, genre, rating) FROM stdin;
+101	https://upload.wikimedia.org/wikipedia/en/9/95/Origins_cover.png	2018-11-09	Origins	pop rock	7
+102	https://upload.wikimedia.org/wikipedia/en/6/68/Jerry_Seinfeld%2C_I%27m_Telling_You_for_the_Last_Time_video_box.jpg	1998-08-08	Im Telling You for the Last Time	comedy	10
+103	https://resizing.flixster.com/4Y1EClZIJXSVyA_8l4BIjAT0h60=/206x305/v1.bTsxMzA1MDYyNjtqOzE4NjAxOzEyMDA7NDI2OzU5Nw	2018-05-01	John Mulaney: Kid Gorgeous at Radio City	comedy	8
+104	https://upload.wikimedia.org/wikipedia/en/5/5f/BTS_-_Dynamite_%28official_cover%29.png	2020-08-21	Dynamite	pop	8
+105	https://upload.wikimedia.org/wikipedia/en/2/2f/Billie_Eilish_-_Don%27t_Smile_at_Me.png	2017-08-11	Dont Smile at Me	eloctropop	9.5
+106	https://upload.wikimedia.org/wikipedia/en/2/2b/Bruno_Mars_-_24K_Magic_%28Official_Album_Cover%29.png	2017-08-11	24K Magic	eloctropop	9.5
+107	https://www.omnycontent.com/d/programs/aaea4e69-af51-495e-afc9-a9760146922b/75a86d39-9e0e-4e9a-b948-aae301805fe6/image.jpg?t=1596577787&size=Large	2017-08-11	Office Ladies	comedy podcast	7.5
+108	https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png	1982-11-30	Thriller	pop	10
+109	https://upload.wikimedia.org/wikipedia/en/8/88/Jeff_Dunham_Arguing_With_Myself.jpg	2006-04-11	Jeff Dunham: Arguing with Myself	comedy	6
+110	https://upload.wikimedia.org/wikipedia/en/4/4d/Queen_A_Night_At_The_Opera.png	1975-11-21	A Night at the Opera	rock	10
+111	https://upload.wikimedia.org/wikipedia/en/e/ee/Conan_O%27Brien_Needs_a_Friend_podcast.jpg	2018-11-28	Conan O Brien Needs a Friend	comedy podcast	6
+112	https://upload.wikimedia.org/wikipedia/en/2/25/LetItBe.jpg	1970-05-08	Let It Be	rock	9
+113	https://images-na.ssl-images-amazon.com/images/I/91NF5q4m6AL._SL1500_.jpg	2013-04-07	Aloha Fluffy	comedy	9.5
+114	https://upload.wikimedia.org/wikipedia/en/d/d5/Mecanodescanso_dominical.jpg	1988-08-28	Descanso Dominical	pop	8.5
+115	https://i.shgcdn.com/56d9bdf2-56d2-4099-b98b-764da86148b2/-/format/auto/-/preview/3000x3000/-/quality/lighter/	2019-05-04	The TryPod	podcast	7.5
+116	https://pbs.twimg.com/profile_images/1301545766461165569/yaTh5tTZ.jpg	2020-09-08	CTF Radiooo	podcast	7.3
+\.
+
+
+--
+-- Data for Name: award; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.award (organization_id, name, year) FROM stdin;
+501	International Band of the Year	2018
+502	Album of the Year	2018
+503	Best Selling Album of All Time	1984
+\.
+
+
+--
+-- Data for Name: comedy_special; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.comedy_special (id, runtime, venue) FROM stdin;
+102	75	Broadhurst Theatre
+103	64	Radio City Music Hall
+109	76	Santa Anna Theatre
+113	60	Hawaii Theatre Center
+\.
+
+
+--
+-- Data for Name: episode; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.episode (id, title, episode_number, duration, view_count) FROM stdin;
+107	The Pilo	1	3064	93832
+107	Diversity Day	2	2838	67343
+107	Health Care with Rainn Wilson	3	3245	84342
+111	Guest: Will Ferrell	1	267	146524
+111	Guest: Kristen Bell	2	358	256244
+111	Guest: Adam Sandler	9	3033	98547
+115	Sex Tapes & First Dates	1	3400	87665
+116	What is Capture the Flag (CTF)?	1	2320	1337
+116	How to get into Capture the Flag (CTF)?	2	3230	13337
+116	nooode DEF CON 28 CTF Challenge w/ Guest kaptain	3	2752	133337
+116	Founding of OOO and gameboooy DEF CON 28 CTF Challenge w/ Guest Jeff	4	3467	1333337
+116	ropshipai with anton00b and Jay, Corwin, and Matt from PPP	5	5153	13333337
+\.
+
+
+--
+-- Data for Name: guest_appearance; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.guest_appearance (person_id, episode_number, title, podcast_id) FROM stdin;
+218	3	Health Care with Rainn Wilson	107
+227	1	Guest: Will Ferrell	111
+228	2	Guest: Kristen Bell	111
+230	9	Guest: Adam Sandler	111
+236	3	nooode DEF CON 28 CTF Challenge w/ Guest kaptain	116
+\.
+
+
+--
+-- Data for Name: member_of_comedy; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.member_of_comedy (auditory_media_id, playlist_id) FROM stdin;
+102	703
+103	703
+109	703
+113	703
+\.
+
+
+--
+-- Data for Name: member_of_episode; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.member_of_episode (episode_number, name, auditory_media_id, playlist_id) FROM stdin;
+2	Guest: Kristen Bell	111	707
+1	Guest: Will Ferrell	111	707
+4	Founding of OOO and gameboooy DEF CON 28 CTF Challenge w/ Guest Jeff	116	708
+3	nooode DEF CON 28 CTF Challenge w/ Guest kaptain	116	708
+1	What is Capture the Flag (CTF)?	116	708
+\.
+
+
+--
+-- Data for Name: member_of_song; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.member_of_song (name, auditory_media_id, playlist_id) FROM stdin;
+Natural	101	701
+Boomerang	101	701
+Machine	101	701
+Thats What I like	106	701
+Dynamite	104	702
+Bohemian Rhapsody	110	704
+Youre My Best Friend	110	704
+Bohemian Rhapsody	110	705
+Youre My Best Friend	110	705
+Get It Back	112	705
+Let It Be	112	705
+Thats What I like	106	706
+Chunky	106	706
+\.
+
+
+--
+-- Data for Name: organization; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.organization (id, name) FROM stdin;
+501	ECHO Awards
+502	Recording Academy
+503	Guiness
+\.
+
+
+--
+-- Data for Name: person; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.person (id, country, name, date_of_birth, date_of_death) FROM stdin;
+201	United States	Taylor Swift	1989-12-13	\N
+202	United States	Jerry Seinfeld	1954-04-29	\N
+203	South Korea	RM	1994-09-12	\N
+204	South Korea	V	1995-12-30	\N
+205	South Korea	J-Hope	1994-02-18	\N
+206	South Korea	Jin	1992-12-04	\N
+207	South Korea	Jimin	1995-10-13	\N
+208	South Korea	Jungkook	1997-09-01	\N
+209	South Korea	Suga	1993-03-09	\N
+210	United States	Dan Reynolds	1987-07-14	\N
+211	United States	Wayne Sermon	1984-06-15	\N
+212	United States	Ben McKee	1985-04-07	\N
+213	United States	Daniel Platzman	1986-09-28	\N
+214	United States	John Mulaney	1982-08-26	\N
+215	United States	Bruno Mars	1985-08-08	\N
+216	United States	Angela Kinsey	1971-06-25	\N
+217	United States	Jenna Fischer	1974-03-07	\N
+218	United States	Rainn Wilson	1966-01-20	\N
+219	United States	Michael Jackson	1958-08-29	6/25/2009
+220	England	John Lennon	1940-10-09	12/8/1980
+221	England	Paul McCartney	1942-06-18	\N
+222	England	George Harrison	1943-02-15	11/29/2001
+223	England	Ringo Star	1940-07-07	\N
+224	England	Freddie Mercury	1946-09-05	11/24/1991
+225	United States	Jeff Dunham	1962-04-18	\N
+226	United States	Conan O Brien	1963-04-18	\N
+227	United States	Will Ferrell	1967-07-16	\N
+228	United States	Kristen Bell	1980-07-18	\N
+229	United States	Gabriel Iglesias	1976-07-15	\N
+230	United States	Adam Sandler	1966-09-09	\N
+231	United States	Billie Eilish	2001-12-18	\N
+232	Spain	Ana Torroja	1959-12-28	\N
+233	United States	Eugene Lee Yang	1986-01-18	\N
+234	United States	Adam Doupe	1980-11-11	\N
+235	United States	Yan Shoshitaishvili	1981-01-31	\N
+236	United States	kaptain	1982-01-13	\N
+\.
+
+
+--
+-- Data for Name: playlist; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.playlist (id, name, owner) FROM stdin;
+701	Pop PLAYLIST	Danial
+702	KPOP PLAYLIST	Luis
+703	COMEDY PLAYLIST	Bailey
+704	ROCK PLAYLIST	Momen
+705	OLDIES PLAYLIST	Sophia
+706	MODERN PLAYLIST	Jacob
+707	FAMOUS PEOPLE TALKING	Timestamps
+708	CYBER NERD TALK	DJ Huang
+\.
+
+
+--
+-- Data for Name: podcast; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.podcast (id, end_year) FROM stdin;
+107	2020
+111	2020
+115	2020
+116	\N
+\.
+
+
+--
+-- Data for Name: produces; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.produces (auditory_media_id, person_id) FROM stdin;
+102	202
+104	203
+103	214
+104	204
+104	205
+104	206
+104	207
+104	208
+104	209
+101	210
+101	211
+101	212
+101	213
+107	216
+107	217
+108	219
+109	225
+111	226
+105	231
+113	229
+112	220
+112	221
+112	222
+112	223
+110	224
+114	232
+115	233
+116	234
+116	235
+\.
+
+
+--
+-- Data for Name: publisher; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.publisher (id, name) FROM stdin;
+301	Interscope Records
+302	Epic Records
+303	EMI Records
+304	Apple Records
+305	Big Hit Entertainment
+306	SunDevil Records
+\.
+
+
+--
+-- Data for Name: publishes; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.publishes (auditory_media_id, publisher_id) FROM stdin;
+101	301
+108	302
+110	303
+112	304
+104	305
+102	306
+103	306
+105	306
+106	306
+107	306
+109	306
+111	306
+113	306
+114	306
+115	306
+116	306
+\.
+
+
+--
+-- Data for Name: song; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.song (auditory_media_id, name, duration, view_count) FROM stdin;
+101	Natural	189	621539875
+101	Boomerang	188	53977701
+101	Machine	182	78769871
+106	Thats What I like	226	1115782736
+106	Chunky	187	198284225
+104	Dynamite	199	259027195
+108	Beat it	378	459385390
+108	Billie Jean	294	742519652
+108	Thriller	357	456276389
+108	P.Y.T. (Pretty Young Thing)	238	1284596
+105	Ocean Eyes	200	639047103
+105	Bellyache	179	489127257
+105	Watch	176	265400429
+105	Copycat	193	294773489
+105	Idontwannabeyouanymore	204	575068180
+105	My Boy	170	315143707
+105	Party Favor	204	156051931
+110	Bohemian Rhapsody	355	1235434565
+110	Youre My Best Friend	172	12457849
+112	Get It Back	194	43112687
+112	Let It Be	230	6743829
+112	The Long and Winding Road	220	76328379
+114	La Fuerza del Destino	317	703900
+114	El Cine	255	342876
+\.
+
+
+--
+-- Data for Name: won; Type: TABLE DATA; Schema: public; Owner: DanialYunus
+--
+
+COPY public.won (award_name, award_year, organization_id, auditory_media_id) FROM stdin;
+International Band of the Year	2018	501	101
+Album of the Year	2018	502	106
+Best Selling Album of All Time	1984	503	108
+\.
+
+
+--
+-- Name: album album_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.album
+    ADD CONSTRAINT album_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auditory_media auditory_media_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.auditory_media
+    ADD CONSTRAINT auditory_media_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: award award_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.award
+    ADD CONSTRAINT award_pkey PRIMARY KEY (organization_id, name, year);
+
+
+--
+-- Name: comedy_special comedy_special_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.comedy_special
+    ADD CONSTRAINT comedy_special_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: episode episode_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.episode
+    ADD CONSTRAINT episode_pkey PRIMARY KEY (title, episode_number, id);
+
+
+--
+-- Name: guest_appearance guest_appearance_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.guest_appearance
+    ADD CONSTRAINT guest_appearance_pkey PRIMARY KEY (person_id, episode_number, title, podcast_id);
+
+
+--
+-- Name: member_of_comedy member_of_comedy_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_comedy
+    ADD CONSTRAINT member_of_comedy_pkey PRIMARY KEY (auditory_media_id, playlist_id);
+
+
+--
+-- Name: member_of_episode member_of_episode_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_episode
+    ADD CONSTRAINT member_of_episode_pkey PRIMARY KEY (episode_number, name, auditory_media_id, playlist_id);
+
+
+--
+-- Name: member_of_song member_of_song_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_song
+    ADD CONSTRAINT member_of_song_pkey PRIMARY KEY (name, auditory_media_id, playlist_id);
+
+
+--
+-- Name: organization organization_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.organization
+    ADD CONSTRAINT organization_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: person person_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.person
+    ADD CONSTRAINT person_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: playlist playlist_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.playlist
+    ADD CONSTRAINT playlist_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: podcast podcast_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.podcast
+    ADD CONSTRAINT podcast_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: produces produces_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.produces
+    ADD CONSTRAINT produces_pkey PRIMARY KEY (person_id, auditory_media_id);
+
+
+--
+-- Name: publisher publisher_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.publisher
+    ADD CONSTRAINT publisher_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: publishes publishes_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.publishes
+    ADD CONSTRAINT publishes_pkey PRIMARY KEY (auditory_media_id);
+
+
+--
+-- Name: song song_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.song
+    ADD CONSTRAINT song_pkey PRIMARY KEY (auditory_media_id, name);
+
+
+--
+-- Name: won won_pkey; Type: CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.won
+    ADD CONSTRAINT won_pkey PRIMARY KEY (award_name, award_year, organization_id, auditory_media_id);
+
+
+--
+-- Name: album album_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.album
+    ADD CONSTRAINT album_id_fkey FOREIGN KEY (id) REFERENCES public.auditory_media(id);
+
+
+--
+-- Name: award award_organization_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.award
+    ADD CONSTRAINT award_organization_id_fkey FOREIGN KEY (organization_id) REFERENCES public.organization(id) ON DELETE CASCADE;
+
+
+--
+-- Name: comedy_special comedy_special_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.comedy_special
+    ADD CONSTRAINT comedy_special_id_fkey FOREIGN KEY (id) REFERENCES public.auditory_media(id);
+
+
+--
+-- Name: episode episode_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.episode
+    ADD CONSTRAINT episode_id_fkey FOREIGN KEY (id) REFERENCES public.podcast(id);
+
+
+--
+-- Name: guest_appearance guest_appearance_episode_number_title_podcast_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.guest_appearance
+    ADD CONSTRAINT guest_appearance_episode_number_title_podcast_id_fkey FOREIGN KEY (episode_number, title, podcast_id) REFERENCES public.episode(episode_number, title, id) ON DELETE CASCADE;
+
+
+--
+-- Name: guest_appearance guest_appearance_person_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.guest_appearance
+    ADD CONSTRAINT guest_appearance_person_id_fkey FOREIGN KEY (person_id) REFERENCES public.person(id) ON DELETE CASCADE;
+
+
+--
+-- Name: member_of_comedy member_of_comedy_auditory_media_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_comedy
+    ADD CONSTRAINT member_of_comedy_auditory_media_id_fkey FOREIGN KEY (auditory_media_id) REFERENCES public.comedy_special(id) ON DELETE CASCADE;
+
+
+--
+-- Name: member_of_comedy member_of_comedy_playlist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_comedy
+    ADD CONSTRAINT member_of_comedy_playlist_id_fkey FOREIGN KEY (playlist_id) REFERENCES public.playlist(id) ON DELETE CASCADE;
+
+
+--
+-- Name: member_of_episode member_of_episode_name_episode_number_auditory_media_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_episode
+    ADD CONSTRAINT member_of_episode_name_episode_number_auditory_media_id_fkey FOREIGN KEY (name, episode_number, auditory_media_id) REFERENCES public.episode(title, episode_number, id) ON DELETE CASCADE;
+
+
+--
+-- Name: member_of_episode member_of_episode_playlist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_episode
+    ADD CONSTRAINT member_of_episode_playlist_id_fkey FOREIGN KEY (playlist_id) REFERENCES public.playlist(id) ON DELETE CASCADE;
+
+
+--
+-- Name: member_of_song member_of_song_auditory_media_id_name_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_song
+    ADD CONSTRAINT member_of_song_auditory_media_id_name_fkey FOREIGN KEY (auditory_media_id, name) REFERENCES public.song(auditory_media_id, name) ON DELETE CASCADE;
+
+
+--
+-- Name: member_of_song member_of_song_playlist_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.member_of_song
+    ADD CONSTRAINT member_of_song_playlist_id_fkey FOREIGN KEY (playlist_id) REFERENCES public.playlist(id) ON DELETE CASCADE;
+
+
+--
+-- Name: podcast podcast_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.podcast
+    ADD CONSTRAINT podcast_id_fkey FOREIGN KEY (id) REFERENCES public.auditory_media(id);
+
+
+--
+-- Name: produces produces_auditory_media_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.produces
+    ADD CONSTRAINT produces_auditory_media_id_fkey FOREIGN KEY (auditory_media_id) REFERENCES public.auditory_media(id) ON DELETE CASCADE;
+
+
+--
+-- Name: produces produces_person_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.produces
+    ADD CONSTRAINT produces_person_id_fkey FOREIGN KEY (person_id) REFERENCES public.person(id) ON DELETE CASCADE;
+
+
+--
+-- Name: publishes publishes_auditory_media_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.publishes
+    ADD CONSTRAINT publishes_auditory_media_id_fkey FOREIGN KEY (auditory_media_id) REFERENCES public.auditory_media(id) ON DELETE CASCADE;
+
+
+--
+-- Name: publishes publishes_publisher_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.publishes
+    ADD CONSTRAINT publishes_publisher_id_fkey FOREIGN KEY (publisher_id) REFERENCES public.publisher(id) ON DELETE CASCADE;
+
+
+--
+-- Name: song song_auditory_media_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.song
+    ADD CONSTRAINT song_auditory_media_id_fkey FOREIGN KEY (auditory_media_id) REFERENCES public.album(id);
+
+
+--
+-- Name: won won_auditory_media_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.won
+    ADD CONSTRAINT won_auditory_media_id_fkey FOREIGN KEY (auditory_media_id) REFERENCES public.auditory_media(id) ON DELETE CASCADE;
+
+
+--
+-- Name: won won_organization_id_award_name_award_year_fkey; Type: FK CONSTRAINT; Schema: public; Owner: DanialYunus
+--
+
+ALTER TABLE ONLY public.won
+    ADD CONSTRAINT won_organization_id_award_name_award_year_fkey FOREIGN KEY (organization_id, award_name, award_year) REFERENCES public.award(organization_id, name, year) ON DELETE CASCADE;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
