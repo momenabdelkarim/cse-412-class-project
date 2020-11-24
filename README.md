@@ -155,7 +155,7 @@ This results in the `user` and `database` variables to be set to `$USER`. With t
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20a%20new%20playlist.png width="500"> 
   
-  To **rename** an existing playlist, right click and select "Rename" from the dropdown. A playlist name accepts only alphabetical characters and must contain no special symbols or punctuation. To **delete** an existing playlist, right click and select "Delete" from the dropdown. Note, this action is permanent and deleted playlists cannot be recovered.
+  To **rename** an existing playlist, right click and select "Rename Playlist" from the dropdown. A playlist name accepts only alphabetical characters and must contain no special symbols or punctuation. To **delete** an existing playlist, right click and select "Delete Playlist" from the dropdown. Note, this action is permanent and deleted playlists cannot be recovered.
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Renaming%20or%20deleting%20playlist.png width="500">
 
