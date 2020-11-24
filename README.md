@@ -94,8 +94,8 @@ MAKEFILE_PATH = /path/to/cse-412-class-project/phase2/
 With the path set, only two make targets need to be ran below:
 
 ```
-make setup_postgre
-make insert_postgre
+make setup_postgres
+make insert_postgres
 ```
 
 #### Verify Data
@@ -108,7 +108,7 @@ $ psql -d $USER
 Once you are connected, you can pose the following query below with the expected results as shown:
 
 ```
-SELECT * FROM song WHERE song.auditory_media = 101;
+SELECT * FROM song WHERE song.auditory_media_id = 101;
 ```
 
 ```
