@@ -468,10 +468,9 @@ def get_person(cursor, media_id: int) -> List[Person]:
 
 
 def get_guest(cursor, media_id: int, episode_number: int) -> List[str]:
-    cursor.execute('SELECT DISTINCT person.name '
+    cursor.execute('SELECT person.name '
                    'FROM episode, guest_appearance, person '
-                   'WHERE person.id = guest_appearance.person_id AND guest_appearance.podcast_id = episode.id AND episode.id = %d AND guest_appearance.episode_number = %d' % (
-                   media_id, episode_number))
+                   'WHERE person.id = guest_appearance.person_id AND guest_appearance.podcast_id = episode.id AND episode.id = %d AND guest_appearance.episode_number = %d' % (media_id, episode_number))
 
     names_list = []
     record = cursor.fetchone()
