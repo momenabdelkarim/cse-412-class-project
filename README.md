@@ -129,42 +129,43 @@ With the file open, **line 8** and **line 12** should be changed to appropriatel
 This results in the `user` and `database` variables to be set to `$USER`. With this step complete, simple run the application via the `driver.py` file located under `/path/to/cse-412-class-project/bin/driver.py` using the **Pycharm** IDE.
 
 # Walkthrough & Navigation
-  Once setup is complete, the user can run the application and be presented with the following landing screen.
+  Once setup is complete, the user can run the application and view the landing screen.
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Landing%20Screen.png width="500">
   
 ### Viewing All Media
-  To view all media that is available on the application, select the all media tab in the upper left-hand corner. This will bring up all auditory media objects - albums, podcasts, and comedy specials - that are available to users. 
+  To view all media that is available on the application, select the "All Media" tab. This will bring up all auditory media objects - albums, podcasts, and comedy specials - that are available to the user. 
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/All%20Media%20Tab.png width="500">
 
 ### Filtering
-  To view a narrower list of auditory media based on genre or rating specifications, select the "Search" button in the lower right-hand corner. This will bring up a new window where a user can specify genre and/or rating parameters to apply to the "All Media" tab. 
+  To view a narrower list of auditory media based on genre or rating specifications, select the "Search" button in the lower right-hand corner. This will bring up a new window where a user can specify genre and/or rating parameters to apply to the auditory media in the "All Media" tab. 
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Filtering.png width="500">
   
   To clear a search, a user should select the "Search" button on the "All Media" tab to bring up the filter window and apply the default parameters of genre "---" and rating "0+" to view all auditory media objects available in the database. 
   
 ### Viewing a Playlist
-  To view a playlist, navigate to the "Playlist" tab and double click on a playlist cover to reveal what items belong to that playlist. 
+  To view a playlist, navigate to the "Playlist" tab and double click on a playlist cover to reveal underneath what items belong to that playlist. 
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Playlist%20view.png width="500"> 
 
 ### Creating a New Playlist
-  To create a new playlist, visit the "Playlist" tab on the main window and scroll horizontally to the right. Click "Create Playlist" to instantly create a new playlist and give it a descriptive name. 
+  To create a new playlist, visit the "Playlist" tab on the main window and scroll horizontally to the right. Click "Create Playlist" and give it a descriptive name. 
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Adding%20a%20new%20playlist.png width="500"> 
   
-  To **rename** an existing playlist, right click and select "Rename Playlist" from the dropdown. A playlist name accepts only alphabetical characters and must contain no special symbols or punctuation. To **delete** an existing playlist, right click and select "Delete Playlist" from the dropdown. Note, this action is permanent and deleted playlists cannot be recovered.
+  To **rename** an existing playlist, right click and select "Rename Playlist" from the dropdown. A playlist name accepts only alphabetical characters and must contain no special symbols or punctuation. 
+  To **delete** an existing playlist, right click and select "Delete Playlist" from the dropdown. Note, this action is permanent and deleted playlists cannot be recovered.
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Renaming%20or%20deleting%20playlist.png width="500">
 
 ### Auditory Media Details
-  To view auditory media details, songs that are members of a particular album, episodes that belong a podcast, or general comedy special information, double click on an auditory media to bring up the details view. 
+  To view auditory media details such as songs that are members of an album, episodes that belong to a podcast, or general comedy special information, double click on an auditory media to bring up the details view. 
   
   <img src=https://github.com/momenabdelkarim/cse-412-class-project/blob/main/screenshots/Detail%20view.png width="500">
   
-  In the details view, users have the option to add the item to a playlist. See [Adding to a Playlist](https://github.com/momenabdelkarim/cse-412-class-project/blob/main/README.md#adding-to-a-playlist) for more information
+  In the details view, users have the option to add an item to a playlist. See [Adding to a Playlist](https://github.com/momenabdelkarim/cse-412-class-project/blob/main/README.md#adding-to-a-playlist) for more information
 
 ### Adding to a Playlist
   To add a song, episode, or comedy special to a playlist, navigate to the detail window of the auditory media that contains the item you wish to add to the a playlist - see [Auditory Media Details](https://github.com/momenabdelkarim/cse-412-class-project#auditory-media-details) for more information - and right click on an item and select the a playlist of choice.
